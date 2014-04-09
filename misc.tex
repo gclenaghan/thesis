@@ -10,7 +10,7 @@
 \usepackage[position=b]{subcaption}
 
 
-\newtheorem{theorem}{Theorem}[section]
+\newtheorem{theorem}{Theorem}
 \newtheorem{prop}[theorem]{Proposition}
 \newtheorem{lemma}[theorem]{Lemma}
 \newtheorem{cor}[theorem]{Corollary}
@@ -26,6 +26,7 @@
 \DeclareMathOperator{\Ho}{H}
 \newcommand{\cHom}{\mathcal{H} \textit{om}}
 \DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\Ob}{Ob}
 \DeclareMathOperator{\Sch}{{\bf Sch}}
 \DeclareMathOperator{\Sing}{Sing}
 \DeclareMathOperator{\Spec}{Spec}
@@ -73,13 +74,26 @@
 \DeclareMathOperator{\tot}{tot}
 
 \begin{document}
-\title{}
-\author{Graham Clenaghan}
-\begin{abstract}
+	
+\begin{lemma}
+	Let $I$ be a thin, finite category without loops and with an initial object. Then if $X$ is an $I$-scheme, there is a finite collection of $V_{i}$, affine open sub-$I$-schemes of $X$ with $\{V_{i\alpha}\}_i$ open covers of $X_\alpha$ for each $\alpha \in I$.
+\end{lemma}
 
-\end{abstract}
-\maketitle
-
+\begin{proof}
+	First we note that the objects in $I$ can be ordered such that each object only maps to the objects of larger order, that is, $\Ob I$ has a bijection with $\{0, \dots, N\}$ such that if there is a morphism $i \rightarrow j$, then $i \leq j$. The initial object must be 0 in this construction.
+	
+	Thus we can construct $X$ inductively as follows: let $X^0 = X_0$, and let $X^1$ be the full subdiagram of $X$ with only $X_0$ and $X_1$, etc., so that $X^n$ is obtained from $X^{n-1}$ by taking the diagram containing $X^{n-1}$, $X_n$, and all the maps $f_{n\alpha}:X_n \rightarrow X_\alpha$ out of $X_n$ in the diagram $X$, by construction these all map to objects in $X^{n-1}$.
+	
+	Construct $V_i^n$ as follows: for $X^0$ choose an open affine cover of $X_0$, and for $X_n$, for each $V_i^{n-1}$ choose an open affine cover $U_{ij}$ of $\cap_\alpha f_{n\alpha}^{-1}(V_{i\alpha})$ (here we take an empty intersection to be the entire space). Let $V_{ij}^n$ be the diagram $U_{ij} \xrightarrow{\{f_{n\alpha}\}_\alpha} V_i$.
+	
+	We wish to prove that for each $n$, this construction forms a cover as desired for $X^n$. This would follow by the construction and the following:
+	
+	Claim: For each $n$, $\cap_\alpha f_{n\alpha}^{-1}(V_{i\alpha})$ covers $X_n$.
+	
+	We prove this by induction. For $X_0$, the intersection the entire space, so this is true. In general, suppose $p \in X_n$. Let $\alpha_1, \dots, \alpha_m$ be the objects in $I$ which $n$ maps to, in their order. We must show that there is an element of $V_i^{n-1}$ which has $f_{\alpha_j}(p)$ in each $V_{i \alpha_j}^{n-1}$.
+	
+	There is a $V_{i_1}^{\alpha_1}$ containing $f_{\alpha_1}(p)$, by construction. Inducting on the $\alpha_i$'s, assume now that there is a $V_{i_{k-1}}^{\alpha_{k-1}}$ containing each of the $\{f_{\alpha_1}(p), \dots, f_{\alpha_{k-1}}(p)\}$. Then by the hypotheses, if $g_\beta$'s are the maps out of $X_{\alpha_k}$, $\cap_\beta g_{\beta}^{-1}(V_{i_{k-1}\beta})$ is a cover of $X_{\alpha_k}$, thus by construction there is a $V_{i_{k-1}j}^{\alpha_k}$ including $\{f_{\alpha_1}(p), \dots, f_{\alpha_{k}}(p)\}$.
+\end{proof}
 
 
 \bibliography{library}{}
