@@ -40,6 +40,7 @@
 \newcommand{\EE}{\mathscr{E}}
 \newcommand{\FF}{\mathscr{F}}
 \newcommand{\GG}{\mathscr{G}}
+\newcommand{\cH}{\mathscr{H}}
 \newcommand{\HH}{\mathbb{H}}
 \newcommand{\II}{\mathscr{I}}
 \newcommand{\JJ}{\mathscr{J}}
@@ -119,7 +120,8 @@
 
 \begin{prop}
 	\label{prp:homqcaffine}
-	If $X_\bullet$ has affine arrows, then for any $\FF_\bullet$ coherent, $\GG_\bullet$ (quasi-)coherent, $\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet)$ is (quasi-)coherent.
+	If $X_\bullet$ has affine arrows, then for any $\FF_\bullet$ coherent, $\GG_\bullet$ quasi-coherent, $\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet)$ is quasi-coherent.
+	If in addition, $\GG_\bullet$ is coherent, $X_\bullet$ is noetherian, and the arrows are proper, then $\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet)$ is coherent.
 \end{prop}
 \begin{proof}
 	Enough to show that for each $X_\alpha$, that the sheaf $(\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet))_\alpha$ is (quasi-)coherent, which can be done locally, and furthermore for each $U \subseteq X_\alpha$, the definition of $\cHom$ only depends on the diagram $X_\bullet / U$ so we can restrict to proving this for a terminal scheme in a diagram, and furthermore restrict that this scheme is affine.
@@ -128,7 +130,7 @@
 	Now define
 	\[
 		\EE_{\alpha\beta} = \begin{cases}
-								\OO_{X_\beta} & \text{if } \beta \in I/\alpha \\
+								\OO_{X_\beta} & \text{if } \beta \in \alpha / I \\
 									0 & \text{otherwise}
 							\end{cases}
 	\]
@@ -137,11 +139,12 @@
 	We can directly compute 
 	\[
 		\cHom(\EE_{\alpha \bullet}, \GG_\bullet)_\beta = \begin{cases}
-													\GG_\beta  & \text{if } \beta \in I/\alpha \\
+													\GG_\beta  & \text{if } \beta \in \alpha / I \\
+													X_{\phi *} \GG_\alpha & \text{if } \phi : \beta \rightarrow \phi \\
 													0 & \text{otherwise}
 													\end{cases},
 	\]
-	so this is (quasi-)coherent by the same assumption on $\GG_\bullet$.
+	so this is quasi-coherent, and if the additional conditions are met, it is coherent.
 	
 	Each $\FF_\alpha$ is coherent on an affine scheme, so is the cokernel of a map of finite rank free modules, these give sequences, surjective on the $\alpha$ component of the diagram:
 	\[
@@ -167,7 +170,9 @@
 	If $X_\bullet$ is a concentrated $I$-scheme, then if $\FF_\bullet$ is coherent and $\GG_\bullet$ is (quasi-)coherent, $\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet)$ is (quasi-)coherent.
 \end{theorem}
 \begin{proof}
-	As before, reduce to the case with $X_\bullet$ a diagram with an affine, terminal component $X_0$. Then apply lemma \ref{lem:affinecover} to $X_\bullet$ to have an affine diagram cover $\{V_{i\bullet}\}$. Each intersection $V_{i \bullet} \cap V_{j \bullet}$ is quasi-compact by quasi-separability, so we can reapply lemma \ref{lem:affinecover} to have affine diagram covers $\{V_{ijk\bullet}\}$.
+	As before, reduce to the case with $X_\bullet$ a diagram with an affine, terminal component $X_0$.
+	Then apply lemma \ref{lem:affinecover} to $X_\bullet$ to have an affine diagram cover $\{V_{i\bullet}\}$.
+	Each intersection $V_{i \bullet} \cap V_{j \bullet}$ is quasi-compact by quasi-separability, so we can reapply lemma \ref{lem:affinecover} to have affine diagram covers $\{V_{ijk\bullet}\}$.
 	
 	Have maps $\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet)_0 \rightarrow \cHom_{V_{i\bullet}}(\FF_\bullet |_{V_{i\bullet}}, \GG_\bullet |_{V_{i \bullet}})_0$ given by restriction, and in fact if we are given $\phi_i \in \cHom_{V_{i\bullet}}(\FF_\bullet |_{V_{i\bullet}}, \GG_\bullet |_{V_{i \bullet}})_0$ for each $i$ such that $\phi_i |_{V_{ijk \bullet}} = \phi_j |_{V_{ijk \bullet}}$ for each $i, j, k$, then the morphisms glue uniquely to give $\psi \in \cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet)_0$.
 	
@@ -178,6 +183,29 @@
 	\end{tikzcd}
 	\]
 	by proposition \ref{prp:homqcaffine}, the right two terms are (quasi-)coherent, so as is the term on the left.
+\end{proof}
+
+\begin{theorem}
+	Suppose $\GG_\bullet$ is an $\OO_{X_\bullet}$-module.
+	Then the functors $\cHom_{X_\bullet}(\GG_\bullet, -)$ and $-\otimes\GG_\bullet$ are adjoint.
+\end{theorem}
+\begin{proof}
+	Let $\FF_\bullet$ and $\cH_\bullet$ be arbitrary $\OO_{X_\bullet}$-modules, we will describe an isomorphism
+	\[
+		\Hom(\FF_\bullet, \cHom_{X_\bullet}(\GG_\bullet, \cH_\bullet)) \xrightarrow{\sim} \Hom(\FF_\bullet \otimes \GG_\bullet, \cH_\bullet)
+	\]
+	Note that if $\FF_\bullet \otimes^p \GG_\bullet$ is the presheaf tensor product, then there is a natural isomorphism $\Hom(\FF_\bullet \otimes \GG_\bullet, \cH_\bullet) \cong \Hom(\FF_\bullet \otimes^p \GG_\bullet, \cH_\bullet)$, so it is enough to show for the presheaf tensor product, and in this case $X_{\phi *} (\FF_\alpha \otimes^p \FF_\beta) \cong X_{\phi *} \FF_\alpha \otimes^p X_{\phi *} \GG_\alpha$, compatible with the arrows of $\FF_\bullet \otimes^p \GG_\bullet$.
+	
+	Given $\psi \in \Hom(\FF_\bullet, \cHom_{X_\bullet}(\GG_\bullet, \cH_\bullet))$, with restriction to each component $\alpha$ denoted $\psi_\alpha$, define a morphism $\FF_\alpha \otimes^p \GG_\alpha \rightarrow \cH_\alpha$ by $s \otimes t \mapsto \psi_\alpha(s)(t)$.
+	It remains to check that these give compatible morphisms, namely to show the following diagram commutes:
+	\[
+		\begin{tikzcd}
+			\FF_\alpha \otimes^p \GG_\alpha \arrow{rr}{s \otimes t \mapsto \psi_\alpha(s)(t)} \arrow{d}{\FF_\phi \otimes \GG_\phi} && \cH_\alpha \arrow{d}{\cH_\phi} \\
+			X_{\phi *} \FF_\beta \otimes^p X_{\phi *}\GG_\beta \arrow{rr}{s \otimes t \mapsto \psi_\beta(s)(t)} && X_{\phi *} \cH_\beta.
+		\end{tikzcd}
+	\]
+	Then we must show that for $s \otimes t$ in $\FF_\alpha \otimes^p \GG_\alpha$, $\cH_\phi (\psi_\alpha(s)(t)) = \psi_\beta(\FF_\phi s)(\GG_\phi t)$.
+	This can be seen as a result of the compatibilities of the map $\psi$.
 \end{proof}
 
 \bibliography{library}{}
