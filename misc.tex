@@ -167,7 +167,8 @@
 \end{proof}
 
 \begin{theorem}
-	If $X_\bullet$ is a concentrated $I$-scheme, then if $\FF_\bullet$ is coherent and $\GG_\bullet$ is (quasi-)coherent, $\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet)$ is (quasi-)coherent.
+	If $X_\bullet$ is a concentrated $I$-scheme, then if $\FF_\bullet$ is coherent and $\GG_\bullet$ is quasi-coherent, $\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet)$ is quasi-coherent.
+	If in addition $\GG_\bullet$ is coherent, and $X_\bullet$ is noetherian with proper arrows, then $\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet)$ is coherent.
 \end{theorem}
 \begin{proof}
 	As before, reduce to the case with $X_\bullet$ a diagram with an affine, terminal component $X_0$.
@@ -204,9 +205,45 @@
 			X_{\phi *} \FF_\beta \otimes^p X_{\phi *}\GG_\beta \arrow{rr}{s \otimes t \mapsto \psi_\beta(s)(t)} && X_{\phi *} \cH_\beta.
 		\end{tikzcd}
 	\]
-	Then we must show that for $s \otimes t$ in $\FF_\alpha \otimes^p \GG_\alpha$, $\cH_\phi (\psi_\alpha(s)(t)) = \psi_\beta(\FF_\phi s)(\GG_\phi t)$.
-	This can be seen as a result of the compatibilities of the map $\psi$.
+	Then we must show that for $s \otimes t$ in $\FF_\alpha \otimes^p \GG_\alpha$, $\cH_\phi (\psi_\alpha(s)(t)) = \psi_\beta(\FF_\phi s)(\GG_\phi t)$, or more abstractly that the following diagram commutes:
+	\[
+		\begin{tikzcd}
+		\cHom_{X_\bullet / X_\alpha}(\GG_\bullet, \cH_\bullet)_\alpha \arrow{r} \arrow{dd} & \cHom_{X_\alpha}(\GG_\alpha, \cH_\alpha) \arrow{dr} \\
+		& &  \cHom_{X_\alpha} (\GG_\alpha, X_{\phi *} \cH_\beta) \\
+		X_{\phi *} \cHom_{X_\bullet / X_\beta}(\GG_\bullet, \cH_\bullet)_\beta \arrow{r} & X_{\phi *} \cHom_{X_\beta} (\GG_\beta, \cH_\beta) \arrow{r} & \cHom_{X_\alpha}(X_{\phi *} \GG_\beta, X_{\phi *} \cH_\beta) \arrow{u}.
+		\end{tikzcd}
+	\]
+	Taking a morphism $\varphi \in \cHom_{X_\bullet / X_\alpha}(\GG_\bullet, \cH_\bullet)_\alpha$, the result of the map to the right is, for each $U \subseteq X_\alpha$, a module homomorphism $\GG_\alpha(U) \rightarrow \cH_\alpha(U)$.
+	The result of the composition to the bottom right is, for each $U \subseteq X_\alpha$, a module homomorphism $\GG_\beta(X_\phi^{-1}(U)) \rightarrow \cH_\beta (X_\phi^{-1}(U))$.
+	Then they map to the same morphism in $\cHom_{X_\alpha} (\GG_\alpha, X_{\phi *} \cH_\beta)$ by the compatibilities of the original map.
+	
+	Now given a $\psi \in \Hom(\FF_\bullet \otimes^p \GG_\bullet, \cH_\bullet)$, define for each $U \subseteq X_\alpha$, $s \in \FF_\alpha(U)$, and $\phi : \alpha \rightarrow \beta$, a map $\GG_\alpha(X_\phi^{-1}(U)) \rightarrow \cH_\alpha(X_\phi^{-1}(U))$ by $t \mapsto \psi_\alpha(\FF_\phi(s) \otimes t)$, and further a map on $V \subseteq X_\phi^{-1}(U)$ by restricting $\FF_\phi(s)$.
+	This defines an element of $\cHom_{X_\bullet / X_\alpha}(\GG_\bullet, \cH_\bullet)$, as these morphisms are compatible by the compatibility of $\psi$ and $\FF_\phi$.
+	
+	By careful consideration the two operations described are inverses, so the functors are adjoint.
 \end{proof}
+
+\begin{theorem}
+	The derived functor $\bR \cHom_{X_\bullet}(-,-)$ takes $D^-(X_\bullet)^{op} \times D^+(X_\bullet)$ to $D^+(X_\bullet)$. Furthermore, it takes $D^-_c(X_\bullet)^{op} \times D^+_{qc}(X_\bullet)$ to $D^+_{qc}(X_\bullet)$.
+\end{theorem}
+\begin{proof}
+	For each $F_\bullet \in D^-(X_\bullet)$, $G_\bullet \in D^+(X_\bullet)$, $\bR \cHom_{X_\bullet}(F_\bullet, G_\bullet)$ is defined by replacing $G_\bullet$ with an injective resolution $I_\bullet$, and then taking the total complex of the double complex
+	\[
+	\begin{tikzcd}
+				{}&	\vdots \arrow{d}	&	\vdots \arrow{d} & \\
+		\cdots	\arrow{r}	&	\cHom_{X_\bullet}(F^i_\bullet, I^j_\bullet) \arrow{r} \arrow{d}	&	\cHom_{X_\bullet}(F^{i-i}_\bullet, I^j_\bullet) \arrow{d} \arrow{r}	& \cdots \\
+		\cdots	\arrow{r}	&	\cHom_{X_\bullet}(F^i_\bullet, I^{j+1}_\bullet) \arrow{r} \arrow{d}	&	\cHom_{X_\bullet}(F^{i-i}_\bullet, I^{j+1}_\bullet) \arrow{d} \arrow{r}	& \cdots \\
+				&	\vdots	&	\vdots &
+	\end{tikzcd}
+	\]
+	
+	As the diagonals move to the left, eventually each term must be zero by the bounds on the original complexes.
+	Furthermore, if each term in $F_\bullet$ is coherent and each term in $G_\bullet$ is quasi-coherent, then $I_\bullet$ can be taken to be a quasi-coherent injective resolution and thus each term in the double complex is quasi-coherent.
+\end{proof}
+
+\begin{theorem}
+	Suppose $G_\bullet \in D_c^-(X_\bullet)$. Then the functors $\bR \cHom_{X_\bullet}(G_\bullet, -)$ and $-\otimesL G_\bullet$ are adjoint.
+\end{theorem}
 
 \bibliography{library}{}
 \bibliographystyle{plain}
