@@ -8,6 +8,7 @@
 \usepackage{wrapfig}
 \usepackage{caption}
 \usepackage[position=b]{subcaption}
+\usepackage{hyperref}
 
 
 \newtheorem{theorem}{Theorem}
@@ -242,9 +243,120 @@
 \end{proof}
 
 \begin{theorem}
-	Suppose $G_\bullet \in D_c^-(X_\bullet)$. Then the functors $\bR \cHom_{X_\bullet}(G_\bullet, -)$ and $-\otimesL G_\bullet$ are adjoint.
+	The derived functor $-\otimesL-$ takes $D(X_\bullet) \times D(X_\bullet)$ to $D(X_\bullet)$. Furthermore, it takes $D_{qc}(X_\bullet) \times D_{qc}(X_\bullet)$ to $D_{qc}(X_\bullet)$ and $D_{c}(X_\bullet) \times D_{c}(X_\bullet)$ to $D_{c}(X_\bullet)$.
 \end{theorem}
+\begin{proof}
+	$(F_\bullet \otimesL G_\bullet)_\alpha = F_\alpha \otimesL G_\alpha$.
+\end{proof}
 
-\bibliography{library}{}
+\begin{theorem}
+	Suppose $G_\bullet \in D(X_\bullet)$. Then the functors $\bR \cHom_{X_\bullet}(G_\bullet, -)$ and $-\otimesL G_\bullet$ are adjoint.
+\end{theorem}
+\begin{proof}
+	This is an application tag 09T5 of \cite{stacks}.
+\end{proof}
+
+\begin{definition}
+	A morphism $f_\bullet : X_\bullet \rightarrow Y_\bullet$ from a $\Box_n \times I$-scheme $X_\bullet$ to an $I$-scheme $Y_\bullet$ over the functor projecting to $I$ is called a \textit{cubical morphism}.
+\end{definition}
+
+\begin{theorem}
+	\label{thm:pushforwardbounds}
+	Let $f_\bullet : X_\bullet \rightarrow Y_\bullet$ be a concentrated, cubical morphism.
+	Then $\bR f_{\bullet *} : D(X_\bullet) \rightarrow D(X_\bullet)$ maps $D_{qc}(X_\bullet)$ to $D_{qc}(X_\bullet)$, $D^-(X_\bullet)$ to $D^-(X_\bullet)$, and if $f_\bullet$ is a proper morphism of noetherian schemes, $D_c(X_\bullet)$ to $D_c(X_\bullet)$.
+	Furthermore the right adjoint to $\bR f_{\bullet *}$ on $D_{qc}(X_\bullet)$, $f_\bullet^!$ maps $D_{qc}^+(X_\bullet)$ to $D_{qc}^+(X_\bullet)$.
+\end{theorem}
+\begin{proof}
+	The derived limit on each component preserves (quasi-)coherence and is bounded above, so by the staggered complex construction, the derived limit of the total pushforward on each component $Y_\alpha$ also has these properties.
+	Then the adjoint is bounded below by Lemma 4.1.8 of \cite{Lipman2009}.
+\end{proof}
+
+\begin{theorem}
+	Let $f_\bullet : X_\bullet \rightarrow Y_\bullet$ be a proper morphism of noetherian diagrams of schemes.
+	Suppose that for $F_\bullet \in D_{c}^-(X_\bullet)$, the projection formula natural transformation of functors $D_{qc}(Y_\bullet) \rightarrow D_{qc}(Y_\bullet)$
+	\[
+		- \otimesL \bR f_{\bullet *} F_\bullet \rightarrow \bR f_{\bullet *}(\bL f_\bullet^* - \otimesL F_\bullet)
+	\]
+	is an isomorphism.
+	Then the Grothendieck duality natural transformation of functors $D_{qc}^+(Y_\bullet) \rightarrow D_{qc}^+(Y_\bullet)$
+	\[
+		\bR f_{\bullet *} \bR \cHom_{X_\bullet} (F_\bullet, f_\bullet^! -) \rightarrow \bR \cHom_{Y_\bullet} (\bR f_{\bullet *} F_\bullet, -)
+	\]
+	is an isomorphism.
+\end{theorem}
+\begin{proof}
+	By theorem \ref{thm:pushforwardbounds}, $\bR f_{\bullet *}$ maps $D^-_{c}(X_\bullet)$ to $D_c^-(X_\bullet)$.
+	Thus each of these is well-defined as functors to the indicated categories.
+	
+	Next we note that if $E_\bullet \in D_{qc}(X_\bullet)$, then for any $G_\bullet \in D_{qc}^+(X_\bullet)$, the two transformations are conjugate and fit into the diagram
+	\[
+	\begin{tikzcd}
+		\Hom(\bR f_{\bullet *}(\bL f_\bullet^* E_\bullet \otimesL F_\bullet), G_\bullet) \arrow{d}[sloped, above]{\sim} \arrow{r} & \Hom(E_\bullet \otimesL \bR f_{\bullet *} F_\bullet, G_\bullet) \arrow{d}[sloped, above]{\sim} \\
+		\Hom(E_\bullet, \bR f_{\bullet *} \bR \cHom_{X_\bullet} (F_\bullet, f_\bullet^! G_\bullet) \arrow{r} & \Hom(E_\bullet, \bR \cHom_{Y_\bullet} (\bR f_{\bullet *} F_\bullet, G_\bullet)).
+	\end{tikzcd}
+	\]
+	By hypothesis, the top arrow is an isomorphism, so as is the bottom arrow.
+	Then by Yoneda's lemma, the Grothendieck duality transformation is an isomorphism.
+\end{proof}
+
+\begin{theorem}
+	Let $f_\bullet : X_\bullet \rightarrow Y_\bullet$ be a stratified morphism.
+	Then for each $F_\bullet \in D_{qc}(X_\bullet)$, the projection formula natural transformation of functors on $D_{qc}(X_\bullet)$
+	\[
+	- \otimesL \bR f_{\bullet *} F_\bullet \rightarrow \bR f_{\bullet *}(\bL f_\bullet^* - \otimesL F_\bullet)
+	\]
+	is an isomorphism.
+\end{theorem}
+\begin{proof}	
+	It is enough to show this over each component of $Y_\bullet$, and $\bR f_{\bullet *}$ is computed independently on each component of $Y$ via the stratification of $f_\bullet$, so we can assume $Y$ is a scheme, and $f_\bullet : X_\bullet \rightarrow Y$
+	
+	Then this morphism is local in $Y$ using flat base change, so we can reduce to the case where $Y$ is affine.
+	Here, $\OO_Y$ is ample and generates the category $D_{qc}(Y)$, and since each functor is triangulated from $D_{qc}(Y)$ to $D_{qc}(Y)$, and preserves coproducts, it is in fact enough to show just for $\OO_Y$, where it is trivial.
+\end{proof}
+
+\begin{cor}
+	\label{cor:cubicalgrothdual}
+	If $f_\bullet : X_\bullet \rightarrow Y_\bullet$ is a cubical, projective morphism of noetherian diagrams of schemes, then for any $F_\bullet \in D_{c}^-(X_\bullet)$, $G_\bullet \in D_{qc}^+(X_\bullet)$, the Grothendieck duality map is an isomorphism:
+	\[
+		\bR f_{\bullet *} \bR \cHom(F_\bullet, f_\bullet^! G_\bullet) \xrightarrow{\sim} \bR \cHom(\bR f_{\bullet *} F_\bullet, G_\bullet).
+	\]
+	Furthermore,
+	\[
+		\bR f_{\bullet *} \bR \cHom(F_\bullet, \omega_{X_\bullet}^\bullet) \xrightarrow{\sim} \bR \cHom(\bR f_{\bullet *} F_\bullet, \omega_{Y_\bullet}^\bullet).
+	\]
+\end{cor}
+
+\begin{cor}
+	Let $X$ be a reduced scheme, finite-type over $\CC$, and let $f_\bullet : X_\bullet \rightarrow X$ be a cubic hyperresolution.
+	Then $X$ has Du Bois singularities if and only if the natural map
+	\[
+		\bR f_{\bullet *} \omega^\bullet_{X_\bullet} \xrightarrow{\sim} \omega^\bullet_X
+	\]
+	is a quasi-isomorphism.
+\end{cor}
+\begin{proof}
+	Suppose $X$ has Du Bois singularities, so that the natural map
+	\[
+		\OO_X \xrightarrow{\sim} \bR f_{\bullet *} \OO_{X_\bullet}
+	\]
+	is a quasi-isomorphism.
+	Then applying the functor $\bR \cHom(-,\omega_X^\bullet)$, and using corollary \ref{cor:cubicalgrothdual},
+	\begin{align*}
+		\omega_X^\bullet &\xleftarrow{\sim} \bR \cHom(\bR f_{\bullet *} \OO_{X_\bullet}, \omega_X^\bullet) \\
+		&\xleftarrow{\sim} \bR f_{\bullet *} \bR \cHom(\OO_{X_\bullet}, \omega_{X_\bullet}^\bullet) \\
+		&\xleftarrow{\sim} \bR f_{\bullet *} \omega_{X_\bullet}^\bullet
+	\end{align*}
+	
+	Now assume this map is an isomorphism.
+	Applying the same functor and using the fact that $\omega_X^\bullet$ is dualizing,
+	\begin{align*}
+		\bR \cHom(\omega_X^\bullet, \omega_X^\bullet) &\xrightarrow{\sim} \bR \cHom(\bR f_{\bullet *} \omega_{X_\bullet}^\bullet, \omega_X^\bullet) \\
+		&\xrightarrow{\sim} \bR \cHom(\bR f_{\bullet *} \bR \cHom(\OO_{X_\bullet}, \omega_{X_\bullet}^\bullet), \omega_{X}^\bullet) \\
+		&\xrightarrow{\sim} \bR \cHom(\bR \cHom(\bR f_{\bullet *} \OO_{X_\bullet}, \omega_X^\bullet), \omega_X^\bullet) \\
+		\OO_X &\xrightarrow{\sim} \bR f_{\bullet *} \OO_{X_\bullet}
+	\end{align*}
+\end{proof}
+
+\bibliography{../library}{}
 \bibliographystyle{plain}
 \end{document}
