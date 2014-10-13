@@ -18,6 +18,7 @@
 \theoremstyle{definition}
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{question}[theorem]{Question}
+\newtheorem{example}[theorem]{Example}
 
 \DeclareMathOperator{\Coh}{Coh}
 \DeclareMathOperator{\Ext}{Ext}
@@ -77,6 +78,8 @@
 \DeclareMathOperator{\tot}{tot}
 
 \begin{document}
+	
+\section{Quasi-coherentness}
 	
 \begin{lemma}
 	\label{lem:affinecover}
@@ -271,6 +274,8 @@
 	Then the adjoint is bounded below by Lemma 4.1.8 of \cite{Lipman2009}.
 \end{proof}
 
+\section{Projection Formula/Duality}
+
 \begin{theorem}
 	Let $f_\bullet : X_\bullet \rightarrow Y_\bullet$ be a proper morphism of noetherian diagrams of schemes.
 	Suppose that for $F_\bullet \in D_{c}^-(X_\bullet)$, the projection formula natural transformation of functors $D_{qc}(Y_\bullet) \rightarrow D_{qc}(Y_\bullet)$
@@ -326,6 +331,33 @@
 	\]
 \end{cor}
 
+\begin{example}
+	Let $X$ be a scheme, and $Y_\bullet$ be the diagram $X \rightarrow X$ with the identity map (for convenience, labeled $X_1 \rightarrow X_2$).
+	Then we have a morphism of diagrams $f_\bullet$ as follows:
+	\[
+	\begin{tikzcd}
+		X \arrow{r}{\id} & X_1 \arrow{d}{\id} \\
+		& X_2.
+	\end{tikzcd}
+	\]
+	
+	We will construct a counterexample to the projection formula and Grothendieck duality for this morphism of diagrams.
+	Let $\FF_\bullet$ be the sheaf over $Y_\bullet$ which is 0 on $X_1$ and $\OO_{X_2}$ on $X_2$.
+	Now consider the natural morphism
+	\[
+		\bR f_{\bullet *} (\bL f_\bullet^* \FF_\bullet) \rightarrow \FF_\bullet \otimes \bR f_{\bullet *} \OO_X
+	\]
+	
+	Using the definition of the pushforward, $(\bR f_{\bullet *} \OO_X)_1 = \bR \varinjlim \OO_{X_1} = \OO_{X_1}$ and $(\bR f_{\bullet *} \OO_X)_2 = \bR \varinjlim \OO_{X_2} = \OO_{X_2}$, so the right side is $\FF_\bullet$.
+	On the other hand, $\bL f_\bullet^* \FF_\bullet = \bL \id^* 0 = 0$ so the left side is 0 and this is not a natural isomorphism.
+	
+	Then we can do the same for the Grothendieck duality map
+	\[
+		\bR f_{\bullet *} \bR \cHom(\OO_X, f_\bullet^! \FF_\bullet) \rightarrow \bR \cHom(\bR f_{\bullet *} \OO_X , \FF_\bullet):
+	\]
+	by the previous computation this is morphism $\bR f_{\bullet *} f_\bullet^! \FF_\bullet \rightarrow \FF_\bullet$, and the right hand side gives the same sheaf when restricted to either $X_1$ or $X_2$, while $\FF_\bullet$ is not the same on each.
+\end{example}
+
 \begin{cor}
 	Let $X$ be a reduced scheme, finite-type over $\CC$, and let $f_\bullet : X_\bullet \rightarrow X$ be a cubic hyperresolution.
 	Then $X$ has Du Bois singularities if and only if the natural map
@@ -356,6 +388,29 @@
 		\OO_X &\xrightarrow{\sim} \bR f_{\bullet *} \OO_{X_\bullet}
 	\end{align*}
 \end{proof}
+
+\section{Relative Differentials}
+
+\begin{definition}
+	Let $f_\bullet : X_\bullet \rightarrow Y_\bullet$ be a morphism of diagrams of schemes over the functor $\Phi : I \rightarrow J$.
+	Then define a sheaf $\Omega_{X_\bullet / Y_\bullet}$ on the diagram $X_\bullet$ as follows: for each $\alpha \in I$,
+	\[
+		(\Omega_{X_\bullet / Y_\bullet})_\alpha = \Omega_{X_\alpha / Y_{\Phi(\alpha)}}
+	\]
+	and for each $X_\alpha \rightarrow X_\beta$, the map $\phi_{\alpha \beta}^* (\Omega_{X_\bullet / Y_\bullet})_\beta \rightarrow (\Omega_{X_\bullet / Y_\bullet})_\alpha$ is given by
+	\[
+		\phi_{\alpha \beta}^* \Omega_{X_\beta / Y_{\Phi(\beta)}} \xrightarrow{\sim} p^* \Omega_{X_\beta \times_{Y_{\Phi(\beta)}} Y_{\Phi(\alpha)} / Y_{\Phi(\alpha)}} \rightarrow \Omega_{X_\alpha / Y_{\Phi(\alpha)}}
+	\]
+	
+	This defines a sheaf over the diagram since for any $X_\alpha \rightarrow X_\beta \rightarrow X_\delta$, the diagram
+	\[
+		\begin{tikzcd}
+			X_\alpha \arrow{rr} \arrow{dr} & & Y_{\Phi(\alpha)} \times_{Y_{\Phi(\delta)}} X_\delta \\
+			& Y_{\Phi(\alpha)} \times_{Y_{\Phi(\beta)}} X_\beta \arrow{ur} & {}
+		\end{tikzcd}
+	\]
+	commutes.
+\end{definition}
 
 \bibliography{../library}{}
 \bibliographystyle{plain}
