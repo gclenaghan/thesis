@@ -228,7 +228,8 @@
 \end{proof}
 
 \begin{theorem}
-	The derived functor $\bR \cHom_{X_\bullet}(-,-)$ takes $D^-(X_\bullet)^{op} \times D^+(X_\bullet)$ to $D^+(X_\bullet)$. Furthermore, it takes $D^-_c(X_\bullet)^{op} \times D^+_{qc}(X_\bullet)$ to $D^+_{qc}(X_\bullet)$.
+	The derived functor $\bR \cHom_{X_\bullet}(-,-)$ takes $D^-(X_\bullet)^{op} \times D^+(X_\bullet)$ to $D^+(X_\bullet)$.
+	Furthermore, it takes $D^-_c(X_\bullet)^{op} \times D^+_{qc}(X_\bullet)$ to $D^+_{qc}(X_\bullet)$.
 \end{theorem}
 \begin{proof}
 	For each $F_\bullet \in D^-(X_\bullet)$, $G_\bullet \in D^+(X_\bullet)$, $\bR \cHom_{X_\bullet}(F_\bullet, G_\bullet)$ is defined by replacing $G_\bullet$ with an injective resolution $I_\bullet$, and then taking the total complex of the double complex
@@ -246,14 +247,16 @@
 \end{proof}
 
 \begin{theorem}
-	The derived functor $-\otimesL-$ takes $D(X_\bullet) \times D(X_\bullet)$ to $D(X_\bullet)$. Furthermore, it takes $D_{qc}(X_\bullet) \times D_{qc}(X_\bullet)$ to $D_{qc}(X_\bullet)$ and $D_{c}(X_\bullet) \times D_{c}(X_\bullet)$ to $D_{c}(X_\bullet)$.
+	The derived functor $-\otimesL-$ takes $D(X_\bullet) \times D(X_\bullet)$ to $D(X_\bullet)$.
+	Furthermore, it takes $D_{qc}(X_\bullet) \times D_{qc}(X_\bullet)$ to $D_{qc}(X_\bullet)$ and $D_{c}(X_\bullet) \times D_{c}(X_\bullet)$ to $D_{c}(X_\bullet)$.
 \end{theorem}
 \begin{proof}
 	$(F_\bullet \otimesL G_\bullet)_\alpha = F_\alpha \otimesL G_\alpha$.
 \end{proof}
 
 \begin{theorem}
-	Suppose $G_\bullet \in D(X_\bullet)$. Then the functors $\bR \cHom_{X_\bullet}(G_\bullet, -)$ and $-\otimesL G_\bullet$ are adjoint.
+	Suppose $G_\bullet \in D(X_\bullet)$.
+	Then the functors $\bR \cHom_{X_\bullet}(G_\bullet, -)$ and $-\otimesL G_\bullet$ are adjoint.
 \end{theorem}
 \begin{proof}
 	This is an application tag 09T5 of \cite{stacks}.
@@ -305,7 +308,43 @@
 \end{proof}
 
 \begin{theorem}
-	Let $f_\bullet : X_\bullet \rightarrow Y_\bullet$ be a stratified morphism.
+	\label{thm:flatbasechange}
+	Let $u_\bullet : U_\bullet \rightarrow X_\bullet$ and $f_\bullet : Y_\bullet \rightarrow X_\bullet$ be morphisms of diagrams of schemes, and $V_\bullet = U_\bullet \times_{X_\bullet} Y_\bullet$, with projections $g_\bullet$ to $U_\bullet$ and $v_\bullet$ to $Y_\bullet$.
+	Then the natural transformation of functors $D_{qc}(Y_\bullet) \rightarrow D_{qc}(U_\bullet)$
+	\[
+		\bL u_\bullet^* \bR f_{\bullet *} \rightarrow \bR g_{\bullet *} \bL v_\bullet^*,
+	\]
+	and if $u_\bullet$ is flat and $f_\bullet$ is cubical, this is an isomorphism.
+\end{theorem}
+\begin{proof}
+	The natural map is the composition
+	\begin{align*}
+		\bL u_\bullet^* \bR f_{\bullet *} &\rightarrow \bR g_{\bullet *} \bL g_\bullet^* \bL u_\bullet^* \bR f_{\bullet *} \\
+		&\rightarrow \bR g_{\bullet *} \bL v_\bullet^* \bL f_\bullet^* \bR f_{\bullet *} \\
+		&\rightarrow \bR g_{\bullet *} \bL v_\bullet^*.
+	\end{align*}
+	
+	Now suppose $F_\bullet \in D_{qc}(Y_\bullet)$ and $u_\bullet$ is a functor over $\Phi : I \rightarrow J$.
+	Then for each $\alpha \in I$, by definition,
+	\[
+		(\bR g_{\bullet *} \bL v_\bullet^* F_\bullet)_\alpha = \bR \varprojlim_{\beta \in \Box_n} \bR g_{(\alpha, \beta) *} \bL v_{(\alpha, \beta)}^* F_\beta,
+	\]
+	then by usual flat base change for schemes, this becomes
+	\[
+		 \bR \varprojlim_{\beta \in \Box_n} \bL u_{\alpha}^*  \bR f_{\beta *} F_\beta.
+	\]
+	By definition,
+	\[
+		(\bL u_\bullet^* \bR f_{\bullet *} F_\bullet)_\alpha = \bL u_\alpha^* \bR \varprojlim_{\beta \in \Box_n} \bR f_{\beta *} F_\beta,
+	\]
+	so we have reduced to showing that for a flat morphism of schemes $u : U \rightarrow X$, a $\Box_n$-diagram of complexes $F_\bullet$ on $X$, $\bL u^* \bR \varprojlim F_\bullet = \bR \varprojlim \bL u^*$.
+	
+	By flatness, $\bL u^* = u^*$, and by using the staggered complex construction $\bR \varprojlim F_\bullet$ becomes a complex with each degree the direct sum of $F_\alpha^p$s and differential maps the direct sum of maps $F_\alpha \rightarrow F_\beta$.
+	Since $u^*$ commutes with all of these, $u^* \bR \varprojlim F_\bullet$ is in fact the staggered complex of $u^* F_\bullet$.
+\end{proof}
+
+\begin{theorem}
+	Let $f_\bullet : X_\bullet \rightarrow Y_\bullet$ be a cubical morphism.
 	Then for each $F_\bullet \in D_{qc}(X_\bullet)$, the projection formula natural transformation of functors on $D_{qc}(X_\bullet)$
 	\[
 	- \otimesL \bR f_{\bullet *} F_\bullet \rightarrow \bR f_{\bullet *}(\bL f_\bullet^* - \otimesL F_\bullet)
@@ -315,7 +354,7 @@
 \begin{proof}	
 	It is enough to show this over each component of $Y_\bullet$, and $\bR f_{\bullet *}$ is computed independently on each component of $Y$ via the stratification of $f_\bullet$, so we can assume $Y$ is a scheme, and $f_\bullet : X_\bullet \rightarrow Y$
 	
-	Then this morphism is local in $Y$ using flat base change, so we can reduce to the case where $Y$ is affine.
+	Then this morphism is local in $Y$ using theorem \ref{thm:flatbasechange}, so we can reduce to the case where $Y$ is affine.
 	Here, $\OO_Y$ is ample and generates the category $D_{qc}(Y)$, and since each functor is triangulated from $D_{qc}(Y)$ to $D_{qc}(Y)$, and preserves coproducts, it is in fact enough to show just for $\OO_Y$, where it is trivial.
 \end{proof}
 
