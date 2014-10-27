@@ -451,6 +451,32 @@
 	commutes.
 \end{definition}
 
+\begin{theorem}
+	Let $f : X \rightarrow B$ be a smooth morphism from a smooth scheme $X$ to a smooth, 1-dimensional scheme $B$.
+	Then for each $p$ there is a finite locally-free resolution of $\Omega_{X/B}^p$ given by
+	\[
+		\cdots \rightarrow f^* \omega_B^{\otimes 2} \otimes \Omega_X^{p-2} \rightarrow f^* \omega_B \otimes \Omega_X^{p-1} \rightarrow
+			\Omega^p_X \rightarrow \Omega_{X/B}^p \rightarrow 0
+	\]
+\end{theorem}
+\begin{proof}
+	First note there is always a right exact sequence
+	\[
+		f^* \omega_B \otimes \Omega_X^{p-1} \rightarrow \Omega_X^p \otimes \Omega_{X/B}^p \rightarrow 0
+	\]
+	by tag 00DO of \cite{stacks}, and when $B$ is 1-dimensional, there is an exact sequence
+	\[
+		0 \rightarrow f^* \omega_B \otimes \Omega_{X/B}^{p-1} \rightarrow \Omega_X^p \rightarrow \Omega_{X/B}^p \rightarrow 0.
+	\]
+	The image of the left map in the first exact sequence is then  $f^* \omega_B \otimes \Omega_{X/B}^{p-1}$ and we can apply the first sequence for $p-1$ and tensored with $f^* \omega_B$ to extend the first sequence to 
+	\[
+	f^* \omega_B^{\otimes 2} \otimes \Omega_X^{p-2} \rightarrow f^* \omega_B \otimes \Omega_X^{p-1} \rightarrow
+	\Omega^p_X \rightarrow \Omega_{X/B}^p \rightarrow 0
+	\]
+	while remaining exact.
+	By continuing in this manner using these two exact sequences tensored with $f^* \omega_B$ an appropriate number of times (note this is flat), we get the exact sequence as desired.
+\end{proof}
+
 \bibliography{../library}{}
 \bibliographystyle{plain}
 \end{document}
