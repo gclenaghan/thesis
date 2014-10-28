@@ -452,6 +452,7 @@
 \end{definition}
 
 \begin{theorem}
+	\label{thm:locfreereldiffs}
 	Let $f : X \rightarrow B$ be a smooth morphism from a smooth scheme $X$ to a smooth, 1-dimensional scheme $B$.
 	Then for each $p$ there is a finite locally-free resolution of $\Omega_{X/B}^p$ given by
 	\[
@@ -475,6 +476,38 @@
 	\]
 	while remaining exact.
 	By continuing in this manner using these two exact sequences tensored with $f^* \omega_B$ an appropriate number of times (note this is flat), we get the exact sequence as desired.
+\end{proof}
+
+\begin{definition}
+	Let $f : X \rightarrow B$ be a morphism from any scheme $X$ to a smooth scheme $B$ over a field of characteristic 0.
+	For a cubical hyperresolution $\pi_\bullet : X_\bullet \rightarrow X$ and nonnegative integer $p$, we can define
+	\[
+		\DB_{X/B}^p = \bR \pi_{\bullet *} \Omega_{X_\bullet / B}^p.
+	\]
+	Note that a priori this is not independent of choice of hyperresolution.
+\end{definition}
+
+\begin{cor}
+	Let $f : X \rightarrow B$ be a flat morphism from any scheme $X$ to a smooth, 1-dimensional scheme $B$ over a field of characteristic 0.
+	Then there is a spectral sequence computing the homology of $\DB_{X/B}^p$:
+	\[
+		E_1^{ij} = f^* \omega_B^{\otimes (p - j)} \otimes h^i(\DB_X^j) \Rightarrow h^{i+j}(\DB_{X/B}^p)
+	\]
+\end{cor}
+\begin{proof}
+	Let $f_\bullet = f \circ \pi_\bullet$.
+	Construct the injective Cartan-Eilenberg resolution of the resolution from theorem \ref{thm:locfreereldiffs}, apply the pushforward functor and compute the spectral sequence, obtaining
+	\[
+		E_1^{ij} = \bR^i \pi_{\bullet *} (f_\bullet^* \omega_B^{\otimes(p-j)} \otimes \Omega_{X_\bullet}^j) \Rightarrow \bR^{i+j} \pi_{\bullet *} \Omega_{X/B}^p
+	\]
+	This is part of the Grothendieck spectral sequence for $\bR \pi_{\bullet *}$ and $\id$, we are just stopping at $E_1$.
+	
+	To finish this, apply some definitions and the projection formula:
+	\begin{align*}
+		\bR^i \pi_{\bullet *} (f_\bullet^* \omega_B^{\otimes(p-j)} \otimes \Omega_{X_\bullet}^j) &= h^i (\bR \pi_{\bullet *} (\pi_\bullet^* f^* \omega_B^{\otimes(p-j)} \otimes \Omega_{X_\bullet}^j)) \\
+		&= h^i (f^* \omega_B^{\otimes(p-j)} \otimes \bR \pi_{\bullet *}\Omega_{X_\bullet}^j) \\
+		&= f^* \omega_B^{\otimes (p - j)} \otimes h^i(\DB_X^j)
+	\end{align*}
 \end{proof}
 
 \bibliography{../library}{}
