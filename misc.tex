@@ -489,10 +489,12 @@
 
 \begin{cor}
 	Let $f : X \rightarrow B$ be a flat morphism from any scheme $X$ to a smooth, 1-dimensional scheme $B$ over a field of characteristic 0.
-	Then there is a spectral sequence computing the homology of $\DB_{X/B}^p$:
+	Then for any cubical hyperresolution, there is a spectral sequence computing the homology of $\DB_{X/B}^p$:
 	\[
-		E_1^{ij} = f^* \omega_B^{\otimes (p - j)} \otimes h^i(\DB_X^j) \Rightarrow h^{i+j}(\DB_{X/B}^p)
+		E_1^{ij} = f^* \omega_B^{\otimes (p - j)} \otimes h^i(\DB_X^j) \Rightarrow h^{i+j}(\DB_{X/B}^p).
 	\]
+	
+	Thus the homology of $\DB_{X/B}^p$ is independent of choice of hyperresolution.
 \end{cor}
 \begin{proof}
 	Let $f_\bullet = f \circ \pi_\bullet$.
@@ -506,8 +508,10 @@
 	\begin{align*}
 		\bR^i \pi_{\bullet *} (f_\bullet^* \omega_B^{\otimes(p-j)} \otimes \Omega_{X_\bullet}^j) &= h^i (\bR \pi_{\bullet *} (\pi_\bullet^* f^* \omega_B^{\otimes(p-j)} \otimes \Omega_{X_\bullet}^j)) \\
 		&= h^i (f^* \omega_B^{\otimes(p-j)} \otimes \bR \pi_{\bullet *}\Omega_{X_\bullet}^j) \\
-		&= f^* \omega_B^{\otimes (p - j)} \otimes h^i(\DB_X^j)
+		&= f^* \omega_B^{\otimes (p - j)} \otimes h^i(\DB_X^j).
 	\end{align*}
+	
+	The last claim is due to the independence of $\DB_X^j$.
 \end{proof}
 
 \bibliography{../library}{}
