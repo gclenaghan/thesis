@@ -19,6 +19,7 @@
 \newtheorem{definition}[theorem]{Definition}
 \newtheorem{question}[theorem]{Question}
 \newtheorem{example}[theorem]{Example}
+\newtheorem{defprop}[theorem]{Definition-Proposition}
 
 \DeclareMathOperator{\Coh}{Coh}
 \DeclareMathOperator{\Ext}{Ext}
@@ -30,9 +31,11 @@
 \DeclareMathOperator{\id}{id}
 \DeclareMathOperator{\Ob}{Ob}
 \DeclareMathOperator{\Sch}{{\bf Sch}}
+\DeclareMathOperator{\Sh}{Sh}
 \DeclareMathOperator{\Sing}{Sing}
 \DeclareMathOperator{\Spec}{Spec}
 \DeclareMathOperator{\Vect}{{\bf Vec}}
+\DeclareMathOperator{\Zar}{Zar}
 
 \renewcommand{\AA}{\mathcal{A}}
 \newcommand{\BB}{\mathcal{B}}
@@ -79,16 +82,33 @@
 
 \begin{document}
 	
+\section{Grothendieck Topology}
+\begin{defprop}
+	For any diagram of schemes $X_\bullet$, define the Zariski site $\Zar(X_\bullet)$ to be the category of shape-embedding open immersions $U_\bullet \rightarrow X_\bullet$, with morphisms compatible shape-embedding open immersions $U_\bullet \rightarrow V_\bullet$.
+	
+	For each $U_\bullet$, a set of maps $\{U_{\bullet i} \rightarrow U_\bullet\}$ in the category is a covering if each component of $U_\bullet$, $U_\alpha$ is covered by the set of components $\{U_{\alpha i}\}$.
+	These form a Grothendieck topology, and a morphism of the diagrams gives an associated morphism of the Zariski sites, and the category of sheaves over $X_\bullet$ is equivalent to the category of sheaves on $\Zar(X_\bullet)$, and each morphism of diagrams has an associated morphism of sites.
+\end{defprop}
+\begin{proof}
+	An isomorphism is certainly a covering, as are refinements.
+	Finally, a base change of a shape-preserving open immersion retains these properties and component-wise it is the base change of a covering in the usual topology, so this defines a topology.
+	
+	Define a functor $\Phi : \Sh(X_\bullet) \rightarrow \Sh(\Zar(X_\bullet))$ by $\Phi(\FF_\bullet)(U_\bullet) = \varprojlim  \FF_{\alpha}(U_\alpha)$, a limit ranging over the shape of $U_\bullet$.
+	This functor is an equivalence, with $\Phi^{-1}(\GG)_\alpha = (U \mapsto \GG(U \hookrightarrow X_\bullet))$.
+	
+	For each $f_\bullet : X_\bullet \rightarrow Y_\bullet$ we can associate morphism of sites which takes $U_\bullet \hookrightarrow Y_\bullet$ to $U_\bullet \times_{Y_\bullet} X_\bullet \hookrightarrow X_\bullet$.
+\end{proof}
+
 \section{Quasi-coherentness}
 	
 \begin{lemma}
 	\label{lem:affinecover}
 	Let $I$ be a thin, finite category without loops and with an initial object.
-	Then if $X$ is a quasi-compact $I$-scheme, there is a finite collection of $V_{i}$, affine open sub-$I$-schemes of $X$ with $\{V_{i\alpha}\}_i$ open covers of $X_\alpha$ for each $\alpha \in I$.
+	Then if $X$ is a quasi-compact $I$-scheme, there is a finite affine covering of $X$ in the Zariski site.
 \end{lemma}
 
 \begin{proof}
-	First we note that the objects in $I$ can be ordered such that each object only maps to the objects of larger order, that is, $\Ob I$ has a bijection with $\{0, \dots, N\}$ such that if there is a morphism $i \rightarrow j$, then $i \leq j$.
+	First we note that the objects in $I$ can be partially-ordered such that each object only maps to the objects of larger order, that is, $\Ob I$ has a bijection with $\{0, \dots, N\}$ such that if there is a morphism $i \rightarrow j$, then $i \leq j$.
 	The initial object must be 0 in this construction.
 	
 	Thus we can construct $X$ inductively as follows: let $X^0 = X_0$, and let $X^1$ be the full subdiagram of $X$ with only $X_0$ and $X_1$, etc., so that $X^n$ is obtained from $X^{n-1}$ by taking the diagram containing $X^{n-1}$, $X_n$, and all the maps $f_{n\alpha}:X_n \rightarrow X_\alpha$ out of $X_n$ in the diagram $X$, by construction these all map to objects in $X^{n-1}$.
@@ -114,12 +134,20 @@
 
 \begin{definition}
 	Let $X_\bullet$ be a diagram of schemes, $\FF_\bullet$ and $\GG_\bullet$ two sheaves over $X_\bullet$.
-	Define $\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet)$ as follows: for each $\alpha \in I$, and $U \subseteq X_\alpha$ open, let
+	Define $\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet)$ as the sheaf-hom on the Zariski site, or equivalently as follows: for each $\alpha \in I$, and $U \subseteq X_\alpha$ open, let
 	\[
 		(\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet))_\alpha(U) = \Hom_{X_\bullet/U} ( i_U^* \FF_\bullet , i_U^* \GG_\bullet).
 	\]
 	This gives a sheaf on each $X_\alpha$.
 	For $X_\phi : X_\alpha \rightarrow X_\beta$, $U \subseteq X_\beta$, there is a map $X_\bullet / X_\phi^{-1}(U) \rightarrow X_\bullet / U$ such that the $i$ maps commute, and putting this together gives maps $(\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet))_\beta(U) \rightarrow (\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet))_\alpha(X_\phi^{-1}(U))$ as needed.
+\end{definition}
+
+\begin{definition}
+	A sheaf on $X_\bullet$ will be called (quasi-)coherent if each component is (quasi-)coherent.
+	Note that this is not the same as being (quasi-)coherent as a sheaf on the Zariski site.
+	As in II 7.3 of \cite{Lipman2009}, that is equivalent to this notion plus the following very strong condition:
+	
+	A sheaf $\FF_\bullet$ will be called equivariant if for each $X_\phi$ in the diagram, the map $X_\phi^* \FF_\alpha \rightarrow X_\beta$ is an isomorphism.
 \end{definition}
 
 \begin{prop}
