@@ -487,15 +487,15 @@
 	Note that a priori this is not independent of choice of hyperresolution.
 \end{definition}
 
-\begin{cor}
-	Let $f : X \rightarrow B$ be a flat morphism from any scheme $X$ to a smooth, 1-dimensional scheme $B$ over a field of characteristic 0.
+\begin{prop}
+	Let $f : X \rightarrow B$ be a morphism from a noetherian scheme $X$ to a smooth, 1-dimensional scheme $B$ over a field of characteristic 0.
 	Then for any cubical hyperresolution, there is a spectral sequence computing the homology of $\DB_{X/B}^p$:
 	\[
 		E_1^{ij} = f^* \omega_B^{\otimes (p - j)} \otimes h^i(\DB_X^j) \Rightarrow h^{i+j}(\DB_{X/B}^p).
 	\]
 	
 	Thus the homology of $\DB_{X/B}^p$ is independent of choice of hyperresolution.
-\end{cor}
+\end{prop}
 \begin{proof}
 	Let $f_\bullet = f \circ \pi_\bullet$.
 	Applying remark 2.67 of \cite{Huybrechts2006}, we have the spectral sequence
