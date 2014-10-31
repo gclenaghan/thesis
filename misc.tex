@@ -82,6 +82,16 @@
 
 \begin{document}
 	
+\section{Cubical Hyperresolutions}
+\begin{prop}
+	Suppose $\pi_\bullet : Y_\bullet \rightarrow X_\bullet$ is a cubical hyperresolution of the $I$-scheme $X_\bullet$, and $\xbar{X}_\bullet \rightarrow X_\bullet$ is a shape-embedding morphism of diagrams, an isomorphism on each component of $\xbar{X}_\bullet$.
+	Then $Y_\bullet \times_{X_\bullet} \xbar{X}_\bullet \rightarrow \xbar{X}_\bullet$ is a cubical hyperresolution of $\xbar{X}_\bullet$.
+\end{prop}
+\begin{proof}
+	Take the sequence of 2-resolutions which gives $\pi_\bullet$ as cubical hyperresolutions, then the fibered product of each of these remains a 2-resolution as closed immersions, birational maps, and fibered products are all preserved.
+	Finally, the reduction of this sequence gives $Y_\bullet \times_{X_\bullet} \xbar{X}_\bullet$.
+\end{proof}
+	
 \section{Grothendieck Topology}
 \begin{defprop}
 	For any diagram of schemes $X_\bullet$, define the Zariski site $\Zar(X_\bullet)$ to be the category of shape-embedding open immersions $U_\bullet \rightarrow X_\bullet$, with morphisms compatible shape-embedding open immersions $U_\bullet \rightarrow V_\bullet$.
