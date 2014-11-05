@@ -109,6 +109,11 @@
 	For each $f_\bullet : X_\bullet \rightarrow Y_\bullet$ we can associate morphism of sites which takes $U_\bullet \hookrightarrow Y_\bullet$ to $U_\bullet \times_{Y_\bullet} X_\bullet \hookrightarrow X_\bullet$.
 \end{proof}
 
+\begin{defprop}[Tag 0408 from \cite{stacks}]
+	A sheaf $\LL_\bullet$ on a diagram is called invertible if for each $U \in \Zar(X_\bullet)$, there is a covering $\{U_i \rightarrow U\}$ and isomorphisms $\OO_{X_\bullet/U_i} \xrightarrow{\sim} \LL_\bullet$.
+	An invertible sheaf is equivariant (by a similar argument to II 7.3 from \cite{Lipman2009}), and if $\LL_\bullet^{-1} = \cHom(\LL_\bullet, \OO_{X_\bullet})$, then the natural map $\LL_\bullet \otimes \LL_\bullet^{-1} \rightarrow \OO_{X_\bullet}$ is an isomorphism.
+\end{definition}
+
 \section{Quasi-coherentness}
 	
 \begin{lemma}
