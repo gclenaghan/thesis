@@ -112,7 +112,11 @@
 \begin{defprop}[Tag 0408 from \cite{stacks}]
 	A sheaf $\LL_\bullet$ on a diagram is called invertible if for each $U \in \Zar(X_\bullet)$, there is a covering $\{U_i \rightarrow U\}$ and isomorphisms $\OO_{X_\bullet/U_i} \xrightarrow{\sim} \LL_\bullet$.
 	An invertible sheaf is equivariant (by a similar argument to II 7.3 from \cite{Lipman2009}), and if $\LL_\bullet^{-1} = \cHom(\LL_\bullet, \OO_{X_\bullet})$, then the natural map $\LL_\bullet \otimes \LL_\bullet^{-1} \rightarrow \OO_{X_\bullet}$ is an isomorphism.
-\end{definition}
+	
+	Equivalently, an invertible sheaf is an equivarant sheaf which is invertible on every component.
+\end{defprop}
+
+Note that this differs from the convention of ``$\FF_\bullet$ has property $P$ if each $\FF_\alpha$ does," in this case we need equivariance in order to take maps $X_\phi^* \LL_\beta \rightarrow \LL_\alpha$ and give a map from $X_\phi^* \LL_\beta^{-1}$ to $\LL_\alpha$.
 
 \section{Quasi-coherentness}
 	
