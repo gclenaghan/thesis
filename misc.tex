@@ -475,6 +475,23 @@ Note that this differs from the convention of ``$\FF_\bullet$ has property $P$ i
 	\end{align*}
 \end{proof}
 
+\begin{prop}
+	Let $\EE_\bullet$ be a locally free sheaf on $X_\bullet$, a proper noetherian diagram over a field $k$.
+	Then $\Hom(\bR \Gamma(\EE_\bullet),k) = \bR \Gamma(\EE^\vee \otimes \omega_{X_\bullet}^\bullet)$, and taking homology,
+	$\HH^i (X_\bullet, \EE_\bullet)^* = \HH^{-i}(X_\bullet, \EE_\bullet^\vee \otimes \omega_{X_\bullet}^\bullet)$.
+\end{prop}
+\begin{proof}
+	Using Grothendieck duality, and since $\Hom(-,k)$ is exact,
+	\begin{align*}
+		\Hom(\bR \Gamma(\EE_\bullet),k) &= \bR \Hom(\EE_\bullet, \omega_{X_\bullet}^\bullet) \\
+		&= \bR \Hom(\OO_{X_\bullet}, \EE_\bullet^\vee \otimes \omega_{X_\bullet}^\bullet) \\
+		&= \bR \Gamma(\EE_\bullet^\vee \otimes \omega_{X_\bullet}^\bullet)
+	\end{align*}
+	
+	For the last statement, take the $-i$ homology of both sides.
+	Since $\Hom(-,k)$ is contravariant it reverses the complex and gives the dual of the $i$th homology.
+\end{proof}
+
 \section{Relative Differentials}
 
 \begin{definition}
