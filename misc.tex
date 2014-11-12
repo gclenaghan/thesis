@@ -78,6 +78,7 @@
 \newcommand{\tu}{\underline{2}}
 \DeclareMathOperator{\red}{red}
 \newcommand{\DB}{\underline{\Omega}}
+\newcommand{\db}{\underline{\omega}}
 \DeclareMathOperator{\tot}{tot}
 
 \begin{document}
@@ -476,6 +477,7 @@ Note that this differs from the convention of ``$\FF_\bullet$ has property $P$ i
 \end{proof}
 
 \begin{prop}
+	\label{prp:cohofdual}
 	Let $\EE_\bullet$ be a locally free sheaf on $X_\bullet$, a proper noetherian diagram over a field $k$.
 	Then $\Hom(\bR \Gamma(\EE_\bullet),k) = \bR \Gamma(\EE^\vee \otimes \omega_{X_\bullet}^\bullet)$, and taking homology,
 	$\HH^i (X_\bullet, \EE_\bullet)^* = \HH^{-i}(X_\bullet, \EE_\bullet^\vee \otimes \omega_{X_\bullet}^\bullet)$.
@@ -491,6 +493,34 @@ Note that this differs from the convention of ``$\FF_\bullet$ has property $P$ i
 	For the last statement, take the $-i$ homology of both sides.
 	Since $\Hom(-,k)$ is contravariant it reverses the complex and gives the dual of the $i$th homology.
 \end{proof}
+
+\begin{example}
+	Let $S$ be a smooth surface and $X$ a projective cone over $S$.
+	If $\LL$ is an ample line bundle on $X$, then $\HH^{-2}(X, \LL \otimes \db_X)^* = H^2(S, \OO_S)$, in particular this is not zero if $S$ is, say, a ruled surface over a curve of genus $g \geq 1$.
+	
+	To see this, let $\pi_\bullet : X_\bullet \rightarrow X$ be the cubical hyperresolution
+	\[\begin{tikzcd}
+		S \arrow{r} \arrow{d} & B \arrow{d} \\
+		k \arrow{r} & X,
+	\end{tikzcd}\]
+	where $B$ is the resolution of $X$.
+	Now by the projection formula $\LL \otimes \db_X = \bR \pi_{\bullet *} (\pi_\bullet^* \LL \otimes \omega_{X_\bullet}^\bullet)$, so $\HH^{-2}(X, \LL \otimes \db_X)^* = \HH^{-2}(X_\bullet, \pi_\bullet^* \LL \otimes \omega_{X_\bullet}^\bullet)^*$.
+	By proposition \ref{prp:cohofdual}, this is $\HH^2(X_\bullet, \pi_\bullet^* \LL^{-1})$, which we can now compute directly.
+	$\pi_B^* \LL$ is the pullback of an ample sheaf via a generically finite map, so it is big and nef.
+	On $k$ it is the only possible line bundle, $k$ over itself, and thus by the diagram commuting, on $S$ the pullback is $\OO_S$.
+	To compute $\bR \Gamma(\pi_\bullet^* \LL^{-1})$, we use the staggered complex construction: this gives the complex as a combination of three complexes, $\bR \Gamma(k, k)$, which is just $k$ in degree 0, $\bR \Gamma(B, \pi_B^* \LL^{-1})$, which by Kawamata-Viehweg vanishing is quasi-isomorphic to some module $G$ in degree $3 = \dim B$, and lastly, $\bR \Gamma(S, \OO_S)$, which we will write as a complex $0 \rightarrow F_0 \rightarrow F_1 \rightarrow F_2 \rightarrow 0$ where $F_i$ is located in degree $i$.
+	From the staggered complex construction, we can draw the following diagram:
+	\[\begin{tikzcd}
+		0 \arrow{r} \arrow{dr} & 0 \arrow{r} \arrow{dr} & 0 \arrow{r} \arrow{dr} & G \arrow {r} \arrow{dr} & 0 \\
+		0 \arrow{r} & F_0 \arrow{r} & F_1 \arrow{r} & F_2 \arrow{r} & 0 \\
+		k \arrow{r} \arrow{ur} & 0 \arrow{r} \arrow{ur} & 0 \arrow{r} \arrow{ur} & 0 \arrow{r} \arrow{ur} & 0,
+	\end{tikzcd}\]
+	which we use to construct the staggered complex
+	\[
+		0 \rightarrow k \rightarrow F_0 \rightarrow F_1 \rightarrow F_2 \oplus G \rightarrow 0.
+	\]
+	Now taking $h^2$ of this, it is clear that the $G$ and $k$ terms do not interfere as $F_1$ does not have a map to $G$ and certainly not from $k$, so this is exactly $h^1(\bR \Gamma(S, \OO_S)) = H^1(S, \OO_S)$.
+\end{example}
 
 \section{Relative Differentials}
 
