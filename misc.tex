@@ -51,6 +51,7 @@
 \newcommand{\JJ}{\mathscr{J}}
 \newcommand{\bL}{\textbf{L}}
 \newcommand{\LL}{\mathcal{L}}
+\newcommand{\MM}{\mathscr{M}}
 \newcommand{\OO}{\mathcal{O}}
 \newcommand{\PP}{\mathbb{P}}
 \newcommand{\qis}{\simeq_{qis}}
@@ -92,6 +93,15 @@
 	Take the sequence of 2-resolutions which gives $\pi_\bullet$ as cubical hyperresolutions, then the fibered product of each of these remains a 2-resolution as closed immersions, birational maps, and fibered products are all preserved.
 	Finally, the reduction of this sequence gives $Y_\bullet \times_{X_\bullet} \xbar{X}_\bullet$.
 \end{proof}
+
+\begin{prop}[\cite{Guillen1988} I 6.7]
+	\label{prp:cubicalcohospecseq}
+	Let $X_\bullet$ be a $\Box_n$-scheme, and $F_\bullet \in D(X_\bullet)$.
+	Then there is a spectral sequence computing the cohomology of $F_\bullet$:
+	\[
+		E_1^{pq} = \bigoplus_{|\alpha| = p + 1} \HH^q(X_\alpha, F_\alpha) \Rightarrow \HH^{p+q}(X_\bullet, F_\bullet)
+	\]
+\end{prop}
 	
 \section{Grothendieck Topology}
 \begin{defprop}
@@ -495,8 +505,8 @@ Note that this differs from the convention of ``$\FF_\bullet$ has property $P$ i
 \end{proof}
 
 \begin{example}
-	Let $S$ be a smooth surface and $X$ a projective cone over $S$.
-	If $\LL$ is an ample line bundle on $X$, then $\HH^{-2}(X, \LL \otimes \db_X)^* = H^2(S, \OO_S)$, in particular this is not zero if $S$ is, say, a ruled surface over a curve of genus $g \geq 1$.
+	Let $Y$ be a smooth projective variety and $X$ a projective cone over $Y$.
+	If $\LL$ is an ample line bundle on $X$, then for $2 \leq i \leq \dim Y$, $\HH^{-i}(X, \LL \otimes \db_X)^* = H^i(Y, \OO_Y)$, in particular this is not zero if $Y$ is, say, a ruled surface over a curve of genus $g \geq 1$.
 	
 	To see this, let $\pi_\bullet : X_\bullet \rightarrow X$ be the cubical hyperresolution
 	\[\begin{tikzcd}
@@ -505,22 +515,29 @@ Note that this differs from the convention of ``$\FF_\bullet$ has property $P$ i
 	\end{tikzcd}\]
 	where $B$ is the resolution of $X$.
 	Now by the projection formula $\LL \otimes \db_X = \bR \pi_{\bullet *} (\pi_\bullet^* \LL \otimes \omega_{X_\bullet}^\bullet)$, so $\HH^{-2}(X, \LL \otimes \db_X)^* = \HH^{-2}(X_\bullet, \pi_\bullet^* \LL \otimes \omega_{X_\bullet}^\bullet)^*$.
-	By proposition \ref{prp:cohofdual}, this is $\HH^2(X_\bullet, \pi_\bullet^* \LL^{-1})$, which we can now compute directly.
-	$\pi_B^* \LL$ is the pullback of an ample sheaf via a generically finite map, so it is big and nef.
-	On $k$ it is the only possible line bundle, $k$ over itself, and thus by the diagram commuting, on $S$ the pullback is $\OO_S$.
-	To compute $\bR \Gamma(\pi_\bullet^* \LL^{-1})$, we use the staggered complex construction: this gives the complex as a combination of three complexes, $\bR \Gamma(k, k)$, which is just $k$ in degree 0, $\bR \Gamma(B, \pi_B^* \LL^{-1})$, which by Kawamata-Viehweg vanishing is quasi-isomorphic to some module $G$ in degree $3 = \dim B$, and lastly, $\bR \Gamma(S, \OO_S)$, which we will write as a complex $0 \rightarrow F_0 \rightarrow F_1 \rightarrow F_2 \rightarrow 0$ where $F_i$ is located in degree $i$.
-	From the staggered complex construction, we can draw the following diagram:
-	\[\begin{tikzcd}
-		0 \arrow{r} \arrow{dr} & 0 \arrow{r} \arrow{dr} & 0 \arrow{r} \arrow{dr} & G \arrow {r} \arrow{dr} & 0 \\
-		0 \arrow{r} & F_0 \arrow{r} & F_1 \arrow{r} & F_2 \arrow{r} & 0 \\
-		k \arrow{r} \arrow{ur} & 0 \arrow{r} \arrow{ur} & 0 \arrow{r} \arrow{ur} & 0 \arrow{r} \arrow{ur} & 0,
+	By proposition \ref{prp:cohofdual}, this is $\HH^i(X_\bullet, \pi_\bullet^* \LL^{-1})$, which we can now compute directly.
+	Let $\MM$ be the term of $\pi_\bullet^* \LL$ on $B$, $\MM$ is the pullback of an ample sheaf via a generically finite map, so it is big and nef.
+	On $k$ it is the only possible line bundle, $k$ over itself, and thus by the diagram commuting, on $Y$ the pullback is $\OO_Y$.
+	
+	Now we can bring in the spectral sequence of proposition \ref{prp:cubicalcohospecseq}.
+	Let $n = \dim Y$; because of Kawamata-Viehweg vanishing, $H^i(B, \MM^{-1}) = 0$ for $i < \dim B  = n + 1$, so the $E_1$ page appears as
+	\[\begin{tikzcd}[row sep = tiny, column sep = tiny]
+		H^{n+1}(B, \MM) \arrow{r} & 0 \\
+		0 \arrow{r} & H^n(Y, \OO_Y) \\
+		\vdots & \vdots \\
+		0 \arrow{r} & H^1(Y, \OO_Y) \\
+		k \arrow{r} & k,
 	\end{tikzcd}\]
-	which we use to construct the staggered complex
-	\[
-		0 \rightarrow k \rightarrow F_0 \rightarrow F_1 \rightarrow F_2 \oplus G \rightarrow 0.
-	\]
-	Now taking $h^2$ of this, it is clear that the $G$ and $k$ terms do not interfere as $F_1$ does not have a map to $G$ and certainly not from $k$, so this is exactly $h^1(\bR \Gamma(S, \OO_S)) = H^1(S, \OO_S)$.
+	and it is now clear that the $E_\infty$ page will be
+	\[\begin{tikzcd}[row sep = tiny, column sep = tiny]
+	H^{n+1}(B, \MM) & 0 \\
+	0  & H^n(Y, \OO_Y) \\
+	\vdots & \vdots \\
+	0 & H^1(Y, \OO_Y) \\
+	0 & 0,
+	\end{tikzcd}\]
 \end{example}
+and the result follows.
 
 \section{Relative Differentials}
 
