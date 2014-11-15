@@ -505,6 +505,34 @@ Note that this differs from the convention of ``$\FF_\bullet$ has property $P$ i
 \end{proof}
 
 \begin{example}
+	Let $X$ be two planes intersecting at a point.
+	Then for any ample line bundle $\LL$, $H^{-1}(X,\db_X \otimes \LL)^* = k$.
+	
+	We can compute this by giving a hyperresolution $\pi_\bullet : X_\bullet \rightarrow X$:
+	
+	\[\begin{tikzcd}
+		k \arrow{r} \arrow{d} & \PP^2 \arrow{d}{f} \\
+		\PP^2 \arrow{r}{g} & X.
+	\end{tikzcd}\]
+	
+	Now by the projection formula $\LL \otimes \db_X = \bR \pi_{\bullet *} (\pi_\bullet^* \LL \otimes \omega_{X_\bullet}^\bullet)$, so $\HH^{-1}(X, \LL \otimes \db_X)^* = \HH^{-1}(X_\bullet, \pi_\bullet^* \LL \otimes \omega_{X_\bullet}^\bullet)^*$.
+	
+	By proposition \ref{prp:cohofdual}, this is $H^1(X_\bullet, \pi_\bullet^* \LL^{-1})$, which can now compute directly.
+	The component of this sheaf on the $\PP^2$s is the inverse of a big and nef line bundle, so the cohomology will vanish in degree less than 2 by Kawamata-Vieweg vanishing.
+	The component over $k$ is the only possible line bundle, $k$ over itself.
+	
+	Now, we the spectral sequence of proposition \ref{prp:cubicalcohospecseq}, which we can compute in entirety:
+	
+	\[\begin{tikzcd}[row sep = tiny, column sep = tiny]
+	H^2(\PP^2, f^* \LL^{-1} \oplus g^* \LL^{-1}) & 0 \\
+	0 & 0 \\
+	0 & k.
+	\end{tikzcd}\]
+	
+	This is degenerate and thus $H^1(X_\bullet, \pi_\bullet^* \LL^{-1}) = k$.
+\end{example}
+
+\begin{example}
 	Let $Y$ be a smooth projective variety and $X$ a projective cone over $Y$.
 	If $\LL$ is an ample line bundle on $X$, then for $2 \leq i \leq \dim Y$, $\HH^{-i}(X, \LL \otimes \db_X)^* = H^i(Y, \OO_Y)$, in particular this is not zero if $Y$ is, say, a ruled surface over a curve of genus $g \geq 1$.
 	
@@ -514,10 +542,9 @@ Note that this differs from the convention of ``$\FF_\bullet$ has property $P$ i
 		k \arrow{r} & X,
 	\end{tikzcd}\]
 	where $B$ is the resolution of $X$.
-	Now by the projection formula $\LL \otimes \db_X = \bR \pi_{\bullet *} (\pi_\bullet^* \LL \otimes \omega_{X_\bullet}^\bullet)$, so $\HH^{-2}(X, \LL \otimes \db_X)^* = \HH^{-2}(X_\bullet, \pi_\bullet^* \LL \otimes \omega_{X_\bullet}^\bullet)^*$.
-	By proposition \ref{prp:cohofdual}, this is $\HH^i(X_\bullet, \pi_\bullet^* \LL^{-1})$, which we can now compute directly.
+	As above, $\HH^{-i}(X, \LL \otimes \db_X)^* = \HH^i(X_\bullet, \pi_\bullet^* \LL^{-1})$.
 	Let $\MM$ be the term of $\pi_\bullet^* \LL$ on $B$, $\MM$ is the pullback of an ample sheaf via a generically finite map, so it is big and nef.
-	On $k$ it is the only possible line bundle, $k$ over itself, and thus by the diagram commuting, on $Y$ the pullback is $\OO_Y$.
+	On $k$ it must be $k$ over itself, and thus by the diagram commuting, on $Y$ the pullback is $\OO_Y$.
 	
 	Now we can bring in the spectral sequence of proposition \ref{prp:cubicalcohospecseq}.
 	Let $n = \dim Y$; because of Kawamata-Viehweg vanishing, $H^i(B, \MM^{-1}) = 0$ for $i < \dim B  = n + 1$, so the $E_1$ page appears as
