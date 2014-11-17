@@ -99,7 +99,11 @@
 	Let $X_\bullet$ be a $\Box_n$-scheme, and $F_\bullet \in D(X_\bullet)$.
 	Then there is a spectral sequence computing the cohomology of $F_\bullet$:
 	\[
-		E_1^{pq} = \bigoplus_{|\alpha| = p + 1} \HH^q(X_\alpha, F_\alpha) \Rightarrow \HH^{p+q}(X_\bullet, F_\bullet)
+		E_1^{pq} = \bigoplus_{|\alpha| = p + 1} \HH^q(X_\alpha, F_\alpha) \Rightarrow \HH^{p+q}(X_\bullet, F_\bullet).
+	\]
+	For a morphism $\pi_\bullet : X_\bullet \rightarrow X$ to a scheme $X$, this generalizes to a spectral sequence
+	\[
+		E_1^{pq} = \bigoplus_{|\alpha| = p + 1} \bR^q \pi_{\alpha *}F_\alpha \Rightarrow \bR^{p+q} \pi_{\bullet *} F_\bullet.
 	\]
 \end{prop}
 	
