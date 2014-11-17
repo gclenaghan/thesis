@@ -532,6 +532,8 @@ Note that this differs from the convention of ``$\FF_\bullet$ has property $P$ i
 	This is degenerate and thus $H^1(X_\bullet, \pi_\bullet^* \LL^{-1}) = k$.
 \end{example}
 
+This illustrates that any vanishing in this vein will necessitate we restrict to Cohen-Macaulay schemes.
+
 \begin{example}
 	Let $Y$ be a smooth projective variety and $X$ a projective cone over $Y$.
 	If $\LL$ is an ample line bundle on $X$, then for $2 \leq i \leq \dim Y$, $\HH^{-i}(X, \LL \otimes \db_X)^* = H^i(Y, \OO_Y)$, in particular this is not zero if $Y$ is, say, a ruled surface over a curve of genus $g \geq 1$.
@@ -563,8 +565,14 @@ Note that this differs from the convention of ``$\FF_\bullet$ has property $P$ i
 	0 & H^1(Y, \OO_Y) \\
 	0 & 0,
 	\end{tikzcd}\]
+	and the result follows.
 \end{example}
-and the result follows.
+
+\begin{lemma}[proof of \cite{Kovacs2011a} 3.3]
+	Let $X$ be a variety over $\CC$, $\LL$ an ample line bundle.
+	Then for all $j \in \ZZ$, the natural map
+	$\HH^j(X, \db_X \otimes \LL) \hookrightarrow \HH^j(X,\omega_X^\bullet \otimes \LL)$ is an injection.
+\end{lemma}
 
 \section{Relative Differentials}
 
