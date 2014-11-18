@@ -184,6 +184,32 @@ Note that this differs from the convention of ``$\FF_\bullet$ has property $P$ i
 	A sheaf $\FF_\bullet$ will be called equivariant if for each $X_\phi$ in the diagram, the map $X_\phi^* \FF_\alpha \rightarrow X_\beta$ is an isomorphism.
 \end{definition}
 
+\begin{definition}
+	Let $X_\bullet$ be an $I$-scheme.
+	For any $\alpha \in I$ and $\OO_{X_\alpha}$-module $\FF_\alpha$, define $\FF_{\alpha \bullet}^\uparrow$ a $\OO_{X_\bullet}$-module as
+	\[
+		\FF_{\alpha \beta}^\uparrow = \begin{cases}
+									X_{\phi_{\alpha \beta}}^* \FF_\alpha & \text{if }\beta \in \alpha/I \\
+									0 & \text{if } \beta \not \in \alpha/I,
+		\end{cases}
+	\]
+	with diagram maps the obvious isomorphisms.
+\end{definition}
+\begin{prop}
+	\label{prp:uparrowrepresent}
+	Let $X_\bullet$ be an $I$-scheme, and $\alpha \in I$.
+	Then for any $\OO_{X_\alpha}$-module $\FF_\alpha$, $\FF_{\alpha \bullet}^\uparrow$ represents the functor $\Hom_{X_\alpha}(\FF_\alpha, (-)_\alpha)$ (alternatively stated, $(-)_\bullet^\uparrow$ is left-adjoint to $(-)_\alpha$), and furthermore $\cHom_{X_\bullet}(\FF_{\alpha \bullet}^\uparrow, -) = i_{X_\alpha *} \cHom(i_{X_\alpha}^* \FF_{\alpha \bullet}^\uparrow, i_{X_\alpha}^* -)$.
+\end{prop}
+\begin{proof}
+	First note that $f_\bullet^* \GG_\bullet$ is just $\GG_\alpha$, so for the first part, we must show that $\Hom_{X_\alpha}(\FF_\alpha, \GG_\alpha) = \Hom_{X_\bullet}(\FF_{\alpha \bullet}^\uparrow, \GG_\bullet)$.
+	
+	For each $\Phi \in \Hom_{X_\bullet}(\FF_{\alpha \bullet}^\uparrow, \GG_\bullet)$, and $\beta \in \alpha/I$, the compatibility ensures that $\Phi_\beta$ is determined by $\Phi_\alpha$, and for $\eta \not \in \alpha/I$, this must be zero, which does not restrict the morphisms elsewhere since there are no maps from any such $\beta$ to any such $\eta$.
+	
+	For the second part, since the definition of $(-)_\bullet^!$ commutes with restriction, the first part shows this is true restricted to $X_\alpha$.
+	If $\beta \in \alpha / I$, then restricting everything to $X_\bullet / X_\beta$, this becomes the same situation for $X_{\phi_{\alpha \beta}}^* \FF_\alpha$.
+	If $\beta \in I / \alpha$, then maps of sheaves on $X_\bullet / U$ for $U \subseteq X_\beta$ are determined by the maps on $X_\bullet / X_{\phi_{\beta \alpha}}^{-1}(U)$, and finally if $\beta$ is in neither subcategory then there are no maps in $X_\bullet / X_\beta$ as $\FF_{\alpha \bullet}^\uparrow$ is zero everywhere.
+\end{proof}
+
 \begin{prop}
 	\label{prp:homqcaffine}
 	If $X_\bullet$ has affine arrows, then for any $\FF_\bullet$ coherent, $\GG_\bullet$ quasi-coherent, $\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet)$ is quasi-coherent.
@@ -192,21 +218,16 @@ Note that this differs from the convention of ``$\FF_\bullet$ has property $P$ i
 \begin{proof}
 	Enough to show that for each $X_\alpha$, that the sheaf $(\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet))_\alpha$ is (quasi-)coherent, which can be done locally, and furthermore for each $U \subseteq X_\alpha$, the definition of $\cHom$ only depends on the diagram $X_\bullet / U$ so we can restrict to proving this for a terminal scheme in a diagram, and furthermore restrict that this scheme is affine.
 	Because $X_\bullet$ has affine arrows, the entire diagram must be affine.
-	
-	Now define
+		
+	Note that
 	\[
-		\EE_{\alpha\beta} = \begin{cases}
-								\OO_{X_\beta} & \text{if } \beta \in \alpha / I \\
-									0 & \text{otherwise}
-							\end{cases}
+		\Hom_{X_\bullet}(\OO_{X_\alpha \bullet}^\uparrow, \GG_\bullet) = \GG_\alpha(X_\alpha).
 	\]
-	with the maps between nonzero sheaves being the natural $\OO_{X_\beta} \rightarrow X_{\phi *} \OO_{X_\eta}$.
-	
-	We can directly compute 
+	Furthermore,
 	\[
-		\cHom(\EE_{\alpha \bullet}, \GG_\bullet)_\beta = \begin{cases}
+		\cHom_{X_\bullet}(\OO_{X_\alpha \bullet}^\uparrow, \GG_\bullet)_\beta = \begin{cases}
 													\GG_\beta  & \text{if } \beta \in \alpha / I \\
-													X_{\phi *} \GG_\alpha & \text{if } \phi : \beta \rightarrow \phi \\
+													X_{\phi *} \GG_\alpha & \text{if } \phi : \beta \rightarrow \alpha \\
 													0 & \text{otherwise}
 													\end{cases},
 	\]
@@ -214,22 +235,37 @@ Note that this differs from the convention of ``$\FF_\bullet$ has property $P$ i
 	
 	Each $\FF_\alpha$ is coherent on an affine scheme, so is the cokernel of a map of finite rank free modules, these give sequences, surjective on the $\alpha$ component of the diagram:
 	\[
-		\EE_{\alpha \bullet}^{\oplus m_\alpha} \rightarrow \EE_{\alpha \bullet}^{\oplus n_\alpha} \rightarrow \FF_\bullet.
+		\OO_{X_\alpha \bullet}^{\uparrow \oplus m_\alpha} \rightarrow \OO_{X_\alpha \bullet}^{\uparrow \oplus n_\alpha} \rightarrow \FF_\bullet.
 	\]
 	Combining these gives a $\FF$ as a cokernel:
 	\[
-		\bigoplus_\alpha \EE_{\alpha \bullet}^{\oplus m_\alpha} \rightarrow \bigoplus_\alpha \EE_{\alpha \bullet}^{\oplus n_\alpha} \rightarrow \FF_\bullet \rightarrow 0.
+		\bigoplus_\alpha \OO_{X_\alpha \bullet}^{\uparrow \oplus m_\alpha} \rightarrow \bigoplus_\alpha \OO_{X_\alpha \bullet}^{\uparrow \oplus n_\alpha} \rightarrow \FF_\bullet \rightarrow 0.
 	\]
 	
 	Applying $\cHom_{X_\bullet}(-,\GG_\bullet)$,
 	\[
-		0 \rightarrow \cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet) \rightarrow \cHom_{X_\bullet}(\bigoplus \EE_{\alpha\bullet}, \GG_\bullet) \rightarrow \cHom_{X_\bullet}(\bigoplus \EE_{\alpha\bullet}, \GG_\bullet),
+		0 \rightarrow \cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet) \rightarrow \cHom_{X_\bullet}(\bigoplus \OO_{X_\alpha \bullet}^\uparrow, \GG_\bullet) \rightarrow \cHom_{X_\bullet}(\bigoplus \OO_{X_\alpha \bullet}^\uparrow, \GG_\bullet),
 	\]
 	and since the direct sums are finite this can be rewritten as
 	\[
-		0 \rightarrow \cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet) \rightarrow \bigoplus \cHom_{X_\bullet}(\EE_{\alpha\bullet}, \GG_\bullet) \rightarrow \bigoplus \cHom_{X_\bullet}(\EE_{\alpha\bullet}, \GG_\bullet).
+		0 \rightarrow \cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet) \rightarrow \bigoplus \cHom_{X_\bullet}(\OO_{X_\alpha \bullet}^\uparrow, \GG_\bullet) \rightarrow \bigoplus \cHom_{X_\bullet}(\OO_{X_\alpha \bullet}^\uparrow, \GG_\bullet).
 	\]
 	Now since finite direct sums and kernels of (quasi-)coherent sheaves are (quasi-)coherent, we are done.
+\end{proof}
+
+\begin{lemma}
+	Let $X_\bullet$ be an $I$-scheme and $\EE_{\alpha \bullet}$ be as defined above.
+	Then for any $F_\bullet \in D(\Sh(X_\bullet))$,
+	\[
+		\bR \cHom (\EE_{\alpha \bullet}, F_\bullet)_\beta = \begin{cases}
+														F_\beta & \text{if } \beta \in \alpha/I \\
+														\bR X_{\phi *} F_\alpha & \text{if } \phi : \alpha \rightarrow \beta \\
+														0 & \text{otherwise.}
+														\end{cases}
+	\]
+\end{lemma}
+\begin{proof}
+	Since 
 \end{proof}
 
 \begin{theorem}
