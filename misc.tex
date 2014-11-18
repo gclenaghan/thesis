@@ -196,9 +196,11 @@ Note that this differs from the convention of ``$\FF_\bullet$ has property $P$ i
 	with diagram maps the obvious isomorphisms.
 \end{definition}
 \begin{prop}
-	\label{prp:uparrowrepresent}
+	\label{prp:restrictionadjoint}
 	Let $X_\bullet$ be an $I$-scheme, and $\alpha \in I$.
 	Then for any $\OO_{X_\alpha}$-module $\FF_\alpha$, $\FF_{\alpha \bullet}^\uparrow$ represents the functor $\Hom_{X_\alpha}(\FF_\alpha, (-)_\alpha)$ (alternatively stated, $(-)_\bullet^\uparrow$ is left-adjoint to $(-)_\alpha$), and furthermore $\cHom_{X_\bullet}(\FF_{\alpha \bullet}^\uparrow, -) = i_{X_\alpha *} \cHom(i_{X_\alpha}^* \FF_{\alpha \bullet}^\uparrow, i_{X_\alpha}^* -)$.
+	
+	Furthermore, $\bR \Hom_{X_\bullet}(\FF_{\alpha \bullet}^\uparrow, G_\bullet) = \bR \Hom_{X_\alpha}(\FF_\alpha, G_\alpha)$ and $\bR \cHom_{X_\bullet}(\FF_{\alpha \bullet}^\uparrow, G_\bullet) = \bR i_{X_\alpha *} \bR \cHom(i_{X_\alpha}^* \FF_{\alpha \bullet}^\uparrow, i_{X_\alpha}^* G_\bullet)$.
 \end{prop}
 \begin{proof}
 	First note that $f_\bullet^* \GG_\bullet$ is just $\GG_\alpha$, so for the first part, we must show that $\Hom_{X_\alpha}(\FF_\alpha, \GG_\alpha) = \Hom_{X_\bullet}(\FF_{\alpha \bullet}^\uparrow, \GG_\bullet)$.
@@ -208,6 +210,8 @@ Note that this differs from the convention of ``$\FF_\bullet$ has property $P$ i
 	For the second part, since the definition of $(-)_\bullet^!$ commutes with restriction, the first part shows this is true restricted to $X_\alpha$.
 	If $\beta \in \alpha / I$, then restricting everything to $X_\bullet / X_\beta$, this becomes the same situation for $X_{\phi_{\alpha \beta}}^* \FF_\alpha$.
 	If $\beta \in I / \alpha$, then maps of sheaves on $X_\bullet / U$ for $U \subseteq X_\beta$ are determined by the maps on $X_\bullet / X_{\phi_{\beta \alpha}}^{-1}(U)$, and finally if $\beta$ is in neither subcategory then there are no maps in $X_\bullet / X_\beta$ as $\FF_{\alpha \bullet}^\uparrow$ is zero everywhere.
+	
+	Finally, we can derive these functors to give the last part.
 \end{proof}
 
 \begin{prop}
@@ -251,21 +255,6 @@ Note that this differs from the convention of ``$\FF_\bullet$ has property $P$ i
 		0 \rightarrow \cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet) \rightarrow \bigoplus \cHom_{X_\bullet}(\OO_{X_\alpha \bullet}^\uparrow, \GG_\bullet) \rightarrow \bigoplus \cHom_{X_\bullet}(\OO_{X_\alpha \bullet}^\uparrow, \GG_\bullet).
 	\]
 	Now since finite direct sums and kernels of (quasi-)coherent sheaves are (quasi-)coherent, we are done.
-\end{proof}
-
-\begin{lemma}
-	Let $X_\bullet$ be an $I$-scheme and $\EE_{\alpha \bullet}$ be as defined above.
-	Then for any $F_\bullet \in D(\Sh(X_\bullet))$,
-	\[
-		\bR \cHom (\EE_{\alpha \bullet}, F_\bullet)_\beta = \begin{cases}
-														F_\beta & \text{if } \beta \in \alpha/I \\
-														\bR X_{\phi *} F_\alpha & \text{if } \phi : \alpha \rightarrow \beta \\
-														0 & \text{otherwise.}
-														\end{cases}
-	\]
-\end{lemma}
-\begin{proof}
-	Since 
 \end{proof}
 
 \begin{theorem}
