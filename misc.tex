@@ -84,6 +84,17 @@
 
 \begin{document}
 	
+\section{Sheaves on Diagrams}
+\begin{prop}
+	Let $X_\bullet$ be a diagram of schemes, $i_\bullet : U_\bullet \hookrightarrow X_\bullet$ a flat shape-embedding.
+	Then $i_\bullet^*$ is an exact functor.
+\end{prop}
+\begin{proof}
+	Let the shape functor of $i_\bullet$ be the inclusion of $J \hookrightarrow I$.
+	Treat $i_\bullet$ as a composition, first an flat, shape-preserving map $U_\bullet \rightarrow X_\bullet|_J$ and the inclusion $X_\bullet|_J \rightarrow X_\bullet$.
+	By \cite{Lipman2009}, II 6, the restriction functor to any subdiagram is exact (indeed, it has both a left and a right adjoint), and the pullback by a shape-preserving map splits over the components, in each component it is exact.
+\end{proof}
+	
 \section{Cubical Hyperresolutions}
 \begin{prop}
 	Suppose $\pi_\bullet : Y_\bullet \rightarrow X_\bullet$ is a cubical hyperresolution of the $I$-scheme $X_\bullet$, and $\xbar{X}_\bullet \rightarrow X_\bullet$ is a shape-embedding morphism of diagrams, an isomorphism on each component of $\xbar{X}_\bullet$.
@@ -195,7 +206,7 @@ Note that this differs from the convention of ``$\FF_\bullet$ has property $P$ i
 	\]
 	with diagram maps the obvious isomorphisms.
 \end{definition}
-\begin{prop}
+\begin{prop}[c.f. \cite{Lipman2009} II 6.7]
 	\label{prp:restrictionadjoint}
 	Let $X_\bullet$ be an $I$-scheme, and $\alpha \in I$.
 	Then for any $\OO_{X_\alpha}$-module $\FF_\alpha$, $\FF_{\alpha \bullet}^\uparrow$ represents the functor $\Hom_{X_\alpha}(\FF_\alpha, (-)_\alpha)$ (alternatively stated, $(-)_\bullet^\uparrow$ is left-adjoint to $(-)_\alpha$), and furthermore $\cHom_{X_\bullet}(\FF_{\alpha \bullet}^\uparrow, -) = i_{X_\alpha *} \cHom(i_{X_\alpha}^* \FF_{\alpha \bullet}^\uparrow, i_{X_\alpha}^* -)$.
