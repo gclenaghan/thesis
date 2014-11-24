@@ -526,6 +526,19 @@ Note that this differs from the convention of ``$\FF_\bullet$ has property $P$ i
 	\end{align*}
 \end{proof}
 
+\begin{cor}
+	Suppose $\pi_\bullet : X_\bullet \rightarrow X$ is a cubical hyperresolution.
+	Then $X$ has Du Bois singularities if and only if the unit of adjunction
+	\[
+		\id \rightarrow \bR \pi_{\bullet *} \bL \pi_\bullet^*
+	\]
+	is a natural isomorphism.
+\end{cor}
+\begin{proof}
+	By the projection formula, $\bR \pi_{\bullet *} \bL \pi_\bullet^* F \qis F \otimesL \bR \pi_{\bullet *} \OO_{X_\bullet}$ for each $F$.
+	The morphism $F \rightarrow F \otimesL \bR \pi_{\bullet *} \OO_{X_\bullet}$ is an isomorphism for all $F$ if and only if $X$ is Du Bois.
+\end{proof}
+
 \begin{prop}
 	\label{prp:cohofdual}
 	Let $\EE_\bullet$ be a locally free sheaf on $X_\bullet$, a proper noetherian diagram over a field $k$.
