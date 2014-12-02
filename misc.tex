@@ -411,6 +411,54 @@ Below is the critical existence theorem
 	Finally, so does $\bR \varprojlim$, so $\bR f_{\bullet *}$ has a right adjoint by \ref{thm:neeman4.1}.
 \end{proof}
 
+\begin{definition}
+	Let $p_\bullet : X_\bullet \rightarrow \Spec k$ be the structure map of a concentrated diagram of schemes.
+	Define the canonical complex $\omega_{X_\bullet}^\bullet = p_\bullet^! k$
+\end{definition}
+
+This is analogous to the dualizing complex on schemes, however it is rarely dualizing (in the sense of $\bR \cHom(\omega_{X_\bullet}^\bullet, \omega_{X_\bullet}^\bullet) \qis \OO_{X_\bullet}$), so we will not call it that.
+
+Our next goal is to compute this object.
+The next construction will be important for this.
+\begin{definition}
+	Let $X_\bullet$ be an $I$-scheme and $\alpha \in I$. Define an object in the derived category of diagrams of sheaves on $X_\alpha$ over $I^{op}$ as $\hat{\omega}_\bullet^\alpha \in D(X_\bullet)$
+	\[
+		\hat{\omega}^\alpha_\beta =  \begin{cases}
+											\bR X_{\phi_{\beta \alpha} *} \omega_{X_\beta}^\bullet & \text{if } \beta \in \alpha / I \\
+											0 & \text{otherwise,}
+									\end{cases}
+	\]
+	where the diagram maps are the pushforwards of the natural maps $\bR X_{\phi_{\gamma \beta} *} \omega_{X_\gamma}^\bullet \rightarrow \omega_{X_\beta}$.
+\end{definition}
+
+\begin{theorem}
+	For any $X_\bullet$ an $I$-scheme over a field $k$, and $\alpha \in I$, there is a natural isomorphism
+	\[
+		(\omega_{X_\bullet}^\bullet)_\alpha = \bR \varprojlim_{I^{op}} \hat{\omega}^\alpha_\bullet
+	\]
+\end{theorem}
+\begin{proof}
+	For any $F \in D(X_\alpha)$, we have 
+	\begin{align*}
+	\Hom(F, (\omega_{X_\bullet}^\bullet)_\alpha) &= \Hom(j_{\alpha !} F_\bullet, \omega_{X_\bullet}^\bullet) \\
+	&= \bR \Gamma(j_{\alpha !} F_\bullet)^* \\
+	&= (\bR \varprojlim_{\beta \in I} \bR \Gamma (j_{\alpha !} F_\beta))^* \\
+	\end{align*}
+	
+	For $\beta \in \alpha / I$, $j_{\alpha !} F_\beta = \bL X_{\phi_{\beta \alpha}}^* F$, so
+	\begin{align*}
+		\bR \Gamma(j_{\alpha !} F_\beta)^*  &= \Hom(\bL X_{\phi_{\beta \alpha}}^* F, \omega_{X_\alpha}^\bullet) \\
+		&= \Hom(F, \bR X_{\phi_{\beta \alpha} *} \omega_{X_\alpha}^\bullet) \\
+		&= \Hom(F, \hat{\omega}^\alpha_\beta)
+	\end{align*}
+	similarly, if $\beta \not \in \alpha / I$, both $\bR \Gamma(j_{\alpha !} F_\beta)^*$ and $\Hom(F, \hat{\omega}^\alpha_\beta)$ are zero.
+	
+	Thus, continuing from above,
+	\begin{align*}
+		\Hom(F, (\omega_{X_\bullet}^\bullet)_\alpha) &= \bR \varprojlim_{\beta \in I^{op}} \Hom(F, \hat{\omega}^\alpha_\beta) \\
+		&= \Hom(F, \bR \varprojlim_{I^{op}} \hat{\omega}^\alpha_\bullet).
+	\end{align*}
+\end{proof}
 
 \section{Projection Formula/Duality}
 
