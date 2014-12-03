@@ -99,6 +99,7 @@
 	Treat $i_\bullet$ as a composition, first an flat, shape-preserving map $U_\bullet \rightarrow X_\bullet|_J$ and the inclusion $X_\bullet|_J \rightarrow X_\bullet$.
 	By \cite{Lipman2009}, II 6, the restriction functor to any subdiagram is exact (indeed, it has both a left and a right adjoint), and the pullback by a shape-preserving map splits over the components, in each component it is exact.
 \end{proof}
+
 	
 \section{Cubical Hyperresolutions}
 \begin{prop}
@@ -421,20 +422,24 @@ This is analogous to the dualizing complex on schemes, however it is rarely dual
 Our next goal is to compute this object.
 The next construction will be important for this.
 \begin{definition}
-	Let $X_\bullet$ be an $I$-scheme and $\alpha \in I$. Define an object in the derived category of diagrams of sheaves on $X_\alpha$ over $I^{op}$ as $\hat{\omega}_\bullet^\alpha \in D(X_\bullet)$
+	Let $X_\bullet$ be an $I$-scheme and $\alpha \in I$. Define an object in the derived category of diagrams of sheaves on $X_\alpha$ over $I$ as $\hat{\omega}_\bullet^\alpha \in D(X_\bullet)$
 	\[
 		\hat{\omega}^\alpha_\beta =  \begin{cases}
 											\bR X_{\phi_{\beta \alpha} *} \omega_{X_\beta}^\bullet & \text{if } \beta \in \alpha / I \\
 											0 & \text{otherwise,}
 									\end{cases}
 	\]
-	where the diagram maps are the pushforwards of the natural maps $\bR X_{\phi_{\gamma \beta} *} \omega_{X_\gamma}^\bullet \rightarrow \omega_{X_\beta}$.
+	where the nonzero diagram maps are the pushforwards of the natural maps $\bR X_{\phi_{\gamma \beta} *} \omega_{X_\gamma}^\bullet \rightarrow \omega_{X_\beta}$.
+
+	The direction of the maps here can be confusing: note that diagrams are contravariant functors.
+	For any arrow $\phi_{\gamma \beta} : \beta \rightarrow \gamma$ in $I$, there is a morphism $X_{\phi_{\gamma \beta}} : X_\gamma \rightarrow X_\beta$ and a morphism $\hat{\omega}^\alpha_\gamma \rightarrow \hat{\omega}^\alpha_\beta$.
+	This is in contrast with a sheaf $\FF_\bullet$ on the diagram of schemes with morphisms $\FF_\beta \rightarrow X_{\phi_{\gamma \beta} *} \FF_\gamma$.
 \end{definition}
 
 \begin{theorem}
 	For any $X_\bullet$ an $I$-scheme over a field $k$, and $\alpha \in I$, there is a natural isomorphism
 	\[
-		(\omega_{X_\bullet}^\bullet)_\alpha = \bR \varprojlim_{I^{op}} \hat{\omega}^\alpha_\bullet
+		(\omega_{X_\bullet}^\bullet)_\alpha = \bR \varprojlim_{I} \hat{\omega}^\alpha_\bullet
 	\]
 \end{theorem}
 \begin{proof}
@@ -455,8 +460,8 @@ The next construction will be important for this.
 	
 	Thus, continuing from above,
 	\begin{align*}
-		\Hom(F, (\omega_{X_\bullet}^\bullet)_\alpha) &= \bR \varprojlim_{\beta \in I^{op}} \Hom(F, \hat{\omega}^\alpha_\beta) \\
-		&= \Hom(F, \bR \varprojlim_{I^{op}} \hat{\omega}^\alpha_\bullet).
+		\Hom(F, (\omega_{X_\bullet}^\bullet)_\alpha) &= \bR \varprojlim_{\beta \in I} \Hom(F, \hat{\omega}^\alpha_\beta) \\
+		&= \Hom(F, \bR \varprojlim_{I} \hat{\omega}^\alpha_\bullet).
 	\end{align*}
 \end{proof}
 
