@@ -100,6 +100,26 @@
 	By \cite{Lipman2009}, II 6, the restriction functor to any subdiagram is exact (indeed, it has both a left and a right adjoint), and the pullback by a shape-preserving map splits over the components, in each component it is exact.
 \end{proof}
 
+It's tempting to think of complexes in the derived category of sheaves on a diagram as a sort of diagram of complexes in the derived categories of sheaves on the component schemes: an object $F_\alpha \in D(X_\alpha)$ and compatible morphisms $\bR X_{\phi_{\beta \alpha} *} F_\beta \rightarrow F_\alpha$.
+This is a subtle issue: the complex category $C(\Sh(X_\bullet))$ is indeed this sort of construction, but the chain homotopies over the entire diagram are not the same as the chain homotopies over component combined, they must be compatible as well.
+Here is a simple example of this phenomenon:
+\begin{example}
+	Consider the diagram of schemes $X_\bullet = (\Spec k \rightarrow \Spec k)$ over the category $\tu$, and the following elements, of the complex category, $F_\bullet$:
+	\[
+		\begin{tikzcd}
+			\cdots \ar[r] & 0 \ar[r] \ar[d] & k \ar{r} \ar{d} & k \ar[r] \ar[d] & 0 \ar[r] \ar[d] & \cdots \\
+			\cdots \ar[r] & 0 \ar[r] & k \ar[r] & 0 \ar[r] & 0 \ar[r] & \cdots,
+		\end{tikzcd}
+	\]
+	and $G_\bullet$:
+	\[
+		\begin{tikzcd}
+			\cdots \ar[r] & 0 \ar[r] \ar[d] & k \ar[r] \ar[d] & 0 \ar[r] \ar[d] & 0 \ar[r] \ar[d] & \cdots \\
+			\cdots \ar[r] & 0 \ar[r] & k \ar[r] & 0 \ar[r] & 0 \ar[r] & \cdots.
+		\end{tikzcd}
+	\]
+	The chain maps between $F_\bullet$ and $G_\bullet$ are exactly what we think, chain maps between the two top rows and chain maps between the two bottom that are compatible.
+\end{example}
 	
 \section{Cubical Hyperresolutions}
 \begin{prop}
