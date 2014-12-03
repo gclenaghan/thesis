@@ -106,19 +106,29 @@ Here is a simple example of this phenomenon:
 \begin{example}
 	Consider the diagram of schemes $X_\bullet = (\Spec k \rightarrow \Spec k)$ over the category $\tu$, and the following elements, of the complex category, $F_\bullet$:
 	\[
-		\begin{tikzcd}
-			\cdots \ar[r] & 0 \ar[r] \ar[d] & k \ar{r} \ar{d} & k \ar[r] \ar[d] & 0 \ar[r] \ar[d] & \cdots \\
-			\cdots \ar[r] & 0 \ar[r] & k \ar[r] & 0 \ar[r] & 0 \ar[r] & \cdots,
+		\begin{tikzcd}[column sep = small, row sep = small]
+			\cdots \ar[r] & 0 \ar[r] \ar[d] & 0 \ar[r] \ar[d] & k \ar{r} \ar{d} & k \ar[r] \ar[d] & 0 \ar[r] \ar[d] & \cdots \\
+			\cdots \ar[r] & 0 \ar[r] & 0 \ar[r] & k \ar[r] & 0 \ar[r] & 0 \ar[r] & \cdots,
 		\end{tikzcd}
 	\]
 	and $G_\bullet$:
 	\[
-		\begin{tikzcd}
-			\cdots \ar[r] & 0 \ar[r] \ar[d] & k \ar[r] \ar[d] & 0 \ar[r] \ar[d] & 0 \ar[r] \ar[d] & \cdots \\
-			\cdots \ar[r] & 0 \ar[r] & k \ar[r] & 0 \ar[r] & 0 \ar[r] & \cdots.
+		\begin{tikzcd}[column sep = small, row sep = small]
+			\cdots \ar[r] & 0 \ar[r] \ar[d] & 0 \ar[r] \ar[d] & k \ar[r] \ar[d] & 0 \ar[r] \ar[d] & 0 \ar[r] \ar[d] & \cdots \\
+			\cdots \ar[r] & 0 \ar[r] & k \ar[r] & k \ar[r] & 0 \ar[r] & 0 \ar[r] & \cdots.
 		\end{tikzcd}
 	\]
-	The chain maps between $F_\bullet$ and $G_\bullet$ are exactly what we think, chain maps between the two top rows and chain maps between the two bottom that are compatible.
+	The chain maps between $F_\bullet$ and $G_\bullet$ are exactly what we think, chain maps between the two top rows and chain maps between the two bottom that are compatible, and thus $\Hom_{C(X_\bullet)}(F_\bullet, G_\bullet) = k$.
+	Next, to compute the $\Hom$ in the derived category, since everything is injective here, we need only mod out by chain homotopy.
+	When we ignore the compatibilities, and just consider each of $F_\bullet$ and $G_\bullet$ as two elements of $D(\Spec k)$ and a morphism between them, then we can replace the top row of $F_\bullet$ and the bottom row of $G_\bullet$ with 0 as these rows are quasi-isomorphic to 0, thus the $\Hom$ considered this way would itself be zero.
+	However, the only nontrivial maps of the homotopy must fit into diagrams like
+	\[
+		\begin{tikzcd}
+			k \arrow{r}{h} \ar[d] & k \ar[d] \\
+			0 \ar[r] & k,
+		\end{tikzcd}
+	\]
+	and therefore must be zero, so in fact $\Hom_{D(X_\bullet)}(F_\bullet, G_\bullet) = k$.
 \end{example}
 	
 \section{Cubical Hyperresolutions}
