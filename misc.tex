@@ -89,7 +89,242 @@
 \tableofcontents
 
 \chapter{Diagrams of Schemes and Their Sheaves}
+\section{Diagrams of Schemes}
+\begin{definition}[10.71 of \cite{Kollar2013}]
+	A {\it diagram of schemes over} $I$ (or just an $I$-{\it scheme}) is a contravariant functor from a thin, finite category $I$ to the category of schemes.
+	A morphism between an $I$-scheme $\Phi : I^{op} \rightarrow \Sch$ and a $J$-scheme $\Psi : J^{op} \rightarrow \Sch$ is given by a functor $\Gamma : I^{op} \rightarrow J^{op}$ and a natural transformation $\eta : \Phi \rightarrow \Psi \circ \Gamma$.
+	In simpler terms, a diagram of schemes is a finite collection of schemes with morphisms between them, and a morphism of diagrams of schemes is a collection of morphisms between the elements of the two collections where all the maps involved are compatible.
+	
+	We'll call $I$ the {\it shape} of an $I$-scheme.
+	Call a morphism of diagrams of schemes {\it shape-preserving} if $\Gamma$ is an equivalence, and {\it shape-embedding} if $\Gamma$ is fully-faithful.
+	Finally, we'll usually denote a diagram of schemes as $X_\bullet$, where the shape $I$ and functor $\Phi$ are implicit.
+	For $\alpha \in I$, denote $\Phi(\alpha) = X_\alpha$, and for morphisms $\phi$ in $I$ denote $\Phi(\phi) = X_\phi$.
+\end{definition}
+
+The next definition introduces all the shapes we'll want to consider.
+
+\begin{definition}
+	Let $\underline{1}$ be the category $\{0\}$, and $\tu$ be the category $\{0 \rightarrow 1\}$.
+	For $n \geq -1$, let $\Box_n^+$ be the product of $n+1$ copies of $\tu$.
+	The elements here are tuples $\alpha = (\alpha_0, \dots, \alpha_n)$, with $\alpha_i \in \{0, 1\}$, and we can define $|\alpha| = \sum \alpha_i$.
+	Let $\Box_n$ be the full subcategory without the initial object $(0, \dots, 0)$.
+	See figure \ref{fig:boxn}.
+\end{definition}
+
+\begin{figure}
+	\centering
+	\begin{subfigure}[t]{.2\textwidth}
+		\centering
+		\begin{tikzcd}[row sep=8, column sep=8]
+			\circ
+		\end{tikzcd}
+	\end{subfigure}%
+	\begin{subfigure}[t]{.25\textwidth}
+		\centering
+		\begin{tikzcd}[row sep=8, column sep=8]
+			\bullet & & \arrow[dashed]{ll} \circ
+		\end{tikzcd}
+	\end{subfigure}%
+	\begin{subfigure}[t]{.25\textwidth}
+		\centering
+		\begin{tikzcd}[row sep=8, column sep=8]
+			\bullet & & \bullet \arrow{ll} \\ \\
+			\bullet \arrow{uu} & & \circ \arrow[dashed]{ll} \arrow[dashed]{uu}
+		\end{tikzcd}
+	\end{subfigure}%
+	\begin{subfigure}[t]{.3\textwidth}
+		\centering
+		\begin{tikzcd}[row sep=8, column sep=8]
+			& \bullet \arrow[leftarrow]{dd}& & \arrow{ll} \bullet  \\
+			\bullet \arrow{ur}& & \arrow[crossing over]{ll} \bullet \arrow{ur} \\
+			& \bullet & & \arrow{ll} \bullet \arrow{uu}  \\
+			\bullet \arrow{ur} \arrow{uu} & & \arrow[dashed]{ll} \circ \arrow[dashed]{ur} \arrow[dashed,crossing over]{uu}\\
+		\end{tikzcd}
+	\end{subfigure}
+	\caption{For $n \in \{-1, 0, 1, 2\}$, $\Box_n^+$ is the diagram with dashed arrows and an initial object, $\Box_n$ is the diagram without}
+	\label{fig:boxn}
+\end{figure}
 \section{Sheaves on Diagrams}
+With a definition of diagrams of schemes, we can now consider sheaves over diagrams, which are compatible collections of sheaves and morphisms over the schemes in the diagram.
+
+\begin{definition}[10.84 of \cite{Kollar2013}]
+	Let $X_\bullet$ be an $I$-scheme.
+	A sheaf $\FF_\bullet$ on $X_\bullet$ is a collection of sheaves $\FF_\alpha$ on $X_\alpha$ with, for each $f : X_\alpha \rightarrow X_\beta$ in the diagram, morphisms $\FF_\beta \rightarrow f_* \FF_\alpha$, or equivalently $f^* \FF_\beta \rightarrow \FF_\alpha$.
+	Similarly, one can construct the derived category of these sheaves, which are collections of objects in the derived category over each of the $X_\alpha$, and maps $F_\beta \rightarrow \bR f_* F_\alpha$.
+\end{definition}
+
+Given a map of diagrams, there are several associated functors of sheaves, analogous to those on literal schemes.
+The easiest to construct is the pullback
+
+\begin{definition}
+	Let $X_\bullet$ be an $I$-scheme and $Y_\bullet$ be a $J$-scheme, $f_\bullet : X_\bullet \rightarrow Y_\bullet$ be a morphism of diagrams of schemes over the functor $\Phi : I^{op} \rightarrow J^{op}$.
+	Then if $\GG_\bullet$ is a sheaf over $Y_\bullet$, define the pullback $f^*_\bullet \GG_\bullet$ a sheaf on $X_\bullet$ as
+	\[
+	(f^*_\bullet \GG_\bullet)_\alpha = f_\alpha^* \GG_{\Phi(\alpha)}.
+	\]
+	This functor is right-exact and has a left-derived functor on the derived categories
+	\[
+	(\bL f^*_\bullet G_\bullet)_\alpha = \bL f_\alpha^* G_{\Phi(\alpha)}.
+	\]
+\end{definition}
+
+On the other hand, the pushforward is more mysterious, the problem being for each scheme in the target diagram, there are possibly many schemes mapping to it.
+However, if this is the case then they form a diagram of sheaves over that target scheme, and we can define the pushforward as the limit of this diagram.
+
+\begin{definition}
+	\label{def:pushforward}
+	Let $X_\bullet$ be an $I$-scheme and $Y_\bullet$ a $J$-scheme, $f_\bullet : X_\bullet \rightarrow Y_\bullet$ a morphism of diagrams of schemes over the functor $\Phi : I^{op} \rightarrow J^{op}$.
+	Then if $\FF_\bullet$ is a sheaf over $X_\bullet$, define the pushforward $f_{\bullet*} \FF_\bullet$ a sheaf on $Y_\bullet$ as
+	\[
+	(f_{\bullet*} \FF_\bullet)_\alpha = \varprojlim_{(\beta, \phi)} Y_{\phi *} f_{\beta *} \FF_\beta,
+	\]
+	where $(\beta, \phi)$ ranges over $\beta \in I$ and $\phi : \Phi(\beta) \rightarrow \alpha$ a morphism in $J$.
+	This functor is left-exact and has a right-derived functor on the derived categories
+	\[
+	(\bR f_{\bullet*} F_\bullet)_\alpha = \bR \varprojlim_{(\beta, \phi)} \bR Y_{\phi *} \bR f_{\beta *} F_\beta.
+	\]
+\end{definition}
+
+\begin{prop}[I 5.5 of \cite{Guillen1988}]
+	With these definitions and using this notation, $f_{\bullet *}$ is the right adjoint of $f_\bullet^*$ and $\bR f_{\bullet *}$ is the right adjoint of $\bL f_\bullet^*$.
+\end{prop}
+
+The main case of interest is a hyperresolution of a literal scheme, so it is worth considering in the case where $J = \underline{1}$, and even more particular where $I = \Box_n$.
+After this first restriction, the functor $\bR f_{\bullet *}$ can be written as
+\[
+\bR f_{\bullet*} F_\bullet = \bR \varprojlim_\beta \bR f_{\beta *} F_\beta
+\]
+
+Next, it turns out taking the limit over a $\Box_n$ diagram has a particularly nice form.
+For notational convenience, we'll consider $\Box_n$ as a subset of $\ZZ^n$, where each component is either 0 or 1.
+Let $e_i$ be the $i$th basis vector of $\ZZ^n$, and let the morphism from $\alpha$ to $\alpha + e_i$ (which exists if and only if $\alpha_i = 0$ be denoted by $\phi_{(\alpha, i)}$.
+
+\begin{definition}
+	Let $\Phi : \Box_n \rightarrow C(A)$ be a diagram in the category of complexes of objects in an abelian category $A$, where the differential of $\Phi(\alpha)$ is $d_\alpha$.
+	Define the {\it staggered complex} of $\Phi$ to be the object $K \in C(A)$ with
+	\[
+	K^p = \bigoplus_\alpha \Phi(\alpha)^{1+p-|\alpha|}
+	\] 
+	and such that the differential on each $\Phi(\alpha)^{1+p-|\alpha|}$ is
+	\[
+	d = (\bigoplus_{\{i : \alpha_i = 0\}} (-1)^{\sum_{j < i} \alpha_j} \Phi(\phi_{(\alpha, i)})) \oplus (-1)^{|\alpha|} d_\alpha.
+	\]
+	One can make a similar construction for $K(A)$ or $D(A)$.
+\end{definition}
+
+The name is meant to be suggestive: this complex is obtained by combining all the complexes, staggering them to the right by the value of $|\alpha|$.
+To illustrate, suppose $\Phi$ was the $\Box_1$-diagram
+\[
+\begin{tikzcd}
+C^\bullet & \arrow{l} A^\bullet \\
+B^\bullet \arrow{u}.
+\end{tikzcd}
+\]
+Then to obtain the staggered complex, we arrange the complexes, written out, as
+\[
+\begin{tikzcd}
+\cdots \arrow{r}{-} &  A^0 \arrow{r}{-} \arrow{dr}{+} & A^1 \arrow{r}{-} \arrow{dr}{+} & A^2 \arrow{r}{-} \arrow{dr}{+} & \cdots \\
+& \cdots \arrow{r}{+} & C^0 \arrow{r}{+} & C^1 \arrow{r}{+} & C^2 \arrow{r}{+} & \cdots \\
+\cdots \arrow{r}{-} & B^0 \arrow{r}{-} \arrow{ur}{-} & B^1 \arrow{r}{-} \arrow{ur}{-} & B^2 \arrow{r}{-} \arrow{ur}{-} & \cdots
+\end{tikzcd}
+\]
+and then take the direct sum of each column, with the signs above indicating the sign in the differential.
+
+\begin{prop}
+	\label{thm:staggered}
+	Let $X_\bullet$ be a $\Box_n$-scheme with a map $f_\bullet : X_\bullet \rightarrow X$ to a scheme, and let $F_\bullet$ be an element of the bounded below derived category of sheaves on $\Box_n$
+	Then $\bR f_{\bullet *} F_\bullet$ is naturally quasi-isomorphic to the staggered complex formed by the $\Box_n$ diagram of $\bR f_{\alpha *} F_\alpha$ for each $\alpha \in \Box_n$.
+\end{prop}
+\begin{proof}
+	This is I 6.6 of \cite{Guillen1988} in the special case of $I = \underline{1}$, and $K_\bullet$ the functor sending 0 to $\Box_n$.
+\end{proof}
+
+There is not yet a notion of global sections as with a sheaf on a scheme, so we make the following definition:
+
+\begin{definition}
+	If $X_\bullet$ is a diagram of schemes, $\FF_\bullet$ a sheaf on $X_\bullet$, then define the functor
+	\[
+	\Gamma(X_\bullet, \FF_\bullet) = \varprojlim \Gamma(X_\alpha, \FF_\alpha).
+	\]
+	Similarly, if $F_\bullet \in D(X_\bullet)$, define
+	\[
+	\bR \Gamma(F_\bullet) = \bR \varprojlim \bR \Gamma(F_\alpha).
+	\]
+	Note that if $f_\bullet : X_\bullet \rightarrow \Spec k$ is a morphism to a field, $\Gamma = f_{\bullet *}$.
+\end{definition}
+
+Given $\FF_\bullet$ and $\GG_\bullet$, sheaves on $X_\bullet$, we can define $\Hom_{X_\bullet}(\FF_\bullet, \GG_\bullet)$ as the morphisms in the category of sheaves, and this has many of the properties as before, however defining a sheaf $\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet)$ is more subtle as the most obvious choice does not have the natural maps required.
+\begin{definition}
+	Let $X_\bullet$ be a diagram of schemes, $\FF_\bullet$ and $\GG_\bullet$ two sheaves over $X_\bullet$.
+	Define $\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet)$ as follows: for each $\alpha \in I$, and $U \subseteq X_\alpha$ open, let
+	\[
+	(\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet))_\alpha(U) = \Hom_{X_\bullet/U} ( i_U^* \FF_\bullet , i_U^* \GG_\bullet).
+	\]
+	This gives a sheaf on each $X_\alpha$.
+	For $X_\phi : X_\alpha \rightarrow X_\beta$, $U \subseteq X_\beta$, there is a map $X_\bullet / \phi^{-1}(U) \rightarrow X_\bullet / U$ such that the $i$ maps commute, and putting this together gives maps $(\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet))_\beta(U) \rightarrow (\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet))_\alpha(X_\phi^{-1}(U))$ as needed.
+\end{definition}
+
+\begin{prop}
+	Let $X_\bullet$ be a diagram of schemes, $\FF_\bullet$ and $\GG_\bullet$ two sheaves over $X_\bullet$.
+	Then
+	\[
+	\Gamma(X_\bullet, \cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet)) = \Hom_{X_\bullet}(\FF_\bullet, \GG_\bullet),
+	\]
+	and similarly if $F_\bullet, G_\bullet \in D^+(X_\bullet)$
+	\[
+	\bR \Gamma (\bR \cHom_{X_\bullet}(F_\bullet, G_\bullet)) = \bR \Hom_{X_\bullet}(F_\bullet, G_\bullet).
+	\]
+\end{prop}
+\begin{proof}
+	Note that $ \Hom_{X_\bullet / X_\alpha} ( i_{X_\alpha}^* \FF_\bullet , i_{X_\alpha}^* \GG_\bullet)$ consists of compatible morphisms of sheaves $\FF_\beta \rightarrow\nobreak \GG_\beta$ for each $\beta$ under $\alpha$, but then it is clear the inverse limit of these groups will be the collection of compatible morphisms $\FF_\beta \rightarrow \GG_\beta$ for all $\beta$, which is precisely $\Hom_{X_\bullet}(\FF_\bullet, \GG_\bullet)$.
+	
+	The derived category version is simply by the composition of derived functors.
+\end{proof}
+
+The above proposition can be generalized for arbitrary $f_\bullet$, where in the last $\Gamma$ is viewed as the pushforward to a field.
+The natural map obtained by this characterization is used in the sheaf version of duality.
+
+\begin{prop}
+	\label{thm:chomnatmap}
+	Let $f_\bullet : X_\bullet \rightarrow Y_\bullet$ be a morphism of diagrams of schemes, and $\FF_\bullet$, $\GG_\bullet$ two $X_\bullet$ sheaves.
+	Then there is a natural isomorphism, for each $U \subseteq Y_\alpha$
+	\[
+	f_{\bullet *}  \cHom_{X_\bullet} (\FF_\bullet, \GG_\bullet) (U) \xrightarrow{\sim} \Hom_{f_\bullet^{-1}(U)} ( i_{f_\bullet^{-1}(U)}^* \FF_\bullet, i_{f_\bullet^{-1}(U)}^* \GG_\bullet).
+	\]
+	
+	Furthermore, there is a natural map
+	\[
+	f_{\bullet *} \cHom_{X_\bullet} (\FF_\bullet , \GG_\bullet) \rightarrow \cHom_{Y_\bullet} (f_{\bullet *} \FF_\bullet, f_{\bullet *} \GG_\bullet),
+	\]
+	and its derived version
+	\[
+	\bR f_{\bullet *} \bR \cHom_{X_\bullet} (F_\bullet , G_\bullet) \rightarrow \bR \cHom_{Y_\bullet} (\bR f_{\bullet *} F_\bullet, \bR f_{\bullet *} G_\bullet).
+	\]
+\end{prop}
+\begin{proof}
+	Working through the definitions,
+	\[
+	f_{\bullet *}  \cHom_{X_\bullet} (\FF_\bullet, \GG_\bullet) (U) = \varprojlim_{(\beta, \phi)} \Hom_{X_\bullet / f_\beta^{-1}(Y_\phi^{-1}(U)} (i_{f_\beta^{-1}(Y_\phi^{-1}(U)}^* \FF_\bullet, i_{f_\beta^{-1}(Y_\phi^{-1}(U)}^* \GG_\bullet).
+	\]
+	The elements on the left are tuples of compatible morphisms of sheaves $(\psi_{(\beta, \phi)})$, where $(\beta, \phi)$ ranges over $I \times_J \alpha/J$.
+	$f_\bullet^{-1}(U)$ is a $I \times_J \alpha/J$ scheme, and working through the definitions, $(p_{f_\bullet^{-1}(U)}^* \FF_\bullet)_{(\beta, \phi)} = \FF_\beta |_{f^{-1}_\beta(Y_\phi^{-1}(U))}$, then $\psi_{(\beta, \phi)}$ gives a morphism from this to $(p_{f_\bullet^{-1}(U)}^* \GG_\bullet)_{(\beta, \phi)}$ for each $(\beta, \phi)$, and these maps are compatible.
+	
+	The inverse is the restriction of the morphism $i_{f_\bullet^{-1}(U)}^* \FF_\bullet \rightarrow i_{f_\bullet^{-1}(U)}^* \GG_\bullet$ to each of the components of the limit.
+	
+	To define the natural map, we can define compatible maps of the $U$ sections, and by the first part and the definition, these are maps
+	\[
+	\Hom_{f_\bullet^{-1}(U)} ( i_{f_\bullet^{-1}(U)}^* \FF_\bullet, i_{f_\bullet^{-1}(U)}^* \GG_\bullet) \rightarrow \Hom_{Y_\bullet / U} (i_U^* f_{\bullet *} \FF_\bullet, i_U^* f_{\bullet *} \GG_\bullet).
+	\] 
+	On each of the components, $i_U^*$ and $i_{f_\bullet^{-1}(U)}^*$ are just the restrictions, which $f_{\bullet *}$ is compatible with, so we can rewrite the right side as
+	\[
+	Hom_{Y_\bullet / U} (f_{\bullet *} i_{f_\bullet^{-1}(U)}^*\FF_\bullet,  f_{\bullet *} i_{f_\bullet^{-1}(U)}^*\GG_\bullet).
+	\]
+	Then it is clear the natural map is just the application of the functor $f_{\bullet *}$.
+	
+	The derived version is then tediously obtained by the sheaf version.
+\end{proof}
+
+
 \begin{prop}
 	Let $X_\bullet$ be a diagram of schemes, $i_\bullet : U_\bullet \hookrightarrow X_\bullet$ a flat shape-embedding.
 	Then $i_\bullet^*$ is an exact functor.
