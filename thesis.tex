@@ -91,7 +91,7 @@
 \chapter{Diagrams of Schemes and Their Sheaves}
 \section{Diagrams of Schemes}
 \begin{definition}[10.71 of \cite{Kollar2013}]
-	A {\it diagram of schemes over} $I$ (or just an $I$-{\it scheme}) is a contravariant functor from a thin, finite category $I$ to the category of schemes.
+	A {\it diagram of schemes over} $I$ (or just an $I$-{\it scheme}) is a contravariant functor from a thin, finite category without loops (we'll call such a category a \textit{diagram category}) $I$ to the category of schemes.
 	A morphism between an $I$-scheme $\Phi : I^{op} \rightarrow \Sch$ and a $J$-scheme $\Psi : J^{op} \rightarrow \Sch$ is given by a functor $\Gamma : I^{op} \rightarrow J^{op}$ and a natural transformation $\eta : \Phi \rightarrow \Psi \circ \Gamma$.
 	In simpler terms, a diagram of schemes is a finite collection of schemes with morphisms between them, and a morphism of diagrams of schemes is a collection of morphisms between the elements of the two collections where all the maps involved are compatible.
 	
@@ -150,7 +150,7 @@ With a definition of diagrams of schemes, we can now consider sheaves over diagr
 \begin{definition}[10.84 of \cite{Kollar2013}]
 	Let $X_\bullet$ be an $I$-scheme.
 	A sheaf $\FF_\bullet$ on $X_\bullet$ is a collection of sheaves $\FF_\alpha$ on $X_\alpha$ with, for each $f : X_\alpha \rightarrow X_\beta$ in the diagram, morphisms $\FF_\beta \rightarrow f_* \FF_\alpha$, or equivalently $f^* \FF_\beta \rightarrow \FF_\alpha$.
-	Similarly, one can construct the derived category of these sheaves, which are collections of objects in the derived category over each of the $X_\alpha$, and maps $F_\beta \rightarrow \bR f_* F_\alpha$.
+	This is an abelian category, so we can also take the derived category of such sheaves.
 \end{definition}
 
 Given a map of diagrams, there are several associated functors of sheaves, analogous to those on literal schemes.
@@ -199,20 +199,20 @@ Next, it turns out taking the limit over a $\Box_n$ diagram has a particularly n
 For notational convenience, we'll consider $\Box_n$ as a subset of $\ZZ^n$, where each component is either 0 or 1.
 Let $e_i$ be the $i$th basis vector of $\ZZ^n$, and let the morphism from $\alpha$ to $\alpha + e_i$ (which exists if and only if $\alpha_i = 0$ be denoted by $\phi_{(\alpha, i)}$.
 
-\begin{definition}
-	Let $\Phi : \Box_n \rightarrow C(A)$ be a diagram in the category of complexes of objects in an abelian category $A$, where the differential of $\Phi(\alpha)$ is $d_\alpha$.
-	Define the {\it staggered complex} of $\Phi$ to be the object $K \in C(A)$ with
+\begin{definition}[\cite{Guillen1988} I 6]
+	Let $F_\bullet : \Box_n \rightarrow C(A)$ be a diagram in the category of complexes in an abelian category $A$
+	, where the differential of $F_\alpha$ is $d_\alpha$.
+	Define the {\it simple complex} of $S(F_\bullet)$ to be the object in $C(A)$ with
 	\[
-	K^p = \bigoplus_\alpha \Phi(\alpha)^{1+p-|\alpha|}
+	S(F_\bullet)^p = \bigoplus_\alpha F_\alpha^{1+p-|\alpha|}
 	\] 
-	and such that the differential on each $\Phi(\alpha)^{1+p-|\alpha|}$ is
+	and such that the differential on each $F_\alpha^{1+p-|\alpha|}$ is
 	\[
-	d = (\bigoplus_{\{i : \alpha_i = 0\}} (-1)^{\sum_{j < i} \alpha_j} \Phi(\phi_{(\alpha, i)})) \oplus (-1)^{|\alpha|} d_\alpha.
+	d = (\bigoplus_{\{i : \alpha_i = 0\}} (-1)^{\sum_{j < i} \alpha_j} F_{\phi_{(\alpha, i)}}) \oplus (-1)^{|\alpha|} d_\alpha.
 	\]
-	One can make a similar construction for $K(A)$ or $D(A)$.
 \end{definition}
 
-The name is meant to be suggestive: this complex is obtained by combining all the complexes, staggering them to the right by the value of $|\alpha|$.
+In more tangible terms, complex is obtained by combining all the complexes, staggering them to the right by the value of $|\alpha|$.
 To illustrate, suppose $\Phi$ was the $\Box_1$-diagram
 \[
 \begin{tikzcd}
@@ -220,7 +220,7 @@ C^\bullet & \arrow{l} A^\bullet \\
 B^\bullet \arrow{u}.
 \end{tikzcd}
 \]
-Then to obtain the staggered complex, we arrange the complexes, written out, as
+Then to obtain the simple complex, we arrange the complexes, written out, as
 \[
 \begin{tikzcd}
 \cdots \arrow{r}{-} &  A^0 \arrow{r}{-} \arrow{dr}{+} & A^1 \arrow{r}{-} \arrow{dr}{+} & A^2 \arrow{r}{-} \arrow{dr}{+} & \cdots \\
@@ -230,10 +230,17 @@ Then to obtain the staggered complex, we arrange the complexes, written out, as
 \]
 and then take the direct sum of each column, with the signs above indicating the sign in the differential.
 
+\begin{prop}[\cite{Guillen1988} I 6.3 ]
+	Let $A$ be an abelian category, then the simple complex is a functor $S:\Box_n-C(A) \rightarrow C(A)$ which takes quasi-isomorphisms to quasi-isomorphisms.
+\end{prop}
+\begin{proof}
+	
+\end{proof}
+
 \begin{prop}
-	\label{thm:staggered}
+	\label{thm:simple}
 	Let $X_\bullet$ be a $\Box_n$-scheme with a map $f_\bullet : X_\bullet \rightarrow X$ to a scheme, and let $F_\bullet$ be an element of the bounded below derived category of sheaves on $\Box_n$
-	Then $\bR f_{\bullet *} F_\bullet$ is naturally quasi-isomorphic to the staggered complex formed by the $\Box_n$ diagram of $\bR f_{\alpha *} F_\alpha$ for each $\alpha \in \Box_n$.
+	Then $\bR f_{\bullet *} F_\bullet$ is naturally quasi-isomorphic to the simple complex formed by the $\Box_n$ diagram of $\bR f_{\alpha *} F_\alpha$ for each $\alpha \in \Box_n$.
 \end{prop}
 \begin{proof}
 	This is I 6.6 of \cite{Guillen1988} in the special case of $I = \underline{1}$, and $K_\bullet$ the functor sending 0 to $\Box_n$.
@@ -364,6 +371,15 @@ Here is a simple example of this phenomenon:
 		\end{tikzcd}
 	\]
 	and therefore must be zero, so in fact $\Hom_{D(X_\bullet)}(F_\bullet, G_\bullet) = k$.
+	
+	Another thing to note about this is that $F_\bullet$ is not quasi-isomorphic to the complex 
+	\[
+	\begin{tikzcd}[column sep = small, row sep = small]
+	\cdots \ar[r] &  0 \ar[r] \ar[d] & 0 \ar{r} \ar{d} & 0 \ar[r] \ar[d] & \cdots \\
+	\cdots \ar[r] & 0 \ar[r] & k \ar[r] & 0 \ar[r] & \cdots,
+	\end{tikzcd}
+	\]
+	as any morphism to or from this complex runs into the same issue: some subdiagram commuting meaning the map must be zero.
 \end{example}
 	
 \section{Cubical Hyperresolutions}
@@ -640,7 +656,7 @@ Note that this differs from the convention of ``$\FF_\bullet$ has property $P$ i
 	Furthermore the right adjoint to $\bR f_{\bullet *}$ on $D_{qc}(X_\bullet)$, $f_\bullet^!$ maps $D_{qc}^+(X_\bullet)$ to $D_{qc}^+(X_\bullet)$.
 \end{theorem}
 \begin{proof}
-	The derived limit on each component preserves (quasi-)coherence and is bounded above, so by the staggered complex construction, the derived limit of the total pushforward on each component $Y_\alpha$ also has these properties.
+	The derived limit on each component preserves (quasi-)coherence and is bounded above, so by the simple complex construction, the derived limit of the total pushforward on each component $Y_\alpha$ also has these properties.
 	Then the adjoint is bounded below by Lemma 4.1.8 of \cite{Lipman2009}.
 \end{proof}
 
@@ -792,8 +808,8 @@ The next construction will be important for this.
 	\]
 	so we have reduced to showing that for a flat morphism of schemes $u : U \rightarrow X$, a $\Box_n$-diagram of complexes $F_\bullet$ on $X$, $\bL u^* \bR \varprojlim F_\bullet = \bR \varprojlim \bL u^*$.
 	
-	By flatness, $\bL u^* = u^*$, and by using the staggered complex construction $\bR \varprojlim F_\bullet$ becomes a complex with each degree the direct sum of $F_\alpha^p$s and differential maps the direct sum of maps $F_\alpha \rightarrow F_\beta$.
-	Since $u^*$ commutes with all of these, $u^* \bR \varprojlim F_\bullet$ is in fact the staggered complex of $u^* F_\bullet$.
+	By flatness, $\bL u^* = u^*$, and by using the simple complex construction $\bR \varprojlim F_\bullet$ becomes a complex with each degree the direct sum of $F_\alpha^p$s and differential maps the direct sum of maps $F_\alpha \rightarrow F_\beta$.
+	Since $u^*$ commutes with all of these, $u^* \bR \varprojlim F_\bullet$ is in fact the simple complex of $u^* F_\bullet$.
 \end{proof}
 
 \begin{theorem}
