@@ -90,16 +90,36 @@
 \tableofcontents
 
 \chapter{Diagrams of Schemes and Their Sheaves}
-\section{Diagrams of Schemes}
-\begin{definition}[10.71 of \cite{Kollar2013}]
-	A {\it diagram of schemes over} $I$ (or just an $I$-{\it scheme}) is a contravariant functor from a thin, finite category without loops (we'll call such a category a \textit{diagram category}) $I$ to the category of schemes.
-	A morphism between an $I$-scheme $\Phi : I^{op} \rightarrow \Sch$ and a $J$-scheme $\Psi : J^{op} \rightarrow \Sch$ is given by a functor $\Gamma : I^{op} \rightarrow J^{op}$ and a natural transformation $\eta : \Phi \rightarrow \Psi \circ \Gamma$.
-	In simpler terms, a diagram of schemes is a finite collection of schemes with morphisms between them, and a morphism of diagrams of schemes is a collection of morphisms between the elements of the two collections where all the maps involved are compatible.
+\section{Diagram Categories}
+In general, a diagram in a given category $A$ will be a collection of objects in morphisms in that category, the idea is we want to deal with that whole collection simultaneously: for a cubical hyperresolution, the diagram will contain the resolution of singularities \textit{and} information about how the resolution map transforms the space.
+
+In general, one can work with arbitrary functors from some small category to $A$, but this can be messier than we need.
+The following definition makes some reasonable restriction:
+\begin{definition}
+	A \textit{diagram shape category} is a finite, thin (any two objects have at most one morphism between them) category without loops.
+\end{definition}
+
+It is clear why requiring finiteness makes things easier, the primary reason for requiring thinness is so that we can think of slice categories and over categories as fully faithful subcategories which makes some constructions simpler.
+Finally, loops in a thin category are somewhat silly (each map in the loop must be an isomorphism), so categories with loops contain no further information than the category with the loops collapsed.
+
+\begin{definition}
+	Let $I$ be a diagram shape category and $A$ be any category.
+	A \textit{diagram} in $A$ of shape $I$ (or an $I$-diagram) is a functor
+	\[
+		X_\bullet : I^{op} \rightarrow A.
+	\]
+	For each $\alpha$ and $\varphi$ an object and morphism from $I$ respectively, we'll write $X_\alpha$ and $X_\varphi$.
 	
-	We'll call $I$ the {\it shape} of an $I$-scheme.
-	Call a morphism of diagrams of schemes {\it shape-preserving} if $\Gamma$ is an equivalence, and {\it shape-embedding} if $\Gamma$ is fully-faithful.
-	Finally, we'll usually denote a diagram of schemes as $X_\bullet$, where the shape $I$ and functor $\Phi$ are implicit.
-	For $\alpha \in I$, denote $\Phi(\alpha) = X_\alpha$, and for morphisms $\phi$ in $I$ denote $\Phi(\phi) = X_\phi$.
+	A morphism between an $I$-diagram $X_\bullet$ and a $J$-diagram $Y_\bullet$ is given by a shape functor $\Gamma : I^{op} \rightarrow J^{op}$ and a natural transformation $\eta : X_\bullet \rightarrow Y_\bullet \circ \Gamma$.
+	
+	In simpler terms, this is a collection of morphisms such that the total diagram with all the arrows from the morphism and both diagrams drawn is commutative.
+	Usually we'll denote a morphism as $f_\bullet : X_\bullet \rightarrow Y_\bullet$ with $\Gamma$ implicit and for each $\alpha \in I$, $f_\alpha : X_\alpha \rightarrow Y_{\Gamma(\alpha)}$. 
+	
+	Call a morphism \textit{shape-preserving} if $\Gamma$ is the identity, and \textit{shape-embedding} if it is fully faithful.
+	
+	The category of diagrams in $A$ will be denoted $\Diag A$, and the category of $I$-diagrams with shape-preserving morphisms in $A$ will be denoted $\Diag_I A$.
+	
+	There is a diagonal functor for each $I$, $\Delta : A \rightarrow \Diag_I$, where we'll denote $\Delta(X)$ by $X \times I$ (to be consistent with \cite{Guillen1988}), and $(X \times I)(\alpha) = X$ for all $\alpha$, with arrows the identity.
 \end{definition}
 
 The next definition introduces all the shapes we'll want to consider.
@@ -145,6 +165,7 @@ The next definition introduces all the shapes we'll want to consider.
 	\caption{For $n \in \{-1, 0, 1, 2\}$, $\Box_n^+$ is the diagram with dashed arrows and an initial object, $\Box_n$ is the diagram without}
 	\label{fig:boxn}
 \end{figure}
+
 \section{Sheaves on Diagrams}
 With a definition of diagrams of schemes, we can now consider sheaves over diagrams, which are compatible collections of sheaves and morphisms over the schemes in the diagram.
 
@@ -196,55 +217,9 @@ After this first restriction, the functor $\bR f_{\bullet *}$ can be written as
 \bR f_{\bullet*} F_\bullet = \bR \varprojlim_\beta \bR f_{\beta *} F_\beta
 \]
 
-Next, it turns out taking the limit over a $\Box_n$ diagram has a particularly nice form.
-For notational convenience, we'll consider $\Box_n$ as a subset of $\ZZ^n$, where each component is either 0 or 1.
-Let $e_i$ be the $i$th basis vector of $\ZZ^n$, and let the morphism from $\alpha$ to $\alpha + e_i$ (which exists if and only if $\alpha_i = 0$ be denoted by $\phi_{(\alpha, i)}$.
+Restricting to $I = \Box_n$ is very powerful, as we will see in section \ref{sec:cubicaldescent}.
 
-\begin{definition}[\cite{Guillen1988} I 6]
-	Let $F_\bullet : \Box_n \rightarrow C(A)$ be a diagram in the category of complexes in an abelian category $A$, where the differential of $F_\alpha$ is $d_\alpha$.
-	Define the {\it simple complex} of $S(F_\bullet)$ to be the object in $C(A)$ with
-	\[
-	S(F_\bullet)^p = \bigoplus_\alpha F_\alpha^{1+p-|\alpha|}
-	\] 
-	and such that the differential on each $F_\alpha^{1+p-|\alpha|}$ is
-	\[
-	d = (\bigoplus_{\{i : \alpha_i = 0\}} (-1)^{\sum_{j < i} \alpha_j} F_{\phi_{(\alpha, i)}}) \oplus (-1)^{|\alpha|} d_\alpha.
-	\]
-\end{definition}
-
-In more tangible terms, complex is obtained by combining all the complexes, staggering them to the right by the value of $|\alpha|$.
-To illustrate, suppose $\Phi$ was the $\Box_1$-diagram
-\[
-\begin{tikzcd}
-C^\bullet & \arrow{l} A^\bullet \\
-B^\bullet \arrow{u}.
-\end{tikzcd}
-\]
-Then to obtain the simple complex, we arrange the complexes, written out, as
-\[
-\begin{tikzcd}
-\cdots \arrow{r}{-} &  A^0 \arrow{r}{-} \arrow{dr}{+} & A^1 \arrow{r}{-} \arrow{dr}{+} & A^2 \arrow{r}{-} \arrow{dr}{+} & \cdots \\
-& \cdots \arrow{r}{+} & C^0 \arrow{r}{+} & C^1 \arrow{r}{+} & C^2 \arrow{r}{+} & \cdots \\
-\cdots \arrow{r}{-} & B^0 \arrow{r}{-} \arrow{ur}{-} & B^1 \arrow{r}{-} \arrow{ur}{-} & B^2 \arrow{r}{-} \arrow{ur}{-} & \cdots
-\end{tikzcd}
-\]
-and then take the direct sum of each column, with the signs above indicating the sign in the differential.
-
-\begin{prop}[\cite{Guillen1988} I 6.3, developed further in \cite{Guillen2002} 1.3.1, \cite{Pascual2009} 2.1]
-	Let $A$ be an abelian category, then the simple complex is a functor $S:\Diag_{\Box_n} C(A) \rightarrow C(A)$ which takes quasi-isomorphisms to quasi-isomorphisms.
-	
-	Then this functor descends to the derived categories $D(\Diag_{\Box_n} A)$ and $\Diag_{\Box_n} D(A)$ and is the same when considering an object of the first as an object of the latter (so that the issues arising in example \ref{ex:ddiagvsdiagd} vanish when this functor is applied).
-\end{prop}
-\begin{prop}
-	\label{thm:simple}
-	Let $X_\bullet$ be a $\Box_n$-scheme with a map $f_\bullet : X_\bullet \rightarrow X$ to a scheme, and let $F_\bullet$ be an element of the bounded below derived category of sheaves on $\Box_n$
-	Then $\bR f_{\bullet *} F_\bullet$ is naturally quasi-isomorphic to the simple complex formed by the $\Box_n$ diagram of $\bR f_{\alpha *} F_\alpha$ for each $\alpha \in \Box_n$.
-\end{prop}
-\begin{proof}
-	This is I 6.6 of \cite{Guillen1988} in the special case of $I = \underline{1}$, and $K_\bullet$ the functor sending 0 to $\Box_n$.
-\end{proof}
-
-There is not yet a notion of global sections as with a sheaf on a scheme, so we make the following definition:
+The following gives a notion of global sections for sheaves on diagrams:
 
 \begin{definition}
 	If $X_\bullet$ is a diagram of schemes, $\FF_\bullet$ a sheaf on $X_\bullet$, then define the functor
@@ -381,6 +356,76 @@ Here is a simple example of this phenomenon:
 	as any morphism to or from this complex runs into the same issue: some subdiagram commuting meaning the map must be zero.
 \end{example}
 	
+\section{Cubical Descent}
+\label{sec:cubicaldescent}
+
+As previously mentioned, we are particularly interested in the case of a $\Box_n$-diagram.
+This has particularly nice properties in that the $\bR \varprojlim$ functor which is relatively mysterious in general becomes very concrete and even computable, it is given by the so-called simple functor, which appears in \cite{Guillen1988} I 6 and is developed further in \cite{Guillen2002} (an English reference is given by \cite{Pascual2009}).
+
+For notational convenience, we'll consider $\Box_n = \{(\alpha_0, \dots \alpha_n) : \alpha_i \in \{0, 1\}\})$ as a subset of $\ZZ^n$.
+Let $e_i$ be the $i$th basis vector of $\ZZ^n$, and let the morphism from $\alpha$ to $\alpha + e_i$ (which exists if and only if $\alpha_i = 0$ be denoted by $\phi_{(\alpha, i)}$.
+
+\begin{definition}[\cite{Guillen1988} I 6]
+	Let $F_\bullet : \Box_n \rightarrow C(A)$ be a diagram (over $\Box_n^{op}$) in the category of complexes in an abelian category $A$, where the differential of $F_\alpha$ is $d_\alpha$.
+	Define the {\it simple complex} of $s(F_\bullet)$ to be the object in $C(A)$ with
+	\[
+	s(F_\bullet)^p = \bigoplus_\alpha F_\alpha^{p+1-|\alpha|}
+	\] 
+	and such that the differential on each $F_\alpha^{p+1-|\alpha|}$ is
+	\[
+	d = (\bigoplus_{\{i : \alpha_i = 0\}} (-1)^{\sum_{j < i} \alpha_j} F_{\phi_{(\alpha, i)}}) \oplus (-1)^{|\alpha|} d_\alpha.
+	\]
+\end{definition}
+
+In more tangible terms, complex is obtained by combining all the complexes, staggering them to the right by the value of $|\alpha|$.
+To illustrate, suppose $\Phi$ was the $\Box_1$-diagram
+\[
+\begin{tikzcd}
+C^\bullet & \arrow{l} A^\bullet \\
+B^\bullet \arrow{u}.
+\end{tikzcd}
+\]
+Then to obtain the simple complex, we arrange the complexes, written out, as
+\[
+\begin{tikzcd}
+\cdots \arrow{r}{-} &  A^0 \arrow{r}{-} \arrow{dr}{+} & A^1 \arrow{r}{-} \arrow{dr}{+} & A^2 \arrow{r}{-} \arrow{dr}{+} & \cdots \\
+& \cdots \arrow{r}{+} & C^0 \arrow{r}{+} & C^1 \arrow{r}{+} & C^2 \arrow{r}{+} & \cdots \\
+\cdots \arrow{r}{-} & B^0 \arrow{r}{-} \arrow{ur}{-} & B^1 \arrow{r}{-} \arrow{ur}{-} & B^2 \arrow{r}{-} \arrow{ur}{-} & \cdots
+\end{tikzcd}
+\]
+and then take the direct sum of each column, with the signs above indicating the sign in the differential.
+
+This can also be interpreted as taking a succession of mapping cones: treat $F_\bullet$ as a $(\Box_n^+)^{op}$-diagram with a 0 at the initial object, then since by definition $\Box_n^+ = \prod \tu$, $s$ on $\tu$ is the mapping cone, and by either direct computation or \cite{Guillen2002} $s$ factors over products.
+
+\begin{prop}[\cite{Guillen1988} I 6.3, \cite{Guillen2002} 1.3.1]
+	Let $A$ be an abelian category, then the simple complex is a functor $s:\Diag_{\Box_n} C(A) \rightarrow C(A)$ which takes quasi-isomorphisms to quasi-isomorphisms.
+	
+	Then this functor descends to the derived categories $D(\Diag_{\Box_n} A)$ and $\Diag_{\Box_n} D(A)$ and is the same when considering an object of the first as an object of the latter (so that the issues arising in example \ref{ex:ddiagvsdiagd} vanish when this functor is applied).
+\end{prop}
+\begin{prop}
+	\label{thm:simple}
+	Let $X_\bullet$ be a $\Box_n$-scheme with a map $f_\bullet : X_\bullet \rightarrow X$ to a scheme, and let $F_\bullet$ be an element of the bounded below derived category of sheaves on $\Box_n$
+	Then $\bR f_{\bullet *} F_\bullet$ is naturally quasi-isomorphic to the simple complex formed by the $\Box_n$ diagram of $\bR f_{\alpha *} F_\alpha$ for each $\alpha \in \Box_n$.
+\end{prop}
+\begin{proof}
+	This is I 6.6 of \cite{Guillen1988} in the special case of $I = \underline{1}$, and $K_\bullet$ the functor sending 0 to $\Box_n$.
+\end{proof}
+
+This works just as well for functors $\Box_n \rightarrow C(A)$ (i.e. objects of $\Diag_{\Box_n^{op}} C(A)$).
+To avoid confusion, we notate this differently:
+\begin{definition}
+	Let $F_\bullet \in \Diag_{\Box_n^{op}} C(A)$, define the complex $s^*(F_\bullet)$ via
+	\[
+		s^*(F_\bullet)^p = \oplus_\alpha F_\alpha^{p-1+|\alpha|}
+	\]
+	with differential on each $F_\alpha^{p-1+|\alpha|}$
+	\[
+		d = \bigoplus_{(i : \alpha_i = 0)} (-1)^{\sum_{j < i} \alpha_j} F_{\phi(\alpha,i)} \oplus (-1)^{|\alpha|} d_\alpha.
+	\]
+	
+	Proposition \ref{thm:simple} holds for $s^*$ as well.
+\end{definition}
+
 \section{Cubical Hyperresolutions}
 \begin{prop}
 	Suppose $\pi_\bullet : Y_\bullet \rightarrow X_\bullet$ is a cubical hyperresolution of the $I$-scheme $X_\bullet$, and $\xbar{X}_\bullet \rightarrow X_\bullet$ is a shape-embedding morphism of diagrams, an isomorphism on each component of $\xbar{X}_\bullet$.
