@@ -24,6 +24,7 @@
 \newtheorem{defprop}[theorem]{Definition-Proposition}
 
 \DeclareMathOperator{\Coh}{Coh}
+\DeclareMathOperator{\Diag}{Diag}
 \DeclareMathOperator{\Ext}{Ext}
 \DeclareMathOperator{\cExt}{\mathscr{E} \! \textit{xt}}
 \DeclareMathOperator{\Gr}{Gr}
@@ -200,8 +201,7 @@ For notational convenience, we'll consider $\Box_n$ as a subset of $\ZZ^n$, wher
 Let $e_i$ be the $i$th basis vector of $\ZZ^n$, and let the morphism from $\alpha$ to $\alpha + e_i$ (which exists if and only if $\alpha_i = 0$ be denoted by $\phi_{(\alpha, i)}$.
 
 \begin{definition}[\cite{Guillen1988} I 6]
-	Let $F_\bullet : \Box_n \rightarrow C(A)$ be a diagram in the category of complexes in an abelian category $A$
-	, where the differential of $F_\alpha$ is $d_\alpha$.
+	Let $F_\bullet : \Box_n \rightarrow C(A)$ be a diagram in the category of complexes in an abelian category $A$, where the differential of $F_\alpha$ is $d_\alpha$.
 	Define the {\it simple complex} of $S(F_\bullet)$ to be the object in $C(A)$ with
 	\[
 	S(F_\bullet)^p = \bigoplus_\alpha F_\alpha^{1+p-|\alpha|}
@@ -230,13 +230,11 @@ Then to obtain the simple complex, we arrange the complexes, written out, as
 \]
 and then take the direct sum of each column, with the signs above indicating the sign in the differential.
 
-\begin{prop}[\cite{Guillen1988} I 6.3 ]
-	Let $A$ be an abelian category, then the simple complex is a functor $S:\Box_n-C(A) \rightarrow C(A)$ which takes quasi-isomorphisms to quasi-isomorphisms.
-\end{prop}
-\begin{proof}
+\begin{prop}[\cite{Guillen1988} I 6.3, developed further in \cite{Guillen2002} 1.3.1, \cite{Pascual2009} 2.1]
+	Let $A$ be an abelian category, then the simple complex is a functor $S:\Diag_{\Box_n} C(A) \rightarrow C(A)$ which takes quasi-isomorphisms to quasi-isomorphisms.
 	
-\end{proof}
-
+	Then this functor descends to the derived categories $D(\Diag_{\Box_n} A)$ and $\Diag_{\Box_n} D(A)$ and is the same when considering an object of the first as an object of the latter (so that the issues arising in example \ref{ex:ddiagvsdiagd} vanish when this functor is applied).
+\end{prop}
 \begin{prop}
 	\label{thm:simple}
 	Let $X_\bullet$ be a $\Box_n$-scheme with a map $f_\bullet : X_\bullet \rightarrow X$ to a scheme, and let $F_\bullet$ be an element of the bounded below derived category of sheaves on $\Box_n$
@@ -346,6 +344,7 @@ It's tempting to think of complexes in the derived category of sheaves on a diag
 This is a subtle issue: the complex category $C(\Sh(X_\bullet))$ is indeed this sort of construction, but the chain homotopies over the entire diagram are not the same as the chain homotopies over component combined, they must be compatible as well.
 Here is a simple example of this phenomenon:
 \begin{example}
+	\label{ex:ddiagvsdiagd}
 	Consider the diagram of schemes $X_\bullet = (\Spec k \rightarrow \Spec k)$ over the category $\tu$, and the following elements, of the complex category, $F_\bullet$:
 	\[
 		\begin{tikzcd}[column sep = small, row sep = small]
