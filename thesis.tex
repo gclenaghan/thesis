@@ -797,32 +797,37 @@ The next construction will be important for this.
 \end{definition}
 
 \begin{theorem}
-	For any $X_\bullet$ an $I$-scheme over a field $k$, and $\alpha \in I$, there is a natural isomorphism
+	For any $X_\bullet$ a proper, noetherian $\Box_n$-scheme over a field $k$, and $\alpha \in \Box_n$, there is a natural isomorphism
 	\[
-		(\omega_{X_\bullet}^\bullet)_\alpha = \bR \varprojlim_{I} \hat{\omega}^\alpha_\bullet
+		(\omega_{X_\bullet}^\bullet)_\alpha = s^*(\hat{\omega}^\alpha_\bullet)
 	\]
 \end{theorem}
 \begin{proof}
 	For any $F \in D(X_\alpha)$, we have 
 	\begin{align*}
-	\Hom(F, (\omega_{X_\bullet}^\bullet)_\alpha) &= \Hom(j_{\alpha !} F_\bullet, \omega_{X_\bullet}^\bullet) \\
-	&= \bR \Gamma(j_{\alpha !} F_\bullet)^* \\
-	&= (\bR \varprojlim_{\beta \in I} \bR \Gamma (j_{\alpha !} F_\beta))^* \\
+	\Hom(F, (\omega_{X_\bullet}^\bullet)_\alpha) &= \Hom(\bL j_{\alpha !} F_\bullet, \omega_{X_\bullet}^\bullet) \\
+	&= \Hom(\bR \Gamma(j_{\alpha !} F_\bullet), k) \\
+	&= h^0(\bR \Hom(s(\bR \Gamma (j_{\alpha !} F_\beta)),k)) \\
+	&= h^0(s^* \bR \Hom(\bR \Gamma(j_{\alpha !} F_\beta), k)) \\
 	\end{align*}
+	using theorem \ref{thm:simpleduality}.
 	
-	For $\beta \in \alpha / I$, $j_{\alpha !} F_\beta = \bL X_{\phi_{\beta \alpha}}^* F$, so
+	For $\beta \in \alpha / I$, $j_{\alpha !} F_\beta = \bL X_{\phi_{\beta \alpha}}^* F$, so using Grothendieck duality
 	\begin{align*}
-		\bR \Gamma(j_{\alpha !} F_\beta)^*  &= \Hom(\bL X_{\phi_{\beta \alpha}}^* F, \omega_{X_\alpha}^\bullet) \\
-		&= \Hom(F, \bR X_{\phi_{\beta \alpha} *} \omega_{X_\alpha}^\bullet) \\
-		&= \Hom(F, \hat{\omega}^\alpha_\beta)
+		\bR \Hom(\bR \Gamma(j_{\alpha !} F_\beta),k)  &= \bR \Hom(\bL X_{\phi_{\beta \alpha}}^* F, \omega_{X_\alpha}^\bullet) \\
+		&= \bR \Hom(F, \bR X_{\phi_{\beta \alpha} *} \omega_{X_\alpha}^\bullet) \\
+		&= \bR \Hom(F, \hat{\omega}^\alpha_\beta)
 	\end{align*}
-	similarly, if $\beta \not \in \alpha / I$, both $\bR \Gamma(j_{\alpha !} F_\beta)^*$ and $\Hom(F, \hat{\omega}^\alpha_\beta)$ are zero.
+	similarly, if $\beta \not \in \alpha / I$, both $\bR \Hom(\bR \Gamma(j_{\alpha !} F_\beta), k)$ and $\Hom(F, \hat{\omega}^\alpha_\beta)$ are zero.
 	
 	Thus, continuing from above,
 	\begin{align*}
-		\Hom(F, (\omega_{X_\bullet}^\bullet)_\alpha) &= \bR \varprojlim_{\beta \in I} \Hom(F, \hat{\omega}^\alpha_\beta) \\
-		&= \Hom(F, \bR \varprojlim_{I} \hat{\omega}^\alpha_\bullet).
+		h^0(s^* \bR \Hom(\bR \Gamma(j_{\alpha !} F_\beta), k)) &= h^0(s^* \bR \Hom(F \times \Box_n, \hat{\omega}^\alpha_\bullet)) \\
+		&= \Hom(F, s^*(\hat{\omega}^\alpha_\bullet))
 	\end{align*}
+	again using \ref{thm:simpleduality}.
+	
+	Finally, we are done by the Yoneda lemma.
 \end{proof}
 
 \section{Projection Formula/Duality}
