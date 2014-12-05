@@ -414,7 +414,7 @@ This can also be interpreted as taking a succession of mapping cones: treat $F_\
 This works just as well for functors $\Box_n \rightarrow C(A)$ (i.e. objects of $\Diag_{\Box_n^{op}} C(A)$).
 To avoid confusion, we notate this differently:
 \begin{definition}
-	Let $F_\bullet \in \Diag_{\Box_n^{op}} C(A)$, define the complex $s^*(F_\bullet)$ via
+	Let $F_\bullet \in \Diag_{\Box_n} C(A)$, define the complex $s^*(F_\bullet)$ via
 	\[
 		s^*(F_\bullet)^p = \oplus_\alpha F_\alpha^{p-1+|\alpha|}
 	\]
@@ -425,6 +425,41 @@ To avoid confusion, we notate this differently:
 	
 	Proposition \ref{thm:simple} holds for $s^*$ as well.
 \end{definition}
+
+The functors $s$ and $s^*$ have a sort of duality theorem:
+
+\begin{theorem}
+	\label{thm:simpleduality}
+	Let $A$ be an abelian category, $F_\bullet \in D(\Diag_{\Box_n^{op}} A)$ and $G \in D(A)$, then $\bR \Hom(F_\bullet, G \times \Box_n^{op})$ is a $\Box_n$-diagram, $\bR \Hom(G \times \Box_n, F_\bullet)$ is a $\Box_n^{op}$-diagram and
+	\begin{align*}
+		\bR \Hom(s(F_\bullet), G) &= s^* (\bR \Hom(F_\bullet, G \times \Box_n^{op})) \\
+		\bR \Hom(G, s(F_\bullet)) &= s (\bR \Hom(G \times \Box_n^{op}, F_\bullet))
+	\end{align*}
+	
+	If $F \in D(A)$, $G_\bullet \in D(\Diag_{\Box_n} A)$, then the analogous equalities hold:
+	
+	\begin{align*}
+		\bR \Hom(F, s^* (G_\bullet)) &= s^* (\bR \Hom(F \times \Box_n, G_\bullet)) \\
+		\bR \Hom(s^*(G_\bullet), F) &= s(\bR \Hom(G_\bullet, F \times \Box_n))
+	\end{align*}
+	
+	Furthermore, this continues to hold if $A$ is a category of sheaves and we use sheaf $\cHom$.
+\end{theorem}
+\begin{proof}
+	These are all similar proofs, both in technique and tediousness, so we check the first only.
+	
+	Choose representatives of $F_\bullet$ and $G$ in $K(Diag_{\Box_n^{op}} A)$ and $K(A)$ respectively, with $G$ K-injective.
+	Then $\bR \Hom(F, s^* (G_\bullet)$ is represented by the complex with degree $p$ given by
+	\begin{align*}
+		\bR \Hom(F, s^* (G_\bullet))^p &= \bigoplus_{i-j = p} \Hom(s(F_\bullet)^j, G^i) \\
+		&= \bigoplus_{i-j = p} \Hom(\bigoplus_\alpha F_\alpha^{j + 1 - |\alpha|}, G^i) \\
+		&= \bigoplus_\alpha \bigoplus_{i-j = p} \Hom(F_\alpha^{j + 1 - |\alpha|}, G^i) \\
+		&= \bigoplus_\alpha \bigoplus_{i-k = p - 1 + |\alpha|} \Hom(F_\alpha^k, G^i) \\
+		&= \bigoplus_\alpha \bR \Hom(F_\alpha, G)^{p-1+|\alpha|} \\
+		&= s^* (\bR \Hom(F_\bullet, G \times \Box_n^{op}))^p.
+	\end{align*}
+	Furthermore, the differentials of the two complexes also agree after enough identifications.
+\end{proof}
 
 \section{Cubical Hyperresolutions}
 \begin{prop}
