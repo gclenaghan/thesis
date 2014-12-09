@@ -126,7 +126,7 @@ This is in direct opposition to our goal, which is to take the de Rham complex o
 Instead, for a hyperresolution the goal is to ``remember" the fact that there is a $\PP^1$ in the cylinder which collapses to a point.
 This is achieved by using a resolution by a collection of schemes and relations between.
 
-\section{Diagram Categories}
+\section{Diagram Categories and Diagrams of Schemes}
 In general, a diagram in a given category $A$ will be a collection of objects in morphisms in that category, the idea is we want to deal with that whole collection simultaneously: for a cubical hyperresolution, the diagram will contain the resolution of singularities \textit{and} information about how the resolution map transforms the space.
 
 In general, one can work with arbitrary functors from some small category to $A$, but this can be messier than we need.
@@ -166,6 +166,8 @@ The next definition introduces all the shapes we'll want to consider.
 	The elements here are tuples $\alpha = (\alpha_0, \dots, \alpha_n)$, with $\alpha_i \in \{0, 1\}$, and we can define $|\alpha| = \sum \alpha_i$.
 	Let $\Box_n$ be the full subcategory without the initial object $(0, \dots, 0)$.
 	See figure \ref{fig:boxn}.
+	
+	A morphism of diagrams whose shape functor is the projection $\Box_n^{op} \times I^{op} \rightarrow I^{op}$ will be called a cubical morphism.
 \end{definition}
 
 \begin{figure}
@@ -201,6 +203,14 @@ The next definition introduces all the shapes we'll want to consider.
 	\caption{For $n \in \{-1, 0, 1, 2\}$, $\Box_n^+$ is the diagram with dashed arrows and an initial object, $\Box_n$ is the diagram without}
 	\label{fig:boxn}
 \end{figure}
+
+With these generalities taken care of, we specialize to diagrams of schemes.
+
+\begin{definition}
+	A diagram of schemes is an object in the category $\Diag \Sch$.
+	We'll say that a diagram of schemes $X_\bullet$ over $I$ (respectively, a morphism $f_\bullet : X_\bullet \rightarrow Y_\bullet$) has a given property $\mathcal{P}$ (e.g., smooth, noetherian) if for all $\alpha$, $X_\alpha$ (resp., $f_\alpha$) has $\mathcal{P}$.
+\end{definition}
+The following constructions will be needed later:
 
 \begin{prop}
 	\label{thm:fiberedprod}
@@ -892,10 +902,6 @@ Note that this differs from the convention of ``$\FF_\bullet$ has property $P$ i
 	This is an application tag 09T5 of \cite{stacks}.
 \end{proof}
 
-\begin{definition}
-	A morphism $f_\bullet : X_\bullet \rightarrow Y_\bullet$ from a $\Box_n \times I$-scheme $X_\bullet$ to an $I$-scheme $Y_\bullet$ over the functor projecting to $I$ is called a \textit{cubical morphism}.
-\end{definition}
-
 \begin{theorem}
 	\label{thm:pushforwardbounds}
 	Let $f_\bullet : X_\bullet \rightarrow Y_\bullet$ be a concentrated, cubical morphism.
@@ -939,6 +945,7 @@ The following is an omnibus theorem stating all the basic properties of the Du B
 Importantly, this theorem establishes the Du Bois complex as intrinsic to $X$ rather than the above definition which is dependent on the hyperresolution.
 
 \begin{theorem}[6.5 of \cite{Kollar2013}]
+	\label{thm:omnibus}
 	Let $X$ be a variety over $\CC$.
 	Then $\DB_X^\bullet \in D_{filt}(X)$ satisfies the following
 	\begin{enumerate}
@@ -1225,11 +1232,20 @@ Now we take on cubical diagrams, for which we will need the following constructi
 	by the previous computation this is morphism $\bR f_{\bullet *} f_\bullet^! \FF_\bullet \rightarrow \FF_\bullet$, and the right hand side gives the same sheaf when restricted to either $X_1$ or $X_2$, while $\FF_\bullet$ is not the same on each.
 \end{example}
 
-\begin{cor}
+\begin{prop}
+	Let $\pi_\bullet : X_\bullet \rightarrow X$ be a cubical hyperresolution.
+	Then $\bR \pi_{\bullet *} \omega_{X_\bullet}^\bullet = \bR \cHom(\DB_X^0,\omega_X^\bullet)$ and this is independent of choice of hyperresolution, denoted $\db_X$, (agreeing with the use of this notation in \cite{Kovacs2011a}).
+\end{prop}
+\begin{proof}
+	The equality of the two complexes is a direct result of Grothendieck duality.
+	Since the latter complex is independent of choice of hyperresolution owing to theorem \ref{thm:omnibus}, the former is as well.
+\end{proof}
+
+\begin{cor}[c.f. \cite{Kovacs2011a}]
 	Let $X$ be a reduced scheme, finite-type over $\CC$, and let $f_\bullet : X_\bullet \rightarrow X$ be a cubic hyperresolution.
 	Then $X$ has Du Bois singularities if and only if the natural map
 	\[
-		\bR f_{\bullet *} \omega^\bullet_{X_\bullet} \xrightarrow{\sim} \omega^\bullet_X
+		\db_X \xrightarrow{\sim} \omega^\bullet_X
 	\]
 	is a quasi-isomorphism.
 \end{cor}
@@ -1275,6 +1291,8 @@ Now we take on cubical diagrams, for which we will need the following constructi
 	
 	The second part is then conjugate to the first.
 \end{proof}
+
+\section{Vanishing Properties}
 
 \begin{prop}
 	\label{prp:cohofdual}
