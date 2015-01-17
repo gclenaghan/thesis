@@ -767,6 +767,18 @@ Note that this differs from the convention of ``$\FF_\bullet$ has property $P$ i
 	Finally, $\bL j_{\alpha !}$ is adjoint with the restriction functor (which is exact), and continues to commute with restriction to an open subset, so the derived versions hold.
 \end{proof}
 
+\begin{defprop}[\cite{Lipman2009} II 6.7]
+	Let $X_\bullet$ be an $I$ scheme, with $\alpha \rightarrow \beta$ a morphism in $I$. Define the inclusion $j_{\alpha \beta} : (X_\beta \rightarrow X_\alpha) \rightarrow X_\bullet$ of diagrams of schemes.
+	Then the restriction map $j_{\alpha \beta}^*$ has a right adjoint on sheaves $\FF_\bullet$ on $(X_\beta \rightarrow X_\alpha)$ computed as follows:
+	\[
+		(j_{\alpha \beta !} \FF_\bullet)_\gamma = \begin{cases}
+								X_{\phi_{\gamma \beta}}^* \FF_\beta &\text{if } \gamma \in \beta / I \\
+								X_{\phi_{\gamma \alpha}}^* \FF_\alpha &\text{if } \gamma \in (\alpha / I) \setminus (\beta / I) \\
+								0 &\text{otherwise.}
+		\end{cases}
+	\]
+\end{defprop}
+
 \begin{prop}
 	\label{prp:homqcaffine}
 	If $X_\bullet$ has affine arrows, then for any $\FF_\bullet$ coherent, $\GG_\bullet$ quasi-coherent, $\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet)$ is quasi-coherent.
@@ -1088,13 +1100,13 @@ Now we take on cubical diagrams, for which we will need the following constructi
 	For any $F \in D(X_\alpha)$, we have 
 	\begin{align*}
 	\Hom(F, (\omega_{X_\bullet}^\bullet)_\alpha) &= \Hom(\bL j_{\alpha !} F_\bullet, \omega_{X_\bullet}^\bullet) \\
-	&= \Hom(\bR \Gamma(j_{\alpha !} F_\bullet), k) \\
-	&= h^0(\bR \Hom(s(\bR \Gamma (j_{\alpha !} F_\beta)),k)) \\
-	&= h^0(s^* \bR \Hom(\bR \Gamma(j_{\alpha !} F_\beta), k))
+	&= \Hom(\bR \Gamma(\bL j_{\alpha !} F_\bullet), k) \\
+	&= h^0(\bR \Hom(s(\bR \Gamma (\bL j_{\alpha !} F_\beta)),k)) \\
+	&= h^0(s^* \bR \Hom(\bR \Gamma(\bL j_{\alpha !} F_\beta), k))
 	\end{align*}
 	using theorem \ref{thm:simpleduality}.
 	
-	For $\beta \in \alpha / I$, $j_{\alpha !} F_\beta = \bL X_{\phi_{\beta \alpha}}^* F$, so using Grothendieck duality
+	For $\beta \in \alpha / I$, $\bL j_{\alpha !} F_\beta = \bL X_{\phi_{\beta \alpha}}^* F$, so using Grothendieck duality
 	\begin{align*}
 		\bR \Hom(\bR \Gamma(j_{\alpha !} F_\beta),k)  &= \bR \Hom(\bL X_{\phi_{\beta \alpha}}^* F, \omega_{X_\alpha}^\bullet) \\
 		&= \bR \Hom(F, \bR X_{\phi_{\beta \alpha} *} \omega_{X_\alpha}^\bullet) \\
