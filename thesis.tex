@@ -1306,6 +1306,18 @@ Now we take on cubical diagrams, for which we will need the following constructi
 
 \section{Vanishing Properties}
 
+\begin{theorem}[3.3, 3.5 of \cite{Kovacs2011a}]
+	\label{thm:duboisgr}
+	Let $X$ be a complex variety of dimension $n$.
+	Then the natural map $h^j (\db_X) \rightarrow h^j (\omega_X^\bullet)$ is an injection, and if $X$ is Cohen-Macaulay then
+	\[
+		\db_X \qis h^{-n} (\db_x)[n].
+	\]
+\end{theorem}
+\begin{proof}
+	The only thing to note here is that the definition of $\db_X$ in \cite{Kovacs2011a} and here is the same by duality.
+\end{proof}
+
 \begin{prop}
 	\label{prp:cohofdual}
 	Let $\EE_\bullet$ be a locally free sheaf on $X_\bullet$, a proper noetherian diagram over a field $k$.
@@ -1393,6 +1405,28 @@ This illustrates that any vanishing in this vein will necessitate we restrict to
 	Then for all $j \in \ZZ$, the natural map
 	$\HH^j(X, \db_X \otimes \LL) \hookrightarrow \HH^j(X,\omega_X^\bullet \otimes \LL)$ is an injection.
 \end{lemma}
+
+The following is a Du Bois version of \cite{Kovacs1999}, the proof is identical in method:
+
+\begin{lemma}
+	Let $X$ be a Cohen-Macaulay variety of dimension $n$, and $\Sigma_d \subseteq X$ the smallest closed set such that $X \setminus \Sigma_d$ is Du Bois.
+	Then $h^i (\DB_X^0) = 0$ for $0 < i < n - \dim \Sigma_d - 1$.
+\end{lemma}
+\begin{proof}
+	Using \ref{thm:duboisgr}, we have an exact sequence
+	\[
+		0 \rightarrow h^{-n}(\db_X) \rightarrow \omega_X \rightarrow \mathscr{Q} \rightarrow 0
+	\]
+	for some sheaf $\mathscr{Q}$.
+	Now apply $\bR \cHom (-, \omega_X)$ and use Grothendieck duality to arrive at the distinguished triangle
+	\[
+		\bR \cHom(\mathscr{Q}, \omega_X) \rightarrow \OO_X \rightarrow \DB_X^0 \xrightarrow{+1},
+	\]
+	which realizes $\bR \cHom(\mathscr{Q}, \omega_X) \qis \DB_X^\times[-1]$ (c.f. \cite{Kollar2013} 6.12).
+	Taking the cohomology of the complexes involved, since $h^i(\OO_X) = 0$ for $i \neq 0$, $h^i(\DB_X^0) \cong \cExt^{i+1}(\mathscr{Q}, \omega_X)$ for $i > 0$.
+	
+	For any closed $x \in X$, $\OO_{X,x}$ is a local Cohen-Macaulay ring of dimension $n$, and $h^i(\DB_X^0)_x \cong \Ext^{i+1}(\mathscr{Q}_x, \omega_{\OO_{X,x}})$ which is zero for $1 < i+1 < n - \dim \mathscr{Q}_x$ by \cite{Bruns1993} 3.5.11. Since the support of $\mathscr{Q}$ is contained in $\Sigma_d$, we are done.
+\end{proof}
 
 \section{Relative Differentials}
 
