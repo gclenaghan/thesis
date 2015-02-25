@@ -1254,6 +1254,7 @@ Now we take on cubical diagrams, for which we will need the following constructi
 \end{proof}
 
 \begin{cor}[c.f. \cite{Kovacs2011a}]
+	\label{cor:dualDBdef}
 	Let $X$ be a reduced scheme, finite-type over $\CC$, and let $f_\bullet : X_\bullet \rightarrow X$ be a cubic hyperresolution.
 	Then $X$ has Du Bois singularities if and only if the natural map
 	\[
@@ -1368,7 +1369,7 @@ This illustrates that any vanishing in this vein will necessitate we restrict to
 
 \begin{example}
 	Let $Y$ be a smooth projective variety and $X$ a projective cone over $Y$.
-	If $\LL$ is an ample line bundle on $X$, then for $2 \leq i \leq \dim Y$, $\HH^{-i}(X, \LL \otimes \db_X)^* = H^i(Y, \OO_Y)$, in particular this is not zero if $Y$ is, say, a ruled surface over a curve of genus $g \geq 1$.
+	If $\LL$ is an ample line bundle on $X$, then for $2 \leq i \leq \dim Y$, $\HH^{-i}(X, \LL \otimes \db_X)^* = H^{i-1}(Y, \OO_Y)$, in particular this is not zero if $Y$ is, say, a ruled surface over a curve of genus $g \geq 1$.
 	
 	To see this, let $\pi_\bullet : X_\bullet \rightarrow X$ be the cubical hyperresolution
 	\[\begin{tikzcd}
@@ -1511,6 +1512,38 @@ The following is a Du Bois version of \cite{Kovacs1999}, the proof is identical 
 	\end{align*}
 	
 	The last claim is due to the independence of $\DB_X^j$.
+\end{proof}
+
+\chapter{Applications}
+\section{Cohomology of Blowdowns}
+\begin{theorem}
+	Let $X$ be a proper, Cohen-Macaulay $\CC$-scheme with Du Bois singularities, $Y$ smooth, with $f : Y \rightarrow X$ a proper morphism which is as isomorphism outside of $p \in X$.
+	Then, for $2 \leq i \leq \dim X - 1$, the exceptional locus $Y_p$ satisfies
+	\[
+		H^i (Y_p, \DB_{Y_p}^0) = 0,
+	\]
+	in particular if $Y_p$ has Du Bois singularities, $H^i(Y_p, \OO_{Y_p}) = 0$.
+\end{theorem}
+\begin{proof}
+	First, we set up the notation: by construction, $X$ has the 2-resolution
+	\[
+	\begin{tikzcd}
+	Y_p \ar{r} \ar{d} & Y \ar{d} \\
+	\{p\} \ar{r} & X,
+	\end{tikzcd}\]
+	which we'll denote $f_\bullet : Y_\bullet \rightarrow X$
+	and by definition, if $Z_\bullet$ is a hyperresolution of $Y_p$, $\{p\}_\bullet$ denotes the diagram of schemes of the same shape as $Z_\bullet$ but with each component $p$, then the diagram of schemes
+	\[
+	\begin{tikzcd}
+	Z_\bullet \ar{r} \ar{d} & Y \ar{d} \\
+	\{p\}_\bullet \ar{r} & X
+	\end{tikzcd}\]
+	which we'll denote $\pi_\bullet : X_\bullet \rightarrow X$ (note that we are thinking of this as a diagram of schemes not a diagram of diagrams, writing $Z_\bullet$ is just notational convenience).
+	
+	The hyperresolution $\pi_\bullet$ factors through $f_\bullet$ via a $g_\bullet$ mapping $Z_\bullet \rightarrow Y_p$, $\{p\}_\bullet \rightarrow \{p\}$ and $Y \rightarrow Y$.
+	
+	Let $\LL$ be any big and nef line bundle on $X$.
+	Since $X$ is DB, Kodaira vanishing holds (see section 6 of \cite{Kovacs2010}) and $H^i(X, \omega_X^\bullet \otimes \LL) = 0$ for $i > -\dim X$, or via corollary \ref{cor:dualDBdef} $H^i(X, \db_X \otimes \LL) = 0$.
 \end{proof}
 
 \bibliography{../library}{}
