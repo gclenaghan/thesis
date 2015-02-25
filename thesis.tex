@@ -149,7 +149,7 @@ Finally, loops in a thin category are somewhat silly (each map in the loop must 
 	A morphism between an $I$-diagram $X_\bullet$ and a $J$-diagram $Y_\bullet$ is given by a shape functor $\Gamma : I^{op} \rightarrow J^{op}$ and a natural transformation $\eta : X_\bullet \rightarrow Y_\bullet \circ \Gamma$.
 	
 	In simpler terms, this is a collection of morphisms such that the total diagram with all the arrows from the morphism and both diagrams drawn is commutative.
-	Usually we'll denote a morphism as $f_\bullet : X_\bullet \rightarrow Y_\bullet$ with $\Gamma$ implicit and for each $\alpha \in I$, $f_\alpha : X_\alpha \rightarrow Y_{\Gamma(\alpha)}$. 
+	Usually we'll denote a morphism as $f_\bullet : X_\bullet \rightarrow Y_\bullet$ with $\Gamma$ implicit and for each $\alpha \in I$, $f_\alpha : X_\alpha \rightarrow Y_{\Gamma(\alpha)}$.
 	
 	Call a morphism \textit{shape-preserving} if $\Gamma$ is the identity, and \textit{shape-embedding} if it is fully faithful.
 	
@@ -299,6 +299,8 @@ However, if this is the case then they form a diagram of sheaves over that targe
 \begin{prop}[I 5.5 of \cite{Guillen1988}]
 	With these definitions and using this notation, $f_{\bullet *}$ is the right adjoint of $f_\bullet^*$ and $\bR f_{\bullet *}$ is the right adjoint of $\bL f_\bullet^*$.
 \end{prop}
+
+
 
 The main case of interest is a hyperresolution of a literal scheme, so it is worth considering in the case where $J = \underline{1}$, and even more particular where $I = \Box_n$.
 After this first restriction, the functor $\bR f_{\bullet *}$ can be written as
@@ -751,7 +753,8 @@ Note that this differs from the convention of ``$\FF_\bullet$ has property $P$ i
 									0 & \text{if } \beta \not \in \alpha/I,
 		\end{cases}
 	\]
-	with diagram maps the obvious isomorphisms. Furthermore $\cHom_{X_\bullet}(\FF_{\alpha \bullet}^\uparrow, -) = i_{X_\alpha *} \cHom(i_{X_\alpha}^* \FF_{\alpha \bullet}^\uparrow, i_{X_\alpha}^* -)$.
+	with diagram maps the obvious isomorphisms.
+	Furthermore $\cHom_{X_\bullet}(\FF_{\alpha \bullet}^\uparrow, -) = i_{X_\alpha *} \cHom(i_{X_\alpha}^* \FF_{\alpha \bullet}^\uparrow, i_{X_\alpha}^* -)$.
 	
 	Finally, for $F_\alpha \in D(X_\alpha)$, the derived version becomes $\bR \Hom_{X_\bullet}(\bL j_{\alpha !} F_{\alpha \bullet}, G_\bullet) = \bR \Hom_{X_\alpha}(F_\alpha, G_\alpha)$ and $\bR \cHom_{X_\bullet}(\bL j_{\alpha !}F_{\alpha \bullet}, G_\bullet) = \bR i_{X_\alpha *} \bR \cHom(i_{X_\alpha}^* \bL j_{\alpha !} F_{\alpha \bullet}, i_{X_\alpha}^* G_\bullet)$.
 \end{defprop}
@@ -768,7 +771,8 @@ Note that this differs from the convention of ``$\FF_\bullet$ has property $P$ i
 \end{proof}
 
 \begin{defprop}[\cite{Lipman2009} II 6.7]
-	Let $X_\bullet$ be an $I$ scheme, with $\alpha \rightarrow \beta$ a morphism in $I$. Define the inclusion $j_{\alpha \beta} : (X_\beta \rightarrow X_\alpha) \rightarrow X_\bullet$ of diagrams of schemes.
+	Let $X_\bullet$ be an $I$ scheme, with $\alpha \rightarrow \beta$ a morphism in $I$.
+	Define the inclusion $j_{\alpha \beta} : (X_\beta \rightarrow X_\alpha) \rightarrow X_\bullet$ of diagrams of schemes.
 	Then the restriction map $j_{\alpha \beta}^*$ has a right adjoint on sheaves $\FF_\bullet$ on $(X_\beta \rightarrow X_\alpha)$ computed as follows:
 	\[
 		(j_{\alpha \beta !} \FF_\bullet)_\gamma = \begin{cases}
@@ -1076,7 +1080,8 @@ We can first try our hand at the simplest possible diagram:
 
 Now we take on cubical diagrams, for which we will need the following construction.
 \begin{definition}
-	Let $X_\bullet$ be an $I$-scheme and $\alpha \in I$. Define an object in the derived category of diagrams of sheaves on $X_\alpha$ over $I$ as $\hat{\omega}_\bullet^\alpha \in D(X_\bullet)$
+	Let $X_\bullet$ be an $I$-scheme and $\alpha \in I$.
+	Define an object in the derived category of diagrams of sheaves on $X_\alpha$ over $I$ as $\hat{\omega}_\bullet^\alpha \in D(X_\bullet)$
 	\[
 		\hat{\omega}^\alpha_\beta =  \begin{cases}
 											\bR X_{\phi_{\beta \alpha} *} \omega_{X_\beta}^\bullet & \text{if } \beta \in \alpha / I \\
@@ -1518,14 +1523,15 @@ The following is a Du Bois version of \cite{Kovacs1999}, the proof is identical 
 \section{Cohomology of Blowdowns}
 \begin{theorem}
 	Let $X$ be a proper, Cohen-Macaulay $\CC$-scheme with Du Bois singularities, $Y$ smooth, with $f : Y \rightarrow X$ a proper morphism which is as isomorphism outside of $p \in X$.
-	Then, for $2 \leq i \leq \dim X - 1$, the exceptional locus $Y_p$ satisfies
+	Then, for $0 < i < \dim X - 1$, the exceptional locus $Y_p$ satisfies
 	\[
 		H^i (Y_p, \DB_{Y_p}^0) = 0,
 	\]
 	in particular if $Y_p$ has Du Bois singularities, $H^i(Y_p, \OO_{Y_p}) = 0$.
 \end{theorem}
 \begin{proof}
-	First, we set up the notation: by construction, $X$ has the 2-resolution
+	First, we set up the notation: let $n = \dim X$.
+	By construction, $X$ has the 2-resolution
 	\[
 	\begin{tikzcd}
 	Y_p \ar{r} \ar{d} & Y \ar{d} \\
@@ -1543,7 +1549,30 @@ The following is a Du Bois version of \cite{Kovacs1999}, the proof is identical 
 	The hyperresolution $\pi_\bullet$ factors through $f_\bullet$ via a $g_\bullet$ mapping $Z_\bullet \rightarrow Y_p$, $\{p\}_\bullet \rightarrow \{p\}$ and $Y \rightarrow Y$.
 	
 	Let $\LL$ be any big and nef line bundle on $X$.
-	Since $X$ is DB, Kodaira vanishing holds (see section 6 of \cite{Kovacs2010}) and $H^i(X, \omega_X^\bullet \otimes \LL) = 0$ for $i > -\dim X$, or via corollary \ref{cor:dualDBdef} $H^i(X, \db_X \otimes \LL) = 0$.
+	Since $X$ is DB, Kodaira vanishing holds (see section 6 of \cite{Kovacs2010}) and $H^i(X, \omega_X^\bullet \otimes \LL) = 0$ for $i > -n$, so via corollary \ref{cor:dualDBdef} $H^i(X, \db_X \otimes \LL) = 0$.
+	Using the projection formula and Grothendieck duality, this corresponds to $H^i(X_\bullet, \pi_\bullet^* \LL^{-1}) = 0$ for $i < n$, but this is $H^i(Y_\bullet, \bR g_{\bullet *} \pi_\bullet^* \LL^{-1})$, so we can first compute this sheaf, then use that to find the cohomology.
+	
+	Since all maps except $f$ in the diagram factor through the point $p$, $\pi_\bullet^* \LL^{-1}$ is $\OO$ on all components of $X_\bullet$ except $Y$.
+	Now since we can write $g_\bullet$ stratified over the projection of $\Box_m \leftarrow \Box_m \rightarrow \underline{1}$ to $\underline{1} \leftarrow \underline{1} \rightarrow \underline{1}$, I 5.14 of \cite{Guillen1988} allows $\bR g_{\bullet *}$ to computed separately over the components of $Y_\bullet$.
+	
+	Thus, $\bR g_{\bullet *} \pi_\bullet^* \LL^{-1}|_Y = f^* \LL^{-1}$ since $Y$ itself is the only scheme in $X_\bullet$ over $Y$ in $Y_\bullet$.
+	$\pi_\bullet^* \LL^{-1}|_{Z_\bullet} = \OO_{Z_\bullet}$ as above and by definition, the pushforward is $\DB_{Y_p}^0$.
+	Since $\{p\}_\bullet \rightarrow \{p\}$ is a hyperresolution of a smooth scheme, we know that over $\Box_m$ $s(\CC) = \CC$, and thus the pushforward is $\CC$ on $\{p\}$.
+	Let $\FF_\bullet$ denote this complex on $Y_\bullet$, and we now know $H^i(Y_\bullet, \FF_\bullet) = 0$ for $i < n$.
+	
+	To compute this, we use the spectral sequence $E_1^{pq} = \bigoplus_{|\alpha| = p+1} H^q(Y_\alpha, \FF_\alpha)$.
+	Using Grothendieck vanishing and the fact that $H^i(Y, f^* \LL^{-1}) = 0$ for $i < n$, the spectral sequence becomes
+	\[
+	\begin{tikzcd}
+	H^n(Y, f^* \LL^{-1}) \ar{r} & 0 \\
+	0 \ar{r} & H^{n-1}(Y_p, \DB_{Y_p}^0) \\
+	\vdots & \vdots \\
+	0 \ar{r} & H^1(Y_p, \DB_{Y_p}^0) \\
+	\CC \ar{r} & H^0(Y_p, \DB_{Y_p})
+	\end{tikzcd}
+	\]
+	
+	Thus for $0 < i < n-2$, $H^i(Y_p, \DB_{Y_p}^0) = H^{i+1}(X_\bullet, \pi_\bullet^* \LL^{-1}) = 0$.
 \end{proof}
 
 \bibliography{../library}{}
