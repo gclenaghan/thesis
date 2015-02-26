@@ -989,7 +989,7 @@ Importantly, this theorem establishes the Du Bois complex as intrinsic to $X$ ra
 		\DB_H^\bullet \qisf \DB_X^\bullet \otimesL \OO_H.
 		\]
 		\item \label{thm:omnibus:natmap} There is a natural map $\OO_X \rightarrow \DB_X^0 $ compatible with the maps above.
-		\item If $X$ is proper, there is a spectral sequence degenerating at $E_1$ and computing the singular cohomology with compact support of $X$
+		\item \label{thm:omnibus:specseq} If $X$ is proper, there is a spectral sequence degenerating at $E_1$ and computing the singular cohomology with compact support of $X$
 		\[
 		E_1^{pq} = \HH^q (X, \DB_X^p) \Rightarrow \Ho_c^{p+q} (X, \CC).
 		\]
@@ -1520,7 +1520,7 @@ The following is a Du Bois version of \cite{Kovacs1999}, the proof is identical 
 \end{proof}
 
 \chapter{Applications}
-\section{Cohomology of Blowdowns}
+\section{Cohomology of Contractions}
 \begin{theorem}
 	Let $X$ be a proper, Cohen-Macaulay $\CC$-scheme with Du Bois singularities, $Y$ smooth, with $f : Y \rightarrow X$ a proper morphism which is as isomorphism outside of $p \in X$.
 	Then, for $0 < i < \dim X - 1$, the exceptional locus $Y_p$ satisfies
@@ -1528,6 +1528,7 @@ The following is a Du Bois version of \cite{Kovacs1999}, the proof is identical 
 		H^i (Y_p, \DB_{Y_p}^0) = 0,
 	\]
 	in particular if $Y_p$ has Du Bois singularities, $H^i(Y_p, \OO_{Y_p}) = 0$.
+	In addition, if $\dim X > 1$, then $H^0(Y_p, \DB_{Y_p}) = H^0(Y_p, \CC)= \CC$ and in particular $Y_p$ is connected.
 \end{theorem}
 \begin{proof}
 	First, we set up the notation: let $n = \dim X$.
@@ -1563,7 +1564,7 @@ The following is a Du Bois version of \cite{Kovacs1999}, the proof is identical 
 	To compute this, we use the spectral sequence $E_1^{pq} = \bigoplus_{|\alpha| = p+1} H^q(Y_\alpha, \FF_\alpha)$.
 	Using Grothendieck vanishing and the fact that $H^i(Y, f^* \LL^{-1}) = 0$ for $i < n$, the spectral sequence becomes
 	\[
-	\begin{tikzcd}
+	\begin{tikzcd}[row sep=tiny, column sep=small]
 	H^n(Y, f^* \LL^{-1}) \ar{r} & 0 \\
 	0 \ar{r} & H^{n-1}(Y_p, \DB_{Y_p}^0) \\
 	\vdots & \vdots \\
@@ -1572,7 +1573,9 @@ The following is a Du Bois version of \cite{Kovacs1999}, the proof is identical 
 	\end{tikzcd}
 	\]
 	
-	Thus for $0 < i < n-2$, $H^i(Y_p, \DB_{Y_p}^0) = H^{i+1}(X_\bullet, \pi_\bullet^* \LL^{-1}) = 0$.
+	Thus for $0 < i < n-2$, $H^i(Y_p, \DB_{Y_p}^0) = H^{i+1}(X_\bullet, \pi_\bullet^* \LL^{-1}) = 0$, and $H^0(Y_p, \DB_{Y_p}^0)/\CC = H^1(X_\bullet, \pi_\bullet^* \LL^{-1}) = 0$ so $H^0(Y_p, \DB_{Y_p}^0) = \CC$.
+	
+	Using \ref{thm:omnibus} (\ref{thm:omnibus:specseq}), $H^0(Y_p, \DB_{Y_p}) = H^0(Y_p, \CC)$ so the last part follows.
 \end{proof}
 
 \bibliography{../library}{}
