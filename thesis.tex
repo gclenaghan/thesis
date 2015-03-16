@@ -1521,18 +1521,20 @@ The following is a Du Bois version of \cite{Kovacs1999}, the proof is identical 
 
 \chapter{Applications}
 \section{Cohomology of Contractions}
+In the case that the singularities on $X$ are isolated, we can understand the cohomology on $X$ of somewhat mysterious complexes by using the cohomology on the fiber of the blow-up.
+The next theorem encapsulates this to be used in later computations.
 \begin{theorem}
-	Let $X$ be a proper, Cohen-Macaulay $\CC$-scheme with Du Bois singularities, $Y$ smooth, with $f : Y \rightarrow X$ a proper morphism which is as isomorphism outside of $p \in X$.
-	Then, for $0 < i < \dim X - 1$, the exceptional locus $Y_p$ satisfies
+	\label{thm:isosingcalc}
+	Let $X$ be a proper, reduced $\CC$-scheme of dimension $n$, $Y$ smooth, with $f:Y \rightarrow X$ a proper morphism which is an isomorphism outside of a closed $p \in X$. Then for $1 < i \leq n$ and any big and nef line bundle $\LL$ on $X$, there are isomorphisms
 	\[
-		H^i (Y_p, \DB_{Y_p}^0) = 0,
+		H^i(X, \LL^{-1} \otimes \DB_X^0) = \begin{cases} H^0(Y_p, \CC)/\CC & \text{if } i = 0 \\
+		H^{i-1}(Y_p, \DB_{Y_p}^0) & \text{if } 2 < i < n \\
+		H^n(Y, f^* \LL^{-1}) \oplus H^{n-1}(Y_p, \DB_{Y_p}^0). & \text{if } i = n
+		\end{cases}
 	\]
-	in particular if $Y_p$ has Du Bois singularities, $H^i(Y_p, \OO_{Y_p}) = 0$.
-	In addition, if $\dim X > 1$, then $H^0(Y_p, \DB_{Y_p}) = H^0(Y_p, \CC)= \CC$ and in particular $Y_p$ is connected.
 \end{theorem}
 \begin{proof}
-	First, we set up the notation: let $n = \dim X$.
-	By construction, $X$ has the 2-resolution
+	First, we set up the notation: by construction, $X$ has the 2-resolution
 	\[
 	\begin{tikzcd}
 	Y_p \ar{r} \ar{d} & Y \ar{d} \\
@@ -1546,36 +1548,61 @@ The following is a Du Bois version of \cite{Kovacs1999}, the proof is identical 
 	\{p\}_\bullet \ar{r} & X
 	\end{tikzcd}\]
 	which we'll denote $\pi_\bullet : X_\bullet \rightarrow X$ (note that we are thinking of this as a diagram of schemes not a diagram of diagrams, writing $Z_\bullet$ is just notational convenience).
-	
+		
 	The hyperresolution $\pi_\bullet$ factors through $f_\bullet$ via a $g_\bullet$ mapping $Z_\bullet \rightarrow Y_p$, $\{p\}_\bullet \rightarrow \{p\}$ and $Y \rightarrow Y$.
-	
-	Let $\LL$ be any big and nef line bundle on $X$.
-	Since $X$ is DB, Kodaira vanishing holds (see section 6 of \cite{Kovacs2010}) and $H^i(X, \omega_X^\bullet \otimes \LL) = 0$ for $i > -n$, so via corollary \ref{cor:dualDBdef} $H^i(X, \db_X \otimes \LL) = 0$.
-	Using the projection formula and Grothendieck duality, this corresponds to $H^i(X_\bullet, \pi_\bullet^* \LL^{-1}) = 0$ for $i < n$, but this is $H^i(Y_\bullet, \bR g_{\bullet *} \pi_\bullet^* \LL^{-1})$, so we can first compute this sheaf, then use that to find the cohomology.
-	
+		
+	Using the projection formula, $H^i(X, \LL^{-1} \otimes \DB_{X}^0)$ becomes $H^i(X_\bullet, \pi_\bullet^* \LL^{-1})$, but this is $H^i(Y_\bullet, \bR g_{\bullet *} \pi_\bullet^* \LL^{-1})$, so we can first find $\bR g_{\bullet *} \pi_\bullet^* \LL^{-1}$ and then compute its cohomology.
+		
 	Since all maps except $f$ in the diagram factor through the point $p$, $\pi_\bullet^* \LL^{-1}$ is $\OO$ on all components of $X_\bullet$ except $Y$.
 	Now since we can write $g_\bullet$ stratified over the projection of $\Box_m \leftarrow \Box_m \rightarrow \underline{1}$ to $\underline{1} \leftarrow \underline{1} \rightarrow \underline{1}$, I 5.14 of \cite{Guillen1988} allows $\bR g_{\bullet *}$ to computed separately over the components of $Y_\bullet$.
-	
+		
 	Thus, $\bR g_{\bullet *} \pi_\bullet^* \LL^{-1}|_Y = f^* \LL^{-1}$ since $Y$ itself is the only scheme in $X_\bullet$ over $Y$ in $Y_\bullet$.
 	$\pi_\bullet^* \LL^{-1}|_{Z_\bullet} = \OO_{Z_\bullet}$ as above and by definition, the pushforward is $\DB_{Y_p}^0$.
 	Since $\{p\}_\bullet \rightarrow \{p\}$ is a hyperresolution of a smooth scheme, we know that over $\Box_m$ $s(\CC) = \CC$, and thus the pushforward is $\CC$ on $\{p\}$.
-	Let $\FF_\bullet$ denote this complex on $Y_\bullet$, and we now know $H^i(Y_\bullet, \FF_\bullet) = 0$ for $i < n$.
-	
-	To compute this, we use the spectral sequence $E_1^{pq} = \bigoplus_{|\alpha| = p+1} H^q(Y_\alpha, \FF_\alpha)$.
-	Using Grothendieck vanishing and the fact that $H^i(Y, f^* \LL^{-1}) = 0$ for $i < n$, the spectral sequence becomes
+	Let $\FF_\bullet$ denote this complex on $Y_\bullet$.
+	To compute this, we use the spectral sequence $E_1^{pq} = \bigoplus_{|\alpha| = p+1} H^q(Y_\alpha, \FF_\alpha)$, and the facts that $H^i(\{p\}, \CC) = 0$ for $i > 0$ by Grothendieck vanishing, $H^i(Y_p, \DB_{Y_p}^0)$ for $i > n-1$ by \ref{thm:omnibus} (\ref{thm:omnibus:specseq}), and $H^i(Y, f^* \LL^{-1}) = 0$ for $i < n$ by Kawamata-Viehweg.
+	All together, the $E_1$ page is
 	\[
 	\begin{tikzcd}[row sep=tiny, column sep=small]
 	H^n(Y, f^* \LL^{-1}) \ar{r} & 0 \\
 	0 \ar{r} & H^{n-1}(Y_p, \DB_{Y_p}^0) \\
 	\vdots & \vdots \\
 	0 \ar{r} & H^1(Y_p, \DB_{Y_p}^0) \\
-	\CC \ar{r} & H^0(Y_p, \DB_{Y_p})
+	\CC \ar{r} & H^0(Y_p, \DB_{Y_p}).
 	\end{tikzcd}
 	\]
 	
-	Thus for $0 < i < n-2$, $H^i(Y_p, \DB_{Y_p}^0) = H^{i+1}(X_\bullet, \pi_\bullet^* \LL^{-1}) = 0$, and $H^0(Y_p, \DB_{Y_p}^0)/\CC = H^1(X_\bullet, \pi_\bullet^* \LL^{-1}) = 0$ so $H^0(Y_p, \DB_{Y_p}^0) = \CC$.
+	Then the results for $i > 1$ follow from this degenerate sequence, and $i=0$ is obtained by using \ref{thm:omnibus} (\ref{thm:omnibus:specseq}) to see $H^0(Y_p, \DB_{Y_p}) = H^0(Y_p, \CC)$.
+\end{proof}
+
+With some assumptions on $X$ this theorem provides cohomological constraints on the possible exceptional locus of a resolution $f$.
+\begin{cor}
+	Let $X$ be a proper, reduced, Cohen-Macaulay $\CC$-scheme of dimension $n$ with Du Bois singularities, $Y$ smooth, with $f : Y \rightarrow X$ a proper morphism which is as isomorphism outside of a closed $p \in X$.
+	Then, for $0 < i < n - 1$, the exceptional locus $Y_p$ satisfies
+	\[
+		H^i (Y_p, \DB_{Y_p}^0) = \begin{cases}
+		\CC & \text{if } i = 0 \\
+		0 & \text{if } 0 < i < n - 1.
+		\end{cases}
+	\]
+	In particular, $Y_p$ is connected and if $Y_p$ has Du Bois singularities $H^i(Y_p, \OO_{Y_p}) = 0$ for $0 < i < n - 1$.
+\end{cor}
+\begin{proof}
+	Under these hypotheses, for any big and nef $\LL$ on $X$, $H^i(X, \LL^{-1} \otimes \DB_X^0) = H^i(X, \LL^{-1}) = 0$ since Kodaira vanishing holds for $X$.
+	The results follow by utilizing theorem \ref{thm:isosingcalc}.
+\end{proof}
+
+Another result of our calculation is that we have an analogue of Kodaira vanishing on cones without assuming Du Bois.
+
+\begin{cor}
+	Let $Z$ be a smooth projective complex variety of dimension $n-1$, $X$ the projective cone over $Z$, and $Y$ the blow-up of $X$ at the cone point $p$.
+	Assume either that $Z$ is connected and $H^i(Z, \OO_Z) = 0$ for $0 < i < n-2$ or $X$ is Cohen-Macaulay.
+	Then for any $\LL$ big an nef, $H^i(X, \LL^{-1} \otimes \DB_X^0) = 0$ for $i < n$, or equivalently $H^i(X, \LL \otimes \db_X) = 0$ for $i > -n$.
+\end{cor}
+\begin{proof}
+	Note that $X$ being Cohen-Macaulay implies that $Z$ is connected and $H^i(Z, \OO_Z) = 0$ by Hartshorne's connectedness theorem and lemma 4.3 of \cite{Patakfalvi2013}.
 	
-	Using \ref{thm:omnibus} (\ref{thm:omnibus:specseq}), $H^0(Y_p, \DB_{Y_p}) = H^0(Y_p, \CC)$ so the last part follows.
+	With this condition, we simply compute based on theorem \cite{Patakfalvi2013}.
 \end{proof}
 
 \bibliography{../library}{}
