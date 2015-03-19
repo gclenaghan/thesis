@@ -1342,70 +1342,6 @@ Now we take on cubical diagrams, for which we will need the following constructi
 	Since $\Hom(-,k)$ is contravariant it reverses the complex and gives the dual of the $i$th homology.
 \end{proof}
 
-\begin{example}
-	Let $X$ be two planes intersecting at a point.
-	Then for any ample line bundle $\LL$, $H^{-1}(X,\db_X \otimes \LL)^* = k$.
-	
-	We can compute this by giving a hyperresolution $\pi_\bullet : X_\bullet \rightarrow X$:
-	
-	\[\begin{tikzcd}
-		k \arrow{r} \arrow{d} & \PP^2 \arrow{d}{f} \\
-		\PP^2 \arrow{r}{g} & X.
-	\end{tikzcd}\]
-	
-	Now by the projection formula $\LL \otimes \db_X = \bR \pi_{\bullet *} (\pi_\bullet^* \LL \otimes \omega_{X_\bullet}^\bullet)$, so $\HH^{-1}(X, \LL \otimes \db_X)^* = \HH^{-1}(X_\bullet, \pi_\bullet^* \LL \otimes \omega_{X_\bullet}^\bullet)^*$.
-	
-	By proposition \ref{prp:cohofdual}, this is $H^1(X_\bullet, \pi_\bullet^* \LL^{-1})$, which can now compute directly.
-	The component of this sheaf on the $\PP^2$s is the inverse of a big and nef line bundle, so the cohomology will vanish in degree less than 2 by Kawamata-Vieweg vanishing.
-	The component over $k$ is the only possible line bundle, $k$ over itself.
-	
-	Now, we the spectral sequence of proposition \ref{prp:cubicalcohospecseq}, which we can compute in entirety:
-	
-	\[\begin{tikzcd}[row sep = tiny, column sep = tiny]
-	H^2(\PP^2, f^* \LL^{-1} \oplus g^* \LL^{-1}) & 0 \\
-	0 & 0 \\
-	0 & k.
-	\end{tikzcd}\]
-	
-	This is degenerate and thus $H^1(X_\bullet, \pi_\bullet^* \LL^{-1}) = k$.
-\end{example}
-
-This illustrates that any vanishing in this vein will necessitate we restrict to Cohen-Macaulay schemes.
-
-\begin{example}
-	Let $Y$ be a smooth projective variety and $X$ a projective cone over $Y$.
-	If $\LL$ is an ample line bundle on $X$, then for $2 \leq i \leq \dim Y$, $\HH^{-i}(X, \LL \otimes \db_X)^* = H^{i-1}(Y, \OO_Y)$, in particular this is not zero if $Y$ is, say, a ruled surface over a curve of genus $g \geq 1$.
-	
-	To see this, let $\pi_\bullet : X_\bullet \rightarrow X$ be the cubical hyperresolution
-	\[\begin{tikzcd}
-		S \arrow{r} \arrow{d} & B \arrow{d} \\
-		k \arrow{r} & X,
-	\end{tikzcd}\]
-	where $B$ is the resolution of $X$.
-	As above, $\HH^{-i}(X, \LL \otimes \db_X)^* = \HH^i(X_\bullet, \pi_\bullet^* \LL^{-1})$.
-	Let $\MM$ be the term of $\pi_\bullet^* \LL$ on $B$, $\MM$ is the pullback of an ample sheaf via a generically finite map, so it is big and nef.
-	On $k$ it must be $k$ over itself, and thus by the diagram commuting, on $Y$ the pullback is $\OO_Y$.
-	
-	Now we can bring in the spectral sequence of proposition \ref{prp:cubicalcohospecseq}.
-	Let $n = \dim Y$; because of Kawamata-Viehweg vanishing, $H^i(B, \MM^{-1}) = 0$ for $i < \dim B  = n + 1$, so the $E_1$ page appears as
-	\[\begin{tikzcd}[row sep = tiny, column sep = tiny]
-		H^{n+1}(B, \MM) \arrow{r} & 0 \\
-		0 \arrow{r} & H^n(Y, \OO_Y) \\
-		\vdots & \vdots \\
-		0 \arrow{r} & H^1(Y, \OO_Y) \\
-		k \arrow{r} & k,
-	\end{tikzcd}\]
-	and it is now clear that the $E_\infty$ page will be
-	\[\begin{tikzcd}[row sep = tiny, column sep = tiny]
-	H^{n+1}(B, \MM) & 0 \\
-	0  & H^n(Y, \OO_Y) \\
-	\vdots & \vdots \\
-	0 & H^1(Y, \OO_Y) \\
-	0 & 0,
-	\end{tikzcd}\]
-	and the result follows.
-\end{example}
-
 \begin{lemma}[proof of \cite{Kovacs2011a} 3.3]
 	Let $X$ be a variety over $\CC$, $\LL$ an ample line bundle.
 	Then for all $j \in \ZZ$, the natural map
@@ -1434,91 +1370,6 @@ The following is a Du Bois version of \cite{Kovacs1999}, the proof is identical 
 	For any closed $x \in X$, $\OO_{X,x}$ is a local Cohen-Macaulay ring of dimension $n$, and $h^i(\DB_X^0)_x \cong \Ext^{i+1}(\mathscr{Q}_x, \omega_{\OO_{X,x}})$ which is zero for $1 < i+1 < n - \dim \mathscr{Q}_x$ by \cite{Bruns1993} 3.5.11. Since the support of $\mathscr{Q}$ is contained in $\Sigma_d$, we are done.
 \end{proof}
 
-\section{Relative Differentials}
-
-\begin{definition}
-	Let $f_\bullet : X_\bullet \rightarrow Y_\bullet$ be a morphism of diagrams of schemes over the functor $\Phi : I \rightarrow J$.
-	Then define a sheaf $\Omega_{X_\bullet / Y_\bullet}$ on the diagram $X_\bullet$ as follows: for each $\alpha \in I$,
-	\[
-		(\Omega_{X_\bullet / Y_\bullet})_\alpha = \Omega_{X_\alpha / Y_{\Phi(\alpha)}}
-	\]
-	and for each $X_\alpha \rightarrow X_\beta$, the map $\phi_{\alpha \beta}^* (\Omega_{X_\bullet / Y_\bullet})_\beta \rightarrow (\Omega_{X_\bullet / Y_\bullet})_\alpha$ is given by
-	\[
-		\phi_{\alpha \beta}^* \Omega_{X_\beta / Y_{\Phi(\beta)}} \xrightarrow{\sim} p^* \Omega_{X_\beta \times_{Y_{\Phi(\beta)}} Y_{\Phi(\alpha)} / Y_{\Phi(\alpha)}} \rightarrow \Omega_{X_\alpha / Y_{\Phi(\alpha)}}
-	\]
-	
-	This defines a sheaf over the diagram since for any $X_\alpha \rightarrow X_\beta \rightarrow X_\delta$, the diagram
-	\[
-		\begin{tikzcd}
-			X_\alpha \arrow{rr} \arrow{dr} & & Y_{\Phi(\alpha)} \times_{Y_{\Phi(\delta)}} X_\delta \\
-			& Y_{\Phi(\alpha)} \times_{Y_{\Phi(\beta)}} X_\beta \arrow{ur} & {}
-		\end{tikzcd}
-	\]
-	commutes.
-\end{definition}
-
-\begin{theorem}
-	\label{thm:locfreereldiffs}
-	Let $f : X \rightarrow B$ be a smooth morphism from a smooth scheme $X$ to a smooth, 1-dimensional scheme $B$.
-	Then for each $p$ there is a finite locally-free resolution of $\Omega_{X/B}^p$ given by
-	\[
-		\cdots \rightarrow f^* \omega_B^{\otimes 2} \otimes \Omega_X^{p-2} \rightarrow f^* \omega_B \otimes \Omega_X^{p-1} \rightarrow
-			\Omega^p_X \rightarrow \Omega_{X/B}^p \rightarrow 0
-	\]
-\end{theorem}
-\begin{proof}
-	First note there is always a right exact sequence
-	\[
-		f^* \omega_B \otimes \Omega_X^{p-1} \rightarrow \Omega_X^p \otimes \Omega_{X/B}^p \rightarrow 0
-	\]
-	by tag 00DO of \cite{stacks}, and when $B$ is 1-dimensional, there is an exact sequence
-	\[
-		0 \rightarrow f^* \omega_B \otimes \Omega_{X/B}^{p-1} \rightarrow \Omega_X^p \rightarrow \Omega_{X/B}^p \rightarrow 0.
-	\]
-	The image of the left map in the first exact sequence is then  $f^* \omega_B \otimes \Omega_{X/B}^{p-1}$ and we can apply the first sequence for $p-1$ and tensored with $f^* \omega_B$ to extend the first sequence to 
-	\[
-	f^* \omega_B^{\otimes 2} \otimes \Omega_X^{p-2} \rightarrow f^* \omega_B \otimes \Omega_X^{p-1} \rightarrow
-	\Omega^p_X \rightarrow \Omega_{X/B}^p \rightarrow 0
-	\]
-	while remaining exact.
-	By continuing in this manner using these two exact sequences tensored with $f^* \omega_B$ an appropriate number of times (note this is flat), we get the exact sequence as desired.
-\end{proof}
-
-\begin{definition}
-	Let $f : X \rightarrow B$ be a morphism from any scheme $X$ to a smooth scheme $B$ over a field of characteristic 0.
-	For a cubical hyperresolution $\pi_\bullet : X_\bullet \rightarrow X$ and nonnegative integer $p$, we can define
-	\[
-		\DB_{X/B}^p = \bR \pi_{\bullet *} \Omega_{X_\bullet / B}^p.
-	\]
-	Note that a priori this is not independent of choice of hyperresolution.
-\end{definition}
-
-\begin{prop}
-	Let $f : X \rightarrow B$ be a morphism from a noetherian scheme $X$ to a smooth, 1-dimensional scheme $B$ over a field of characteristic 0.
-	Then for any cubical hyperresolution, there is a spectral sequence computing the homology of $\DB_{X/B}^p$:
-	\[
-		E_1^{ij} = f^* \omega_B^{\otimes (p - j)} \otimes h^i(\DB_X^j) \Rightarrow h^{i+j}(\DB_{X/B}^p).
-	\]
-	
-	Thus the homology of $\DB_{X/B}^p$ is independent of choice of hyperresolution.
-\end{prop}
-\begin{proof}
-	Let $f_\bullet = f \circ \pi_\bullet$.
-	Applying remark 2.67 of \cite{Huybrechts2006}, we have the spectral sequence
-	\[
-		E_1^{ij} = \bR^i \pi_{\bullet *} (f_\bullet^* \omega_B^{\otimes(p-j)} \otimes \Omega_{X_\bullet}^j) \Rightarrow \bR^{i+j} \pi_{\bullet *} \Omega_{X/B}^p
-	\]
-	
-	To finish this, apply some definitions and the projection formula:
-	\begin{align*}
-		\bR^i \pi_{\bullet *} (f_\bullet^* \omega_B^{\otimes(p-j)} \otimes \Omega_{X_\bullet}^j) &= h^i (\bR \pi_{\bullet *} (\pi_\bullet^* f^* \omega_B^{\otimes(p-j)} \otimes \Omega_{X_\bullet}^j)) \\
-		&= h^i (f^* \omega_B^{\otimes(p-j)} \otimes \bR \pi_{\bullet *}\Omega_{X_\bullet}^j) \\
-		&= f^* \omega_B^{\otimes (p - j)} \otimes h^i(\DB_X^j).
-	\end{align*}
-	
-	The last claim is due to the independence of $\DB_X^j$.
-\end{proof}
-
 \chapter{Applications}
 \section{Cohomology of Contractions}
 In the case that the singularities on $X$ are isolated, we can understand the cohomology on $X$ of somewhat mysterious complexes by using the cohomology on the fiber of the blow-up.
@@ -1529,7 +1380,7 @@ The next theorem encapsulates this to be used in later computations.
 	\[
 		H^i(X, \LL^{-1} \otimes \DB_X^0) = \begin{cases} H^0(Y_p, \CC)/\CC & \text{if } i = 0 \\
 		H^{i-1}(Y_p, \DB_{Y_p}^0) & \text{if } 2 < i < n \\
-		H^n(Y, f^* \LL^{-1}) \oplus H^{n-1}(Y_p, \DB_{Y_p}^0). & \text{if } i = n
+		H^n(Y, f^* \LL^{-1}) \oplus H^{n-1}(Y_p, \DB_{Y_p}^0) & \text{if } i = n.
 		\end{cases}
 	\]
 \end{theorem}
@@ -1577,6 +1428,7 @@ The next theorem encapsulates this to be used in later computations.
 
 With some assumptions on $X$ this theorem provides cohomological constraints on the possible exceptional locus of a resolution $f$.
 \begin{cor}
+	\label{cor:cohoofcontraction}
 	Let $X$ be a proper, reduced, Cohen-Macaulay $\CC$-scheme of dimension $n$ with Du Bois singularities, $Y$ smooth, with $f : Y \rightarrow X$ a proper morphism which is as isomorphism outside of a closed $p \in X$.
 	Then, for $0 < i < n - 1$, the exceptional locus $Y_p$ satisfies
 	\[
@@ -1592,6 +1444,9 @@ With some assumptions on $X$ this theorem provides cohomological constraints on 
 	The results follow by utilizing theorem \ref{thm:isosingcalc}.
 \end{proof}
 
+Note that the hypotheses imply that $X$ is normal, so the connectedness portion of this just gives an alternate proof of Zariski's main theorem in this case.
+The Cohen-Macaulay hypothesis is necessary here since two planes intersecting at a point will provide a counterexample to the connectedness statement, and furthermore one can calculate that $h^i(X, \LL^{-1} \otimes \DB_X^0) = 1$ for every $\LL$.
+
 Another result of our calculation is that we have an analogue of Kodaira vanishing on cones without assuming Du Bois.
 
 \begin{cor}
@@ -1604,6 +1459,9 @@ Another result of our calculation is that we have an analogue of Kodaira vanishi
 	
 	With this condition, we simply compute based on theorem \cite{Patakfalvi2013}.
 \end{proof}
+
+This provides numerous examples of varieties which are not Du Bois but have this vanishing property, for instance any cone over a smooth, connected plane curve, only those of degree at most 3 are Du Bois.
+This also suggests further examples of the failure of \ref{cor:cohoofcontraction}, for instance take a cone over a surface ruled over a curve of genus $g \geq 1$, this has non-zero $h^1$ and thus this vanishing does not hold.
 
 \bibliography{../library}{}
 \bibliographystyle{plain}
