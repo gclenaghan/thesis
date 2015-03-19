@@ -296,12 +296,12 @@ The following constructions will be needed later:
 \end{definition}
 
 \section{Sheaves on Diagrams}
-With a definition of diagrams of schemes, we can now consider sheaves over diagrams, which are compatible collections of sheaves and morphisms over the schemes in the diagram.
+With a definition of diagrams of schemes, we can now consider sheaves over diagrams, which can be thought of as compatible collections of sheaves and morphisms over the schemes in the diagram.
 
 \begin{definition}[10.84 of \cite{Kollar2013}]
 	Let $X_\bullet$ be an $I$-scheme.
-	A sheaf $\FF_\bullet$ on $X_\bullet$ is a collection of sheaves $\FF_\alpha$ on $X_\alpha$ with, for each $f : X_\alpha \rightarrow X_\beta$ in the diagram, morphisms $\FF_\beta \rightarrow f_* \FF_\alpha$, or equivalently $f^* \FF_\beta \rightarrow \FF_\alpha$.
-	This is an abelian category, so we can also take the derived category of such sheaves.
+	A sheaf $\FF_\bullet$ on $X_\bullet$ is a collection of sheaves $\FF_\alpha$ on $X_\alpha$ with, for each $\phi_{\alpha\beta} : X_\alpha \rightarrow X_\beta$ in the diagram, morphisms $\FF_\beta \rightarrow f_* \FF_\alpha$, or equivalently $f^* \FF_\beta \rightarrow \FF_\alpha$.
+	This is an abelian category, so we can also take the derived category of such sheaves, $D(X_\bullet)$.
 \end{definition}
 
 Given a map of diagrams, there are several associated functors of sheaves, analogous to those on literal schemes.
@@ -313,7 +313,7 @@ The easiest to construct is the pullback
 	\[
 	(f^*_\bullet \GG_\bullet)_\alpha = f_\alpha^* \GG_{\Phi(\alpha)}.
 	\]
-	This functor is right-exact and has a left-derived functor on the derived categories
+	This functor is right-exact and has a left-derived functor on the derived categories given on each component by
 	\[
 	(\bL f^*_\bullet G_\bullet)_\alpha = \bL f_\alpha^* G_{\Phi(\alpha)}.
 	\]
@@ -330,7 +330,7 @@ However, if this is the case then they form a diagram of sheaves over that targe
 	(f_{\bullet*} \FF_\bullet)_\alpha = \varprojlim_{(\beta, \phi)} Y_{\phi *} f_{\beta *} \FF_\beta,
 	\]
 	where $(\beta, \phi)$ ranges over $\beta \in I$ and $\phi : \Phi(\beta) \rightarrow \alpha$ a morphism in $J$.
-	This functor is left-exact and has a right-derived functor on the derived categories
+	This functor is left-exact and has a right-derived functor on the derived categories given on each component by
 	\[
 	(\bR f_{\bullet*} F_\bullet)_\alpha = \bR \varprojlim_{(\beta, \phi)} \bR Y_{\phi *} \bR f_{\beta *} F_\beta.
 	\]
@@ -392,7 +392,7 @@ Given $\FF_\bullet$ and $\GG_\bullet$, sheaves on $X_\bullet$, we can define $\H
 	The derived category version is simply by the composition of derived functors.
 \end{proof}
 
-The above proposition can be generalized for arbitrary $f_\bullet$, where in the last $\Gamma$ is viewed as the pushforward to a field.
+The following proposition can be thought of as a generalization of the above, where $\Gamma$ is thought of as a special case of the pushforward functor. 
 The natural map obtained by this characterization is used in the sheaf version of duality.
 
 \begin{prop}
