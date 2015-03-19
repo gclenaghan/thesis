@@ -86,10 +86,48 @@
 \DeclareMathOperator{\tot}{tot}
 
 \begin{document}
-	
+\title{Grothendieck Duality on Diagrams of Schemes}
+\maketitle
+\begin{abstract}
+	The Du Bois complex and Du Bois singularities, extending results of Hodge theory to singular complex varieties, are defined in terms of a hyperresolution, which for our purposes is a cubical diagram of schemes resolving the singularities of the variety of interest.
+	To study this, in this dissertation I further develop the language of diagrams of schemes and then prove analogues of Grothendieck duality and other cohomological theorems.
+	I then demonstrate the use of these by revisiting some known results about the Du Bois complex from a different perspective, and proving new results concerning the cohomology of a contraction.
+\end{abstract}
 \tableofcontents
 
+\chapter{Introduction}
+The Du Bois complex is a generalization of the De Rham complex, appearing in Hodge theory, to singular complex varieties, and was introduced in \cite{Bois1981}.
+The definition takes the De Rham complexes of smooth varieties and pushes them down to singular varieties, but unfortunately a traditional resolution of singularities is inadequate for this process, leading to the notion of a ``hyperresolution" which is better at ``remembering" the topological information that a traditional resolution will lose.
+
+Since the original definition, several implementations of the hyperresolution have been developed, each giving the same Du Bois complex, but the most tractable definition is the cubical hyperresolution which uses diagrams of schemes, such diagrams are the main topic of this dissertation.
+
+However the complex is defined, one can then define the notion of Du Bois singularities as a natural condition of the 0-degree part of the complex $\DB_X^0$, which can be thought of as a hyperresolution-y version of rational singularities, and turn out to generalize those singularities as well as semi-log canonical singularities while maintaining features such as Kodaira vanishing.
+If one prefers, there is a characterization due to Schwede \cite{Schwede2007} which allows Du Bois singularities to be defined without reference to hyperresolutions.
+
+The main reference for diagrams of schemes is Guilli\'en, et. al \cite{Guillen1988}, and a restricted category of diagrams--only shape-preserving maps (defined in \ref{def:diagram}) are allowed--is studied in Hashimoto \cite{Lipman2009}.
+Chapter \ref{chp:diagrams} serves as a mostly self-contained introduction to diagrams, and has new tools we will use to tackle the main results.
+Chapter \ref{chp:duboiscomplex} then introduces the Du Bois complex and singularities, and lists some known results.
+
+The main results come in \ref{chp:grothendieckduality}, and consist of analogues of cohomological results from schemes including flat base change (theorem \ref{thm:flatbasechange}), the projection formula (theorem \ref{thm:projectionformula}), and Grothendieck duality (corollary \ref{cor:cubicalgrothdual}).
+In particular, for the former there is an analogue of a dualizing complex on diagrams (herein called the canonical complex since it is not dualizing in the traditional sense), which when pushed to the resolved variety becomes the $\db_X$ Grothendieck dual of the complex $\DB_X^0$ which has been studied somewhat in \cite{Kovacs2011a}.
+
+Finally, in chapter \ref{chp:applications} there is some demonstration of these results outside the realm of diagrams of schemes, including the following theorem:
+\begin{theorem}[Corollary \ref{cor:cohoofcontraction}]
+	Let $X$ be a proper, reduced, Cohen-Macaulay $\CC$-scheme of dimension $n$ with Du Bois singularities, $Y$ smooth, with $f : Y \rightarrow X$ a proper morphism which is as isomorphism outside of a closed $p \in X$.
+	Then, for $0 < i < n - 1$, the exceptional locus $Y_p$ satisfies
+	\[
+	H^i (Y_p, \DB_{Y_p}^0) = \begin{cases}
+	\CC & \text{if } i = 0 \\
+	0 & \text{if } 0 < i < n - 1.
+	\end{cases}
+	\]
+	In particular, $Y_p$ is connected and if $Y_p$ has Du Bois singularities $H^i(Y_p, \OO_{Y_p}) = 0$ for $0 < i < n - 1$.
+\end{theorem}
+
+
+
 \chapter{Diagrams of Schemes and Their Sheaves}
+\label{chp:diagrams}
 \section{Motivation}
 Cubic hyperresolutions are an attempt to resolve the singularities of a variety while preserving the topological information of the original.
 
@@ -139,6 +177,7 @@ It is clear why requiring finiteness makes things easier, the primary reason for
 Finally, loops in a thin category are somewhat silly (each map in the loop must be an isomorphism), so categories with loops contain no further information than the category with the loops collapsed.
 
 \begin{definition}
+	\label{def:diagram}
 	Let $I$ be a diagram shape category and $A$ be any category.
 	A \textit{diagram} in $A$ of shape $I$ (or an $I$-diagram) is a functor
 	\[
@@ -930,6 +969,7 @@ Note that this differs from the convention of ``$\FF_\bullet$ has property $P$ i
 \end{proof}
 
 \chapter{The Du Bois Complex}
+\label{chp:duboiscomplex}
 \section{Construction and Properties}
 If $X$ is a smooth variety of dimension $n$ over $\CC$, then using analytic methods we can construct the de Rham complex
 \[
@@ -1023,6 +1063,7 @@ In fact rational singularities are a strictly stronger condition than Du Bois si
 Still, the first interpretation is useful as many of the nice properties are a result of this connection with the Du Bois complex.
 
 \chapter{Grothendieck Duality on Diagrams}
+\label{chp:grothendieckduality}
 
 \section{Abstract $f_\bullet^!$ for an Morphism of Diagrams}
 For morphisms of projective schemes over $k$, $f : X \rightarrow Y$, Grothendieck duality can be stated as the existence of a right adjoint to $\bR f_*$, written $f^!$.
@@ -1196,6 +1237,7 @@ Now we take on cubical diagrams, for which we will need the following constructi
 \end{proof}
 
 \begin{theorem}
+	\label{thm:projectionformula}
 	Let $f_\bullet : X_\bullet \rightarrow Y_\bullet$ be a cubical morphism.
 	Then for each $F_\bullet \in D_{qc}(X_\bullet)$, the projection formula natural transformation of functors on $D_{qc}(X_\bullet)$
 	\[
@@ -1371,6 +1413,7 @@ The following is a Du Bois version of \cite{Kovacs1999}, the proof is identical 
 \end{proof}
 
 \chapter{Applications}
+\label{chp:applications}
 \section{Cohomology of Contractions}
 In the case that the singularities on $X$ are isolated, we can understand the cohomology on $X$ of somewhat mysterious complexes by using the cohomology on the fiber of the blow-up.
 The next theorem encapsulates this to be used in later computations.
