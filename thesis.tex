@@ -24,7 +24,7 @@
 \newtheorem{defprop}[theorem]{Definition-Proposition}
 
 \DeclareMathOperator{\Coh}{Coh}
-\DeclareMathOperator{\Diag}{Diag}
+\DeclareMathOperator{\Diag}{\underline{Diag}}
 \DeclareMathOperator{\Ext}{Ext}
 \DeclareMathOperator{\cExt}{\mathscr{E} \! \textit{xt}}
 \DeclareMathOperator{\Gr}{Gr}
@@ -166,14 +166,15 @@ Finally, in chapter \ref{chp:applications} there is some demonstration of these 
 \section{Diagram Categories and Diagrams of Schemes}
 In general, a diagram in a given category $A$ will be a collection of objects in morphisms in that category, the idea is we want to deal with that whole collection simultaneously: for a cubical hyperresolution, the diagram will contain the resolution of singularities \textit{and} information about how the resolution map transforms the space.
 
-In general, one can work with arbitrary functors from some small category to $A$, but this can be messier than we need.
+One can work with arbitrary functors from some small category to $A$, but this can be messier than we need.
 The following definition makes a reasonable restriction on these categories:
 \begin{definition}
 	A \textit{diagram shape category} is a finite, thin (any two objects have at most one morphism between them) category without loops.
 \end{definition}
 
 It is clear why requiring finiteness makes things easier, the primary reason for requiring thinness is so that we can think of slice categories and over categories as fully faithful subcategories which makes some constructions simpler.
-Finally, loops in a thin category are somewhat silly (each map in the loop must be an isomorphism), so categories with loops contain no further information than the category with the loops collapsed.
+Finally, loops in a thin category are somewhat silly (each map in the loop must be an isomorphism), so categories with loops contain no further information than the category with the loops collapsed, and doing so will be useful for lemma \ref{lem:affinecover}.
+These are particularly reasonable given the only categories we will be studying in much detail are given in definition \ref{def:cubicalcategories}.
 
 \begin{definition}
 	\label{def:diagram}
@@ -184,7 +185,7 @@ Finally, loops in a thin category are somewhat silly (each map in the loop must 
 	\]
 	For each $\alpha$ and $\varphi$ an object and morphism from $I$ respectively, we'll write $X_\alpha$ and $X_\varphi$.
 	
-	A morphism between an $I$-diagram $X_\bullet$ and a $J$-diagram $Y_\bullet$ is given by a shape functor $\Gamma : I^{op} \rightarrow J^{op}$ and a natural transformation $\eta : X_\bullet \rightarrow Y_\bullet \circ \Gamma$.
+	A \textit{morphism} between an $I$-diagram $X_\bullet$ and a $J$-diagram $Y_\bullet$ is given by a \textit{shape functor} $\Gamma : I^{op} \rightarrow J^{op}$ and a natural transformation $\eta : X_\bullet \rightarrow Y_\bullet \circ \Gamma$.
 	
 	In simpler terms, this is a collection of morphisms such that the total diagram with all the arrows from the morphism and both diagrams drawn is commutative.
 	Usually we'll denote a morphism as $f_\bullet : X_\bullet \rightarrow Y_\bullet$ with $\Gamma$ implicit and for each $\alpha \in I$, $f_\alpha : X_\alpha \rightarrow Y_{\Gamma(\alpha)}$.
@@ -193,12 +194,13 @@ Finally, loops in a thin category are somewhat silly (each map in the loop must 
 	
 	The category of diagrams in $A$ will be denoted $\Diag A$, and the category of $I$-diagrams with shape-preserving morphisms in $A$ will be denoted $\Diag_I A$.
 	
-	There is a diagonal functor for each $I$, $\Delta : A \rightarrow \Diag_I$, where we'll denote $\Delta(X)$ by $X \times I$ (to be consistent with \cite{Guillen1988}), and $(X \times I)(\alpha) = X$ for all $\alpha$, with arrows the identity.
+	There is a diagonal functor for each $I$, $\Delta : A \rightarrow \Diag_I A$, where we'll denote $\Delta(X)$ by $X \times I$ (to be consistent with \cite{Guillen1988}), and $(X \times I)(\alpha) = X$ for all $\alpha$, with arrows the identity.
 \end{definition}
 
 The next definition introduces all the shapes we'll want to consider.
 
 \begin{definition}
+	\label{def:cubicalcategories}
 	Let $\underline{1}$ be the category $\{0\}$, and $\tu$ be the category $\{0 \rightarrow 1\}$.
 	For $n \geq -1$, let $\Box_n^+$ be the product of $n+1$ copies of $\tu$.
 	The elements here are tuples $\alpha = (\alpha_0, \dots, \alpha_n)$, with $\alpha_i \in \{0, 1\}$, and we can define $|\alpha| = \sum \alpha_i$.
@@ -238,7 +240,7 @@ The next definition introduces all the shapes we'll want to consider.
 			\bullet \arrow{ur} \arrow{uu} & & \arrow[dashed]{ll} \circ \arrow[dashed]{ur} \arrow[dashed,crossing over]{uu}\\
 		\end{tikzcd}
 	\end{subfigure}
-	\caption{For $n \in \{-1, 0, 1, 2\}$, $\Box_n^+$ is the diagram with dashed arrows and an initial object, $\Box_n$ is the diagram without}
+	\caption{For $n \in \{-1, 0, 1, 2\}$, $\Box_n^+$ is the diagram including the dashed arrows and an initial object, $\Box_n$ is the diagram without}
 	\label{fig:boxn}
 \end{figure}
 
@@ -246,7 +248,7 @@ With these generalities taken care of, we specialize to diagrams of schemes.
 
 \begin{definition}
 	A diagram of schemes is an object in the category $\Diag \Sch$.
-	We'll say that a diagram of schemes $X_\bullet$ over $I$ (respectively, a morphism $f_\bullet : X_\bullet \rightarrow Y_\bullet$) has a given property $\mathcal{P}$ (e.g., smooth, noetherian) if for all $\alpha$, $X_\alpha$ (resp., $f_\alpha$) has $\mathcal{P}$.
+	We'll say that a diagram of schemes $X_\bullet$ over $I$ (respectively, a morphism \mbox{$f_\bullet : X_\bullet \rightarrow Y_\bullet$}) has a given property $\mathcal{P}$ (e.g., smooth, noetherian) if for all $\alpha$, $X_\alpha$ (resp., $f_\alpha$) has $\mathcal{P}$.
 \end{definition}
 The following constructions will be needed later:
 
@@ -732,7 +734,7 @@ Note that this differs from the convention of ``$\FF_\bullet$ has property $P$ i
 	
 \begin{lemma}
 	\label{lem:affinecover}
-	Let $I$ be a thin, finite category without loops and with an initial object.
+	Let $I$ be a diagram shape category and with an initial object.
 	Then if $X$ is a quasi-compact $I$-scheme, there is a finite affine covering of $X$ in the Zariski site.
 \end{lemma}
 
@@ -1090,7 +1092,7 @@ We will further develop features of this in the chapters to come.
 \label{chp:grothendieckduality}
 
 \section{Abstract $f_\bullet^!$ for an Morphism of Diagrams}
-For morphisms of projective schemes over $k$, $f : X \rightarrow Y$, Grothendieck duality can be stated as the existence of a right adjoint to $\bR f_*$, written $f^!$.
+For morphisms of projective schemes over a field $k$, $f : X \rightarrow Y$, Grothendieck duality can be stated as the existence of a right adjoint to $\bR f_*$, written $f^!$.
 By the various properties of these maps, we then have an isomorphism for $F \in D_{coh}^+(X), G \in D_{coh}^+(Y)$
 \[
 \bR f_* \bR \cHom_X(F, f^! G) \cong \bR \cHom_Y(\bR f_* F, G)
