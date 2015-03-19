@@ -96,8 +96,43 @@
 \tableofcontents
 
 \chapter{Introduction}
-The Du Bois complex is a generalization of the De Rham complex, appearing in Hodge theory, to singular complex varieties, and was introduced in \cite{Bois1981}.
-The definition takes the De Rham complexes of smooth varieties and pushes them down to singular varieties, but unfortunately a traditional resolution of singularities is inadequate for this process, leading to the notion of a ``hyperresolution" which is better at ``remembering" the topological information that a traditional resolution will lose.
+The Du Bois complex is a generalization of the de Rham complex, appearing in Hodge theory, to singular complex varieties, and was introduced in \cite{Bois1981}.
+The definition takes the de Rham complexes of smooth varieties and pushes them down to singular varieties, but unfortunately a traditional resolution of singularities is inadequate for this process.
+
+Hyperresolutions are an attempt to resolve the singularities of a variety while preserving the topological information of the original.
+
+\begin{wrapfigure}{r}{0.15\textwidth}
+	\centering
+	\vspace{-20pt}
+	\begin{tikzpicture}[scale=0.5]
+	\draw (-1,0) arc (180:360:1 and 0.5);
+	\draw[dashed] (-1,0) arc (180:0:1 and 0.5);
+	\draw (-1,0) -- (1, 3);
+	\draw (1, 0) -- (-1, 3);
+	\fill[blue] (0, 1.5) circle[radius=.1];
+	\draw (1.5, 1.5) node {$X$};
+	\draw (1, 3) arc (0:360: 1 and 0.5);
+	
+	\draw [thick,->] (0, 4.3) -- (0, 3.8);
+	\draw (.5, 4) node {$f$};
+	
+	\draw (1,5) arc (360:180:1 and 0.5);
+	\draw[dashed] (1,5) arc (0:180:1 and 0.5);
+	\draw (1,5) -- (1,8);
+	\draw (-1,5) -- (-1, 8);
+	\draw[blue] (1, 6.5) arc (360:180: 1 and .5);
+	\draw[dashed,blue] (1,6.5) arc (0:180:1 and .5);
+	\draw (1.5, 6.5) node {$\tilde{X}$};
+	\draw (1,8) arc (0:360: 1 and .5);
+	\end{tikzpicture}
+\end{wrapfigure}
+
+As an example of this, consider the resolution of the cone over $\CC$, $f : \tilde{X} \rightarrow X$ obtained by blowing up the cone point, as seen in the figure on the right.
+Then these topologically differ, as the cylinder has a non-trivial $\Ho^1 (\tilde{X}, \CC)$, while $\Ho^1 (X, \CC) = 0$.
+This is in direct opposition to our goal, which is to take the de Rham complex on a smooth variety over $\CC$ and bring it to a singular variety while still preserving its properties; in particular we would lose the property that $\Ho^i ( \tilde{X}, \CC) \cong \HH^i (\tilde{X}, \Omega_{\tilde{X}}^\bullet)$.
+
+Instead, for a hyperresolution the goal is to ``remember" the fact that there is a $\PP^1$ in the cylinder which collapses to a point.
+This is achieved by using a resolution by a collection of schemes and relations between.
 
 Since the original definition, several implementations of the hyperresolution have been developed, each giving the same Du Bois complex, but the most tractable definition is the cubical hyperresolution which uses diagrams of schemes, such diagrams are the main topic of this dissertation.
 
@@ -128,47 +163,11 @@ Finally, in chapter \ref{chp:applications} there is some demonstration of these 
 
 \chapter{Diagrams of Schemes and Their Sheaves}
 \label{chp:diagrams}
-\section{Motivation}
-Cubic hyperresolutions are an attempt to resolve the singularities of a variety while preserving the topological information of the original.
-
-\begin{wrapfigure}{r}{0.15\textwidth}
-	\centering
-	\vspace{-20pt}
-	\begin{tikzpicture}[scale=0.5]
-	\draw (-1,0) arc (180:360:1 and 0.5);
-	\draw[dashed] (-1,0) arc (180:0:1 and 0.5);
-	\draw (-1,0) -- (1, 3);
-	\draw (1, 0) -- (-1, 3);
-	\fill[blue] (0, 1.5) circle[radius=.1];
-	\draw (1.5, 1.5) node {$X$};
-	\draw (1, 3) arc (0:360: 1 and 0.5);
-	
-	\draw [thick,->] (0, 4.3) -- (0, 3.8);
-	\draw (.5, 4) node {$f$};
-	
-	\draw (1,5) arc (360:180:1 and 0.5);
-	\draw[dashed] (1,5) arc (0:180:1 and 0.5);
-	\draw (1,5) -- (1,8);
-	\draw (-1,5) -- (-1, 8);
-	\draw[blue] (1, 6.5) arc (360:180: 1 and .5);
-	\draw[dashed,blue] (1,6.5) arc (0:180:1 and .5);
-	\draw (1.5, 6.5) node {$\tilde{X}$};
-	\draw (1,8) arc (0:360: 1 and .5);
-	\end{tikzpicture}
-	\end{wrapfigure}
-	
-As an example of this, consider the resolution of the cone over $\CC$, $f : \tilde{X} \rightarrow X$ obtained by blowing up the cone point, as seen in the figure on the right.
-Then these topologically differ, as the cylinder has a non-trivial $\Ho^1 (\tilde{X}, \CC)$, while $\Ho^1 (X, \CC) = 0$.
-This is in direct opposition to our goal, which is to take the de Rham complex on a smooth variety over $\CC$ and bring it to a singular variety while still preserving its properties; in particular we would lose the property that $\Ho^i ( \tilde{X}, \CC) \cong \HH^i (\tilde{X}, \Omega_{\tilde{X}}^\bullet)$.
-	
-Instead, for a hyperresolution the goal is to ``remember" the fact that there is a $\PP^1$ in the cylinder which collapses to a point.
-This is achieved by using a resolution by a collection of schemes and relations between.
-
 \section{Diagram Categories and Diagrams of Schemes}
 In general, a diagram in a given category $A$ will be a collection of objects in morphisms in that category, the idea is we want to deal with that whole collection simultaneously: for a cubical hyperresolution, the diagram will contain the resolution of singularities \textit{and} information about how the resolution map transforms the space.
 
 In general, one can work with arbitrary functors from some small category to $A$, but this can be messier than we need.
-The following definition makes some reasonable restriction:
+The following definition makes a reasonable restriction on these categories:
 \begin{definition}
 	A \textit{diagram shape category} is a finite, thin (any two objects have at most one morphism between them) category without loops.
 \end{definition}
@@ -1052,15 +1051,40 @@ The important part is the {\it filtration}.
 Still, in general, these properties of $\DB_X^\bullet$ may not be helpful if we have no way to compute the actual sheaves involved.
 This is where Du Bois singularities come in, as in many cases we care about, we can connect these sheaves with those we already know.
 
+\section{Du Bois Singularities}
+
 \begin{definition}
 	\label{def:dubois}
 	We say a variety $X$ over $\CC$ has {\it Du Bois singularities} (or is DB) if the natural map in (\ref{thm:omnibus:natmap}) is a quasi-isomorphism.
 	Equivalently by working through the definitions, $X$  has Du Bois singularities if for a hyperresolution $f_{\bullet} : X_\bullet \rightarrow X$, the natural map $\OO_X \rightarrow\bR f_{\bullet *} \OO_{X_\bullet}$ is a quasi-isomorphism where $(\OO_{X_\bullet})_\alpha = \OO_{X_\alpha}$ and the maps between the sheaves are the associated maps $\OO_{X_\beta} \rightarrow X_{\phi *} \OO_{X_\beta}$.
 \end{definition}
 
-This second interpretation provides a strong analogy with rational singularities by simply exchanging a hyperresolution with a resolution of singularities.
-In fact rational singularities are a strictly stronger condition than Du Bois singularities.
-Still, the first interpretation is useful as many of the nice properties are a result of this connection with the Du Bois complex.
+While the first interpretation is useful as many of the nice properties are a result of the connection with the Du Bois complex, this second interpretation provides a strong analogy with rational singularities by simply exchanging a hyperresolution with a resolution of singularities.
+In fact we have the following theorem, showing Du Bois singularities are a generalization of well-known classes of singularities.
+\begin{theorem}
+	If $X$ is a complex variety with rational singularities or semi-log canonical singularities, then $X$ has Du Bois singularities.
+\end{theorem}
+
+An alternative characterization of Du Bois singularities is given below.
+
+\begin{theorem}[\cite{Schwede2007}]
+	Let $X$ be a reduced separated scheme of finite type over a field of characteristic zero.
+	Suppose $X \subseteq Y$ where $Y$ is smooth and suppose that $\pi : \tilde{Y} \rightarrow Y$ is a log resolution of $X$ in $Y$, an isomorphism outside of $X$.
+	If $E$ is the reduced preimage of $X$ in $\tilde{Y}$, then $\bR \pi_* \OO_E \qis \DB_X^0$ and in particular $X$ has Du Bois singularities if and only if the natural map $\OO_X \rightarrow \bR \pi_* \OO_E$ is a quasi-isomorphism.
+\end{theorem}
+
+As an example of the use of this condition, here are two results well-known for smooth complex varieties which apply in the Du Bois setting:
+
+\begin{prop}
+	Let $X$ be a complex variety with Du Bois singularities.
+	Then,
+	\begin{enumerate}
+		\item The natural morphism $H^i(X, \CC) \rightarrow H^i(X, \OO_X)$ is a surjection for each $i$.
+		\item If $X$ is Cohen-Macaulay, than for every big and nef line bundle $\LL$ on $X$, $H^i(X, \LL^{-1}) = 0$ for $i < \dim X$, or equivalently, $H^i(X, \LL \otimes \omega_X) = 0$ for $i > 0$.
+	\end{enumerate}
+\end{prop}
+
+We will further develop features of this in the chapters to come.
 
 \chapter{Grothendieck Duality on Diagrams}
 \label{chp:grothendieckduality}
@@ -1098,7 +1122,7 @@ Below is the critical existence theorem
 
 \begin{definition}
 	Let $p_\bullet : X_\bullet \rightarrow \Spec k$ be the structure map of a concentrated diagram of schemes.
-	Define the canonical complex $\omega_{X_\bullet}^\bullet = p_\bullet^! k$
+	Define the \textit{canonical complex} to be $\omega_{X_\bullet}^\bullet = p_\bullet^! k$
 \end{definition}
 
 This is analogous to the dualizing complex on schemes, however it is rarely dualizing (in the sense of $\bR \cHom(\omega_{X_\bullet}^\bullet, \omega_{X_\bullet}^\bullet) \qis \OO_{X_\bullet}$), so we will not call it that.
