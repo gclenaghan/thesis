@@ -89,25 +89,24 @@
 \prelimpages
 \Title{Grothendieck Duality on Diagrams of Schemes}
 \Author{Graham Clenaghan}
-\Year{2016}
+\Year{2015}
 \Program{Mathematics}
 
 \copyrightpage
 \titlepage
 
 \abstract{%
-	The Du Bois complex and Du Bois singularities, extending results of Hodge theory to singular complex varieties, are defined in terms of a hyperresolution, which for our purposes is a cubical diagram of schemes resolving the singularities of the variety of interest.
-	To study this, in this dissertation I further develop the language of diagrams of schemes and then prove analogues of Grothendieck duality and other cohomological theorems.
+	The Du Bois complex and Du Bois singularities, which extend results of Hodge theory to singular complex varieties, can be defined in terms of a cubical hyperresolution.
+	In this dissertation I further develop the language of diagrams of schemes and then prove analogues of Grothendieck duality and other cohomological theorems for cubical diagrams.
 	I then demonstrate the use of these by revisiting some known results about the Du Bois complex from a different perspective, and proving new results concerning the cohomology of a contraction.}
 \tableofcontents
 
 \textpages
 
 \chapter{Introduction}
-The Du Bois complex is a generalization of the de Rham complex, appearing in Hodge theory, to singular complex varieties, and was introduced in \cite{Bois1981}.
-The definition takes the de Rham complexes of smooth varieties and pushes them down to singular varieties, but unfortunately a traditional resolution of singularities is inadequate for this process.
-
-Hyperresolutions are an attempt to resolve the singularities of a variety while preserving the topological information of the original.
+The Du Bois complex is a generalization of the de Rham complex of Hodge theory to singular complex varieties, and was introduced in \cite{Bois1981}.
+The idea is to resolve the singularities of the variety and then push down the de Rham complex through this resolution, but a traditional resolution of singularities is inadequate for this process as topological information is lost.
+Instead, hyperresolutions are an attempt to resolve the singularities of a variety while preserving the topology.
 
 \begin{wrapfigure}{r}{0.15\textwidth}
 	\centering
@@ -136,23 +135,22 @@ Hyperresolutions are an attempt to resolve the singularities of a variety while 
 \end{wrapfigure}
 
 As an example of this, consider the resolution of the cone over $\CC$, $f : \tilde{X} \rightarrow X$ obtained by blowing up the cone point, as seen in the figure on the right.
-Then these topologically differ, as the cylinder has a non-trivial $\Ho^1 (\tilde{X}, \CC)$, while $\Ho^1 (X, \CC) = 0$.
-This is in direct opposition to our goal, which is to take the de Rham complex on a smooth variety over $\CC$ and bring it to a singular variety while still preserving its properties; in particular we would lose the property that $\Ho^i ( \tilde{X}, \CC) \cong \HH^i (\tilde{X}, \Omega_{\tilde{X}}^\bullet)$.
+These topologically differ, as the cylinder has a non-trivial $\Ho^1 (\tilde{X}, \CC)$, while $\Ho^1 (X, \CC) = 0$, pishing the de Rham complex to $X$ naively would lose the property that $\Ho^i ( \tilde{X}, \CC) \cong \HH^i (\tilde{X}, \Omega_{\tilde{X}}^\bullet)$.
 
 Instead, for a hyperresolution the goal is to ``remember" the fact that there is a $\PP^1$ in the cylinder which collapses to a point.
-This is achieved by using a resolution by a collection of schemes and relations between.
+This is achieved by replacing the single scheme $\tilde{X}$ with a collection of schemes and maps between them which collectively make up the resolution.
 
-Since the original definition, several implementations of the hyperresolution have been developed, each giving the same Du Bois complex, but the most tractable definition is the cubical hyperresolution which uses diagrams of schemes, such diagrams are the main topic of this dissertation.
+Since the original definition, several implementations of the hyperresolution have been developed, each resulting in the same Du Bois complex. The most tractable definition is the cubical hyperresolution which uses diagrams of scheme, and such diagrams are the main topic of this dissertation.
 
-However the complex is defined, one can then define the notion of Du Bois singularities as a natural condition of the 0-degree part of the complex $\DB_X^0$, which can be thought of as a hyperresolution-y version of rational singularities, and turn out to generalize those singularities as well as semi-log canonical singularities while maintaining features such as Kodaira vanishing.
+Whichever way the complex is defined, Du Bois singularities are a natural condition of the 0-degree part of the complex $\DB_X^0$, which can be thought of as a hyperresolution version of rational singularities. In fact, Du Bois singularities generalize rational singularities as well as semi-log canonical singularities while maintaining features such as Kodaira vanishing.
 If one prefers, there is a characterization due to Schwede \cite{Schwede2007} which allows Du Bois singularities to be defined without reference to hyperresolutions.
 
 The main reference for diagrams of schemes is Guilli\'en, et. al \cite{Guillen1988}, and a restricted category of diagrams--only shape-preserving maps (defined in \ref{def:diagram}) are allowed--is studied in Hashimoto \cite{Lipman2009}.
-Chapter \ref{chp:diagrams} serves as a mostly self-contained introduction to diagrams, and has new tools we will use to tackle the main results.
+Chapter \ref{chp:diagrams} serves as a mostly self-contained introduction to diagrams, and develops new tools we will use to tackle the main results.
 Chapter \ref{chp:duboiscomplex} then introduces the Du Bois complex and singularities, and lists some known results.
 
 The main results come in \ref{chp:grothendieckduality}, and consist of analogues of cohomological results from schemes including flat base change (theorem \ref{thm:flatbasechange}), the projection formula (theorem \ref{thm:projectionformula}), and Grothendieck duality (corollary \ref{cor:cubicalgrothdual}).
-In particular, for the former there is an analogue of a dualizing complex on diagrams (herein called the canonical complex since it is not dualizing in the traditional sense), which when pushed to the resolved variety becomes the $\db_X$ Grothendieck dual of the complex $\DB_X^0$ which has been studied somewhat in \cite{Kovacs2011a}.
+In particular, for the former there is an analogue of a dualizing complex on diagrams (herein called the canonical complex since it is not dualizing in the traditional sense), which when pushed to the resolved variety becomes the $\db_X$ Grothendieck dual of the complex $\DB_X^0$ which was studied somewhat in \cite{Kovacs2011a}.
 
 Finally, in chapter \ref{chp:applications} there is some demonstration of these results outside the realm of diagrams of schemes, including the following theorem:
 \begin{theorem}[Corollary \ref{cor:cohoofcontraction}]
