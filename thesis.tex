@@ -448,12 +448,12 @@ The natural map obtained by this characterization is used in the sheaf version o
 \end{prop}
 \begin{proof}
 	Let the shape functor of $i_\bullet$ be the inclusion of $J \hookrightarrow I$.
-	Treat $i_\bullet$ as a composition, first an flat, shape-preserving map $U_\bullet \rightarrow X_\bullet|_J$ and the inclusion $X_\bullet|_J \rightarrow X_\bullet$.
-	By \cite{Lipman2009}, II 6, the restriction functor to any subdiagram is exact (indeed, it has both a left and a right adjoint), and the pullback by a shape-preserving map splits over the components, in each component it is exact.
+	Treat $i_\bullet$ as a composition of a flat, shape-preserving map $U_\bullet \rightarrow X_\bullet|_J$ and the inclusion $X_\bullet|_J \rightarrow X_\bullet$.
+	By \cite{Lipman2009}, II 6, the restriction functor to any subdiagram is exact (indeed, it has both left and right adjoints), and the pullback by a shape-preserving map is just the pullback on each component, and on each component it is exact.
 \end{proof}
 
 It's tempting to think of complexes in the derived category of sheaves on a diagram as a sort of diagram of complexes in the derived categories of sheaves on the component schemes: an object $F_\alpha \in D(X_\alpha)$ and compatible morphisms $\bR X_{\phi_{\beta \alpha} *} F_\beta \rightarrow F_\alpha$.
-This is a subtle issue: the complex category $C(\Sh(X_\bullet))$ is indeed this sort of construction, but the chain homotopies over the entire diagram are not the same as the chain homotopies over component combined, they must be compatible as well.
+This is a subtle issue: the complex category $C(\Sh(X_\bullet))$ is indeed this sort of construction, but the chain homotopies over the entire diagram are not the same as the chain homotopies over each component combined, they must be compatible as well.
 Here is a simple example of this phenomenon:
 \begin{example}
 	\label{ex:ddiagvsdiagd}
@@ -532,7 +532,7 @@ Then to obtain the simple complex, we arrange the complexes, written out, as
 \]
 and then take the direct sum of each column, with the signs above indicating the sign in the differential.
 
-This can also be interpreted as taking a succession of mapping cones: treat $F_\bullet$ as a $(\Box_n^+)^{op}$-diagram with a 0 at the initial object, then since by definition $\Box_n^+ = \prod \tu$, $s$ on $\tu$ is the mapping cone, and by either direct computation or \cite{Guillen2002} $s$ factors over products.
+This can also be interpreted as taking a succession of mapping cones: treat $F_\bullet$ as a $(\Box_n^+)^{op}$-diagram with a 0 at the initial object, then since by definition $\Box_n^+ = \prod \tu$, $s$ on $\tu$ is the mapping cone, and by either direct computation or as in \cite{Guillen2002} $s$ factors over products.
 
 \begin{prop}[\cite{Guillen1988} I 6.3, \cite{Guillen2002} 1.3.1]
 	Let $A$ be an abelian category, then the simple complex is a functor $s:\Diag_{\Box_n} C(A) \rightarrow C(A)$ which takes quasi-isomorphisms to quasi-isomorphisms.
@@ -585,7 +585,7 @@ The functors $s$ and $s^*$ have a sort of duality theorem:
 \begin{proof}
 	These are all similar proofs, both in technique and tediousness, so we check the first only.
 	
-	Choose representatives of $F_\bullet$ and $G$ in $K(Diag_{\Box_n^{op}} A)$ and $K(A)$ respectively, with $G$ K-injective.
+	Choose representatives of $F_\bullet$ and $G$ in $K(\Diag_{\Box_n^{op}} A)$ and $K(A)$ respectively, with $G$ K-injective.
 	Then $\bR \Hom(F, s^* (G_\bullet)$ is represented by the complex with degree $p$ given by
 	\begin{align*}
 		\bR \Hom(F, s^* (G_\bullet))^p &= \bigoplus_{i-j = p} \Hom(s(F_\bullet)^j, G^i) \\
@@ -711,6 +711,8 @@ Now we come to the definition of a hyperresolution:
 \end{proof}
 	
 \section{Grothendieck Topology}
+Everything done so far can be recovered by viewing diagrams of schemes as a certain type of site and using the definition of sheaves on a site.
+For instance, the sheaf-hom defined above is exactly the sheaf-hom over a site.
 \begin{defprop}
 	For any diagram of schemes $X_\bullet$, define the Zariski site $\Zar(X_\bullet)$ to be the category of shape-embedding open immersions $U_\bullet \rightarrow X_\bullet$, with morphisms compatible shape-embedding open immersions $U_\bullet \rightarrow V_\bullet$.
 	
@@ -727,16 +729,26 @@ Now we come to the definition of a hyperresolution:
 	For each $f_\bullet : X_\bullet \rightarrow Y_\bullet$ we can associate morphism of sites which takes $U_\bullet \hookrightarrow Y_\bullet$ to $U_\bullet \times_{Y_\bullet} X_\bullet \hookrightarrow X_\bullet$.
 \end{proof}
 
-\begin{defprop}[Tag 0408 from \cite{stacks}]
+Where the site viewpoint begins to differ is that many of the concepts from sites tend to imply a strong condition called equivariance, which in general we'd like to avoid where possible.
+
+\begin{definition}
+	A sheaf $\FF_\bullet$ on a diagram is called equivariant if for each $X_\phi$ in the diagram, the map $X_\phi^*\FF_\alpha \rightarrow \FF_\beta$ is an isomorphism.
+\end{definition}
+
+\begin{definition}[Tag 0408 from \cite{stacks}]
 	A sheaf $\LL_\bullet$ on a diagram is called invertible if for each $U \in \Zar(X_\bullet)$, there is a covering $\{U_i \rightarrow U\}$ and isomorphisms $\OO_{X_\bullet/U_i} \xrightarrow{\sim} \LL_\bullet$.
 	An invertible sheaf is equivariant (by a similar argument to II 7.3 from \cite{Lipman2009}), and if $\LL_\bullet^{-1} = \cHom(\LL_\bullet, \OO_{X_\bullet})$, then the natural map $\LL_\bullet \otimes \LL_\bullet^{-1} \rightarrow \OO_{X_\bullet}$ is an isomorphism.
 	
 	Equivalently, an invertible sheaf is an equivariant sheaf which is invertible on every component.
-\end{defprop}
+\end{definition}
 
 Note that this differs from the convention of ``$\FF_\bullet$ has property $P$ if each $\FF_\alpha$ does," in this case we need equivariance in order to take maps $X_\phi^* \LL_\beta \rightarrow \LL_\alpha$ and give a map from $X_\phi^* \LL_\beta^{-1}$ to $\LL_\alpha$.
 
 \section{Quasi-coherentness}
+
+The quasi-coherentness of sheaves on diagrams is very important for later theorems.
+Here we prove some results guaranteeing quasi-coherent properties, starting with the following technical lemma.
+
 	
 \begin{lemma}
 	\label{lem:affinecover}
@@ -745,8 +757,8 @@ Note that this differs from the convention of ``$\FF_\bullet$ has property $P$ i
 \end{lemma}
 
 \begin{proof}
-	First we note that the objects in $I$ can be partially-ordered such that each object only maps to the objects of larger order, that is, $\Ob I$ has a bijection with $\{0, \dots, N\}$ such that if there is a morphism $i \rightarrow j$, then $i \leq j$.
-	The initial object must be 0 in this construction.
+	First we note that the objects in $I$ can be partially-ordered such that each object only maps to the objects of larger order, that is, $\Ob I$ has a bijection with $\{0, \dots, N\}$ such that if there is a morphism $i \rightarrow j$, then $i \leq j$ (note that the definition of a diagram shape category is essential for this construction).
+	The initial object must be 0.
 	
 	Thus we can construct $X$ inductively as follows: let $X^0 = X_0$, and let $X^1$ be the full subdiagram of $X$ with only $X_0$ and $X_1$, etc., so that $X^n$ is obtained from $X^{n-1}$ by taking the diagram containing $X^{n-1}$, $X_n$, and all the maps $f_{n\alpha}:X_n \rightarrow X_\alpha$ out of $X_n$ in the diagram $X$, by construction these all map to objects in $X^{n-1}$.
 	
@@ -770,21 +782,9 @@ Note that this differs from the convention of ``$\FF_\bullet$ has property $P$ i
 \end{proof}
 
 \begin{definition}
-	Let $X_\bullet$ be a diagram of schemes, $\FF_\bullet$ and $\GG_\bullet$ two sheaves over $X_\bullet$.
-	Define $\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet)$ as the sheaf-hom on the Zariski site, or equivalently as follows: for each $\alpha \in I$, and $U \subseteq X_\alpha$ open, let
-	\[
-		(\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet))_\alpha(U) = \Hom_{X_\bullet/U} ( i_U^* \FF_\bullet , i_U^* \GG_\bullet).
-	\]
-	This gives a sheaf on each $X_\alpha$.
-	For $X_\phi : X_\alpha \rightarrow X_\beta$, $U \subseteq X_\beta$, there is a map $X_\bullet / X_\phi^{-1}(U) \rightarrow X_\bullet / U$ such that the $i$ maps commute, and putting this together gives maps $(\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet))_\beta(U) \rightarrow (\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet))_\alpha(X_\phi^{-1}(U))$ as needed.
-\end{definition}
-
-\begin{definition}
 	A sheaf on $X_\bullet$ will be called (quasi-)coherent if each component is (quasi-)coherent.
-	Note that this is not the same as being (quasi-)coherent as a sheaf on the Zariski site.
-	As in II 7.3 of \cite{Lipman2009}, that is equivalent to this notion plus the following very strong condition:
-	
-	A sheaf $\FF_\bullet$ will be called equivariant if for each $X_\phi$ in the diagram, the map $X_\phi^* \FF_\alpha \rightarrow X_\beta$ is an isomorphism.
+	Note that this is not the same as being (quasi-)coherent as a sheaf on the Zariski site:
+	as in II 7.3 of \cite{Lipman2009}, that is equivalent to this and equivariance.
 \end{definition}
 
 \begin{defprop}
@@ -873,7 +873,7 @@ Note that this differs from the convention of ``$\FF_\bullet$ has property $P$ i
 \end{proof}
 
 \begin{theorem}
-	If $X_\bullet$ is a concentrated $I$-scheme, then if $\FF_\bullet$ is coherent and $\GG_\bullet$ is quasi-coherent, $\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet)$ is quasi-coherent.
+	If $X_\bullet$ is a concentrated (that is, quasi-compact and quasi-separated) $I$-scheme, then if $\FF_\bullet$ is coherent and $\GG_\bullet$ is quasi-coherent, $\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet)$ is quasi-coherent.
 	If in addition $\GG_\bullet$ is coherent, and $X_\bullet$ is noetherian with proper arrows, then $\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet)$ is coherent.
 \end{theorem}
 \begin{proof}
