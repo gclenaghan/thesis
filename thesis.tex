@@ -170,17 +170,16 @@ Finally, in chapter \ref{chp:applications} there is some demonstration of these 
 \chapter{Diagrams of Schemes and Their Sheaves}
 \label{chp:diagrams}
 \section{Diagram Categories and Diagrams of Schemes}
-In general, a diagram in a given category $A$ will be a collection of objects in morphisms in that category, the idea is we want to deal with that whole collection simultaneously: for a cubical hyperresolution, the diagram will contain the resolution of singularities \textit{and} information about how the resolution map transforms the space.
+In general, a diagram in a given category $A$ will be a collection of objects in morphisms in that category; the idea is that we want to deal with that whole collection simultaneously. For example, in a cubical hyperresolution the diagram will contain both the resolution of singularities \textit{and} information about how the resolution map transforms the space.
 
-One can work with arbitrary functors from some small category to $A$, but this can be messier than we need.
-The following definition makes a reasonable restriction on these categories:
+These collections will be defined by a functor from another category $I$ to $A$, and in general any small $I$ and functor can work, but for our purposes we can restrict $I$ to a much simpler case:
 \begin{definition}
 	A \textit{diagram shape category} is a finite, thin (any two objects have at most one morphism between them) category without loops.
 \end{definition}
 
-It is clear why requiring finiteness makes things easier, the primary reason for requiring thinness is so that we can think of slice categories and over categories as fully faithful subcategories which makes some constructions simpler.
+It is clear why requiring finiteness makes things easier, the primary reason for requiring thinness is so that we can think of slice categories and over categories as fully faithful subcategories, which will make some constructions simpler.
 Finally, loops in a thin category are somewhat silly (each map in the loop must be an isomorphism), so categories with loops contain no further information than the category with the loops collapsed, and doing so will be useful for lemma \ref{lem:affinecover}.
-These are particularly reasonable given the only categories we will be studying in much detail are given in definition \ref{def:cubicalcategories}.
+These conditions are particularly reasonable given the only categories we will be studying in much detail are given in definition \ref{def:cubicalcategories}.
 
 \begin{definition}
 	\label{def:diagram}
@@ -193,23 +192,23 @@ These are particularly reasonable given the only categories we will be studying 
 	
 	A \textit{morphism} between an $I$-diagram $X_\bullet$ and a $J$-diagram $Y_\bullet$ is given by a \textit{shape functor} $\Gamma : I^{op} \rightarrow J^{op}$ and a natural transformation $\eta : X_\bullet \rightarrow Y_\bullet \circ \Gamma$.
 	
-	In simpler terms, this is a collection of morphisms such that the total diagram with all the arrows from the morphism and both diagrams drawn is commutative.
+	In simpler terms, this is a collection of morphisms between the components of $X_\bullet$ and $Y_\bullet$ such that the total diagram with all the arrows from the morphism and both diagrams drawn is commutative.
 	Usually we'll denote a morphism as $f_\bullet : X_\bullet \rightarrow Y_\bullet$ with $\Gamma$ implicit and for each $\alpha \in I$, $f_\alpha : X_\alpha \rightarrow Y_{\Gamma(\alpha)}$.
 	
 	Call a morphism \textit{shape-preserving} if $\Gamma$ is the identity, and \textit{shape-embedding} if it is fully faithful.
 	
 	The category of diagrams in $A$ will be denoted $\Diag A$, and the category of $I$-diagrams with shape-preserving morphisms in $A$ will be denoted $\Diag_I A$.
 	
-	There is a diagonal functor for each $I$, $\Delta : A \rightarrow \Diag_I A$, where we'll denote $\Delta(X)$ by $X \times I$ (to be consistent with \cite{Guillen1988}), and $(X \times I)(\alpha) = X$ for all $\alpha$, with arrows the identity.
+	Finally, there is a diagonal functor for each $I$, $-\times I : A \rightarrow \Diag_I A$ sending each $X$ to the diagram $X \times I$ with shape $I$, all components $X$, and all morphisms the identity.
 \end{definition}
 
-The next definition introduces all the shapes we'll want to consider.
+The following definition introduces all the shapes we'll want to consider in detail.
 
 \begin{definition}
 	\label{def:cubicalcategories}
 	Let $\underline{1}$ be the category $\{0\}$, and $\tu$ be the category $\{0 \rightarrow 1\}$.
 	For $n \geq -1$, let $\Box_n^+$ be the product of $n+1$ copies of $\tu$.
-	The elements here are tuples $\alpha = (\alpha_0, \dots, \alpha_n)$, with $\alpha_i \in \{0, 1\}$, and we can define $|\alpha| = \sum \alpha_i$.
+	The elements here are tuples $\alpha = (\alpha_0, \dots, \alpha_n)$, with $\alpha_i \in \{0, 1\}$, and it is useful to define $|\alpha| = \sum \alpha_i$.
 	Let $\Box_n$ be the full subcategory without the initial object $(0, \dots, 0)$.
 	See figure \ref{fig:boxn}.
 	
@@ -273,7 +272,7 @@ The following constructions will be needed later:
 \begin{proof}
 	First, we fix some notation: let $I$ be the shape of $X_\bullet$, $J$ the shape of $Y_\bullet\rq{}$, and $K$ the shape of $Y_\bullet$.
 	Let $\Gamma : I \rightarrow K$ be associated to $f_\bullet$ and $\Lambda : J \rightarrow K$ be associated to $g_\bullet$.
-	Then there is a fibered product $I \times_K J$ in the category of finite categories: the full subcategory with objects $\{(i, j) \in I \times J : \Gamma(i) = \Lambda(j) \}$ in $I \times J$.
+	Then there is a fibered product $I \times_K J$ in the category of diagram shape categories: the full subcategory with objects $\{(i, j) \in I \times J : \Gamma(i) = \Lambda(j) \}$ in $I \times J$.
 	
 	Define an $I \times_K J$-scheme $X_\bullet\rq{}$ as follows: for $(i, j) \in I \times_K J$, let $X_{(i,j)}\rq{} = X_i \times_{Y_{\Gamma(i)}} Y_j$ and let the morphisms be the product of those in $X_\bullet$ and $Y_\bullet$.
 	Then the collection of projections to each coordinate give the maps $f_\bullet\rq{}$ and $g_\bullet\rq{}$ in the diagram, and it is clear now $f_\bullet\rq{}$ preserves any property which is preserved under base change.
@@ -284,6 +283,7 @@ The following constructions will be needed later:
 \end{proof}
 
 \begin{definition}
+	\label{def:overscheme}
 	Let $X_\bullet$ be an $I$-scheme.
 	Suppose $\alpha \in I$ and $U \subseteq X_\alpha$.
 	Define the {\it over-scheme of} $U$, $X_\bullet/U$ as a diagram of schemes over $\alpha/I$, the under category consisting of $(\beta, \phi)$ with $\beta \in I$ and $\phi : \alpha \rightarrow \beta$.
@@ -377,7 +377,7 @@ Given $\FF_\bullet$ and $\GG_\bullet$, sheaves on $X_\bullet$, we can define $\H
 	\[
 	(\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet))_\alpha(U) = \Hom_{X_\bullet/U} ( i_U^* \FF_\bullet , i_U^* \GG_\bullet).
 	\]
-	This gives a sheaf on each $X_\alpha$.
+	Note that $X_\bullet/U$ and $i_U$ are defined in \ref{def:overscheme}. This gives a sheaf on each $X_\alpha$.
 	For $X_\phi : X_\alpha \rightarrow X_\beta$, $U \subseteq X_\beta$, there is a map $X_\bullet / \phi^{-1}(U) \rightarrow X_\bullet / U$ such that the $i$ maps commute, and putting this together gives maps $(\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet))_\beta(U) \rightarrow (\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet))_\alpha(X_\phi^{-1}(U))$ as needed.
 \end{definition}
 
