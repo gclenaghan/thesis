@@ -953,7 +953,7 @@ Here we prove some results guaranteeing quasi-coherent properties, starting with
 	Furthermore, it takes $D_{qc}(X_\bullet) \times D_{qc}(X_\bullet)$ to $D_{qc}(X_\bullet)$ and $D_{c}(X_\bullet) \times D_{c}(X_\bullet)$ to $D_{c}(X_\bullet)$.
 \end{theorem}
 \begin{proof}
-	$(F_\bullet \otimesL G_\bullet)_\alpha = F_\alpha \otimesL G_\alpha$.
+	This follows immediately from $(F_\bullet \otimesL G_\bullet)_\alpha = F_\alpha \otimesL G_\alpha$ and the corresponding fact on schemes.
 \end{proof}
 
 \begin{theorem}
@@ -977,6 +977,9 @@ Here we prove some results guaranteeing quasi-coherent properties, starting with
 
 \chapter{The Du Bois Complex}
 \label{chp:duboiscomplex}
+
+Cubical hyperresolutions were defined to provide a simpler construction of the Du Bois complex, which is a singular version of the de Rham complex of smooth complex manifolds.
+Using this complex, Hodge-theoretic results can be extended somewhat to singular varieties.
 \section{Construction and Properties}
 If $X$ is a smooth variety of dimension $n$ over $\CC$, then using analytic methods we can construct the de Rham complex
 \[
@@ -1097,6 +1100,8 @@ We will further develop features of this in the chapters to come.
 \chapter{Grothendieck Duality on Diagrams}
 \label{chp:grothendieckduality}
 
+In this chapter we prove our main results, which are a diagram versions of well-known cohomological results on schemes.
+
 \section{Abstract $f_\bullet^!$ for an Morphism of Diagrams}
 For morphisms of projective schemes over a field $k$, $f : X \rightarrow Y$, Grothendieck duality can be stated as the existence of a right adjoint to $\bR f_*$, written $f^!$.
 By the various properties of these maps, we then have an isomorphism for $F \in D_{coh}^+(X), G \in D_{coh}^+(Y)$
@@ -1202,7 +1207,9 @@ Now we take on cubical diagrams, for which we will need the following constructi
 	Finally, we are done by the Yoneda lemma.
 \end{proof}
 
-\section{Projection Formula/Duality}
+\section{Projection Formula and Duality}
+
+The critical step in our method of approaching Grothendieck duality is the conjugacy of the duality and the projection formula map, so that we can approach the complicated hom-sheaves of duality via the much simpler tensor product (it should be noted that there are not many times in mathematics that using tensor products improves clarity).
 
 \begin{theorem}
 	Let $f_\bullet : X_\bullet \rightarrow Y_\bullet$ be a proper morphism of noetherian diagrams of schemes.
@@ -1232,10 +1239,14 @@ Now we take on cubical diagrams, for which we will need the following constructi
 	Then by Yoneda's lemma, the Grothendieck duality transformation is an isomorphism.
 \end{proof}
 
-\begin{theorem}
+With this established, we can focus on deriving the projection formula.
+The following is a cubical version of the flat base change theorem: the key to this is the commutation of the simple functor with a pullback, so from now on we will restrict to cubical morphisms.
+It is likely that this commutation holds on a wider class of shapes, however it certainly does not always hold as we will show in example \ref{ex:dualitycounter}.
+
+\begin{theorem}[Flat Base Change for Cubical Morphisms]
 	\label{thm:flatbasechange}
 	Let $u_\bullet : U_\bullet \rightarrow X_\bullet$ and $f_\bullet : Y_\bullet \rightarrow X_\bullet$ be morphisms of diagrams of schemes, and $V_\bullet = U_\bullet \times_{X_\bullet} Y_\bullet$, with projections $g_\bullet$ to $U_\bullet$ and $v_\bullet$ to $Y_\bullet$.
-	Then the natural transformation of functors $D_{qc}(Y_\bullet) \rightarrow D_{qc}(U_\bullet)$
+	Then there is a natural transformation of functors $D_{qc}(Y_\bullet) \rightarrow D_{qc}(U_\bullet)$
 	\[
 		\bL u_\bullet^* \bR f_{\bullet *} \rightarrow \bR g_{\bullet *} \bL v_\bullet^*,
 	\]
@@ -1268,7 +1279,7 @@ Now we take on cubical diagrams, for which we will need the following constructi
 	Since $u^*$ commutes with all of these, $u^* \bR \varprojlim F_\bullet$ is in fact the simple complex of $u^* F_\bullet$.
 \end{proof}
 
-\begin{theorem}
+\begin{theorem}[Projection Formula for Cubical Morphisms]
 	\label{thm:projectionformula}
 	Let $f_\bullet : X_\bullet \rightarrow Y_\bullet$ be a cubical morphism.
 	Then for each $F_\bullet \in D_{qc}(X_\bullet)$, the projection formula natural transformation of functors on $D_{qc}(X_\bullet)$
@@ -1284,7 +1295,7 @@ Now we take on cubical diagrams, for which we will need the following constructi
 	Here, $\OO_Y$ is ample and generates the category $D_{qc}(Y)$, and since each functor is triangulated from $D_{qc}(Y)$ to $D_{qc}(Y)$, and preserves coproducts, it is in fact enough to show just for $\OO_Y$, where it is trivial.
 \end{proof}
 
-\begin{cor}
+\begin{cor}[Grothendiek Duality for Cubical Morphisms]
 	\label{cor:cubicalgrothdual}
 	If $f_\bullet : X_\bullet \rightarrow Y_\bullet$ is a cubical, projective morphism of noetherian diagrams of schemes, then for any $F_\bullet \in D_{c}^-(X_\bullet)$, $G_\bullet \in D_{qc}^+(X_\bullet)$, the Grothendieck duality map is an isomorphism:
 	\[
@@ -1296,7 +1307,10 @@ Now we take on cubical diagrams, for which we will need the following constructi
 	\]
 \end{cor}
 
+The following example exhibits that the shape of the diagrams is of critical importance for this result: these all fail for arbitrary diagrams.
+
 \begin{example}
+	\label{ex:dualitycounter}
 	Let $X$ be a scheme, and $Y_\bullet$ be the diagram $X \rightarrow X$ with the identity map (for convenience, labeled $X_1 \rightarrow X_2$).
 	Then we have a morphism of diagrams $f_\bullet$ as follows:
 	\[
