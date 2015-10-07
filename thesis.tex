@@ -975,128 +975,6 @@ Here we prove some results guaranteeing quasi-coherent properties, starting with
 	Then the adjoint is bounded below by Lemma 4.1.8 of \cite{Lipman2009}.
 \end{proof}
 
-\chapter{The Du Bois Complex}
-\label{chp:duboiscomplex}
-
-Cubical hyperresolutions were defined to provide a simpler construction of the Du Bois complex, which is a singular version of the de Rham complex of smooth complex manifolds.
-Using this complex, Hodge-theoretic results can be extended somewhat to singular varieties.
-\section{Construction and Properties}
-If $X$ is a smooth variety of dimension $n$ over $\CC$, then using analytic methods we can construct the de Rham complex
-\[
-0 \rightarrow \OO_X \rightarrow \Omega_X^1 \rightarrow \cdots \rightarrow \Omega_X^n \rightarrow 0
-\]
-with maps given by exterior differentiation.
-
-This can be viewed as an object $\Omega_X^\bullet \in D(X)$ and has an associated filtration induced by truncation.
-Then $\Gr^p \Omega_X^\bullet [p] = \Omega_X^p$.
-
-If $X$ is any variety over $\CC$, then by theorem \ref{thm:hyperexist}, there is a hyperresolution $f_\bullet : X_\bullet \rightarrow X$ composed of smooth varieties over $\CC$.
-The de Rham complex is functorial, so this gives an object $\Omega_{X_\bullet}^\bullet$ of the derived category of sheaves over $X_\bullet$, where the corresponding sheaf on $X_\alpha$ is the de Rham complex $\Omega_{X_\alpha}^\bullet$ for each $\alpha$.
-
-\begin{definition}
-	Let $X$ be a variety over $\CC$ with a hyperresolution $f_\bullet : X_\bullet \rightarrow X$.
-	Then the {\it Du Bois complex} of $X$ is an object in the derived category of sheaves over $X$ defined by
-	\[
-	\DB_X^\bullet = \bR f_{\bullet *} \Omega_{X_\bullet}^\bullet
-	\]
-	This has a filtration induced by the truncation filtrations on the de Rham complexes, so further define
-	\[
-	\DB_X^p = \Gr^p \DB_X^\bullet [p] \qis \bR f_{\bullet *} \Omega_{X_\bullet}^p
-	\]
-\end{definition}
-
-It should be noted that this theory can be developed for pairs, but we are choosing to restrict our attention to the simpler case.
-
-The following is an omnibus theorem stating all the basic properties of the Du Bois complex which come from pushing forward the properties of the de Rham complexes.
-Importantly, this theorem establishes the Du Bois complex as intrinsic to $X$ rather than the above definition which is dependent on the hyperresolution.
-
-\begin{theorem}[6.5 of \cite{Kollar2013}]
-	\label{thm:omnibus}
-	Let $X$ be a variety over $\CC$.
-	Then $\DB_X^\bullet \in D_{filt}(X)$ satisfies the following
-	\begin{enumerate}
-		\item \label{thm:omnibus:qisconst} The complex is quasi-isomorphic to the constant sheaf \[
-		\DB_X^\bullet \qis \CC,
-		\]
-		and in particular there is an isomorphism for each $i$
-		\[
-		\HH^i(X, \DB_X^\bullet) \cong \Ho^i (X, \CC).
-		\]
-		\item $\DB_X^\bullet$ is independent of hyperresolution: if $f_\bullet : X_\bullet \rightarrow X$ is any hyperresolution of $X$, then $\bR f_{\bullet *} \Omega_X^\bullet$ is isomorphic to $\DB_X^\bullet$ as objects in $D_{filt}(X)$.
-		\item If $X$ is smooth, then $\DB_X^\bullet$ is isomorphic to $\Omega_X^\bullet$ as objects in $D_{filt}(X)$.
-		\item
-		If $\varphi : Y \rightarrow X$ is a morphism of varieties, then there exists a natural map of filtered complexes
-		\[
-		\varphi^* : \DB_X^\bullet \rightarrow \bR \varphi_* \DB_Y^\bullet.
-		\]
-		\item If $U \subseteq X$ is an open subscheme of $X$, then
-		\[
-		\DB_X^\bullet |_U \qisf \DB_U^\bullet.
-		\]
-		\item Let $H \subseteq X$ be a general member of a base point free linear system.
-		Then
-		\[
-		\DB_H^\bullet \qisf \DB_X^\bullet \otimesL \OO_H.
-		\]
-		\item \label{thm:omnibus:natmap} There is a natural map $\OO_X \rightarrow \DB_X^0 $ compatible with the maps above.
-		\item \label{thm:omnibus:specseq} If $X$ is proper, there is a spectral sequence degenerating at $E_1$ and computing the singular cohomology with compact support of $X$
-		\[
-		E_1^{pq} = \HH^q (X, \DB_X^p) \Rightarrow \Ho_c^{p+q} (X, \CC).
-		\]
-		\item Suppose $\pi : \tilde{X} \rightarrow X$ is projective and birational, an isomorphism outside of the reduced closed subscheme $\Sigma \subseteq X$.
-		Let $E = \pi^{-1}(\Sigma)_{red}$.
-		Then there is a distinguished triangle
-		\[
-		\DB_X^\bullet \rightarrow \DB_\Sigma^\bullet \oplus \bR \pi_* \DB_{\tilde{X}}^\bullet \rightarrow \bR \pi_* \DB_E^\bullet \xrightarrow{+1},
-		\]
-		where the first arrow is the sum of the maps from functoriality, and the second arrow is the difference.
-		In addition, for each $p$ there is a distinguished triangle
-		\[
-		\DB_X^p \rightarrow \DB_\Sigma^p \oplus \bR \pi_* \DB_{\tilde{X}}^p \rightarrow \bR \pi_* \DB_E^p \xrightarrow{+1},
-		\]
-	\end{enumerate}
-\end{theorem}
-
-Note that because of (\ref{thm:omnibus:qisconst}), the complex $\DB_X^\bullet \in D(X)$ is neither new nor interesting.
-The important part is the {\it filtration}.
-Still, in general, these properties of $\DB_X^\bullet$ may not be helpful if we have no way to compute the actual sheaves involved.
-This is where Du Bois singularities come in, as in many cases we care about, we can connect these sheaves with those we already know.
-
-\section{Du Bois Singularities}
-
-\begin{definition}
-	\label{def:dubois}
-	We say a variety $X$ over $\CC$ has {\it Du Bois singularities} (or is DB) if the natural map in (\ref{thm:omnibus:natmap}) is a quasi-isomorphism.
-	Equivalently by working through the definitions, $X$  has Du Bois singularities if for a hyperresolution $f_{\bullet} : X_\bullet \rightarrow X$, the natural map $\OO_X \rightarrow\bR f_{\bullet *} \OO_{X_\bullet}$ is a quasi-isomorphism where $(\OO_{X_\bullet})_\alpha = \OO_{X_\alpha}$ and the maps between the sheaves are the associated maps $\OO_{X_\beta} \rightarrow X_{\phi *} \OO_{X_\beta}$.
-\end{definition}
-
-While the first interpretation is useful as many of the nice properties are a result of the connection with the Du Bois complex, this second interpretation provides a strong analogy with rational singularities by simply exchanging a hyperresolution with a resolution of singularities.
-In fact we have the following theorem, showing Du Bois singularities are a generalization of well-known classes of singularities.
-\begin{theorem}
-	If $X$ is a complex variety with rational singularities or semi-log canonical singularities, then $X$ has Du Bois singularities.
-\end{theorem}
-
-An alternative characterization of Du Bois singularities is given below.
-
-\begin{theorem}[\cite{Schwede2007}]
-	Let $X$ be a reduced separated scheme of finite type over a field of characteristic zero.
-	Suppose $X \subseteq Y$ where $Y$ is smooth and suppose that $\pi : \tilde{Y} \rightarrow Y$ is a log resolution of $X$ in $Y$, an isomorphism outside of $X$.
-	If $E$ is the reduced preimage of $X$ in $\tilde{Y}$, then $\bR \pi_* \OO_E \qis \DB_X^0$ and in particular $X$ has Du Bois singularities if and only if the natural map $\OO_X \rightarrow \bR \pi_* \OO_E$ is a quasi-isomorphism.
-\end{theorem}
-
-As an example of the use of this condition, here are two results well-known for smooth complex varieties which apply in the Du Bois setting:
-
-\begin{prop}
-	Let $X$ be a complex variety with Du Bois singularities.
-	Then,
-	\begin{enumerate}
-		\item The natural morphism $H^i(X, \CC) \rightarrow H^i(X, \OO_X)$ is a surjection for each $i$.
-		\item If $X$ is Cohen-Macaulay, than for every big and nef line bundle $\LL$ on $X$, $H^i(X, \LL^{-1}) = 0$ for $i < \dim X$, or equivalently, $H^i(X, \LL \otimes \omega_X) = 0$ for $i > 0$.
-	\end{enumerate}
-\end{prop}
-
-We will further develop features of this in the chapters to come.
-
 \chapter{Grothendieck Duality on Diagrams}
 \label{chp:grothendieckduality}
 
@@ -1337,6 +1215,127 @@ The following example exhibits that the shape of the diagrams is of critical imp
 	by the previous computation this is morphism $\bR f_{\bullet *} f_\bullet^! \FF_\bullet \rightarrow \FF_\bullet$, and the right hand side gives the same sheaf when restricted to either $X_1$ or $X_2$, while $\FF_\bullet$ is not the same on each.
 \end{example}
 
+\chapter{The Du Bois Complex}
+\label{chp:duboiscomplex}
+
+Cubical hyperresolutions were defined to provide a simpler construction of the Du Bois complex, which is a singular version of the de Rham complex of smooth complex manifolds.
+Using this complex, Hodge-theoretic results can be extended somewhat to singular varieties.
+\section{Construction and Properties}
+If $X$ is a smooth variety of dimension $n$ over $\CC$, then using analytic methods we can construct the de Rham complex
+\[
+0 \rightarrow \OO_X \rightarrow \Omega_X^1 \rightarrow \cdots \rightarrow \Omega_X^n \rightarrow 0
+\]
+with maps given by exterior differentiation.
+
+This can be viewed as an object $\Omega_X^\bullet \in D(X)$ and has an associated filtration induced by truncation.
+Then $\Gr^p \Omega_X^\bullet [p] = \Omega_X^p$.
+
+If $X$ is any variety over $\CC$, then by theorem \ref{thm:hyperexist}, there is a hyperresolution $f_\bullet : X_\bullet \rightarrow X$ composed of smooth varieties over $\CC$.
+The de Rham complex is functorial, so this gives an object $\Omega_{X_\bullet}^\bullet$ of the derived category of sheaves over $X_\bullet$, where the corresponding sheaf on $X_\alpha$ is the de Rham complex $\Omega_{X_\alpha}^\bullet$ for each $\alpha$.
+
+\begin{definition}
+	Let $X$ be a variety over $\CC$ with a hyperresolution $f_\bullet : X_\bullet \rightarrow X$.
+	Then the {\it Du Bois complex} of $X$ is an object in the derived category of sheaves over $X$ defined by
+	\[
+	\DB_X^\bullet = \bR f_{\bullet *} \Omega_{X_\bullet}^\bullet
+	\]
+	This has a filtration induced by the truncation filtrations on the de Rham complexes, so further define
+	\[
+	\DB_X^p = \Gr^p \DB_X^\bullet [p] \qis \bR f_{\bullet *} \Omega_{X_\bullet}^p
+	\]
+\end{definition}
+
+It should be noted that this theory can be developed for pairs, but we are choosing to restrict our attention to the simpler case.
+
+The following is an omnibus theorem stating all the basic properties of the Du Bois complex which come from pushing forward the properties of the de Rham complexes.
+Importantly, this theorem establishes the Du Bois complex as intrinsic to $X$ rather than the above definition which is dependent on the hyperresolution.
+
+\begin{theorem}[6.5 of \cite{Kollar2013}]
+	\label{thm:omnibus}
+	Let $X$ be a variety over $\CC$.
+	Then $\DB_X^\bullet \in D_{filt}(X)$ satisfies the following
+	\begin{enumerate}
+		\item \label{thm:omnibus:qisconst} The complex is quasi-isomorphic to the constant sheaf \[
+		\DB_X^\bullet \qis \CC,
+		\]
+		and in particular there is an isomorphism for each $i$
+		\[
+		\HH^i(X, \DB_X^\bullet) \cong \Ho^i (X, \CC).
+		\]
+		\item $\DB_X^\bullet$ is independent of hyperresolution: if $f_\bullet : X_\bullet \rightarrow X$ is any hyperresolution of $X$, then $\bR f_{\bullet *} \Omega_X^\bullet$ is isomorphic to $\DB_X^\bullet$ as objects in $D_{filt}(X)$.
+		\item If $X$ is smooth, then $\DB_X^\bullet$ is isomorphic to $\Omega_X^\bullet$ as objects in $D_{filt}(X)$.
+		\item
+		If $\varphi : Y \rightarrow X$ is a morphism of varieties, then there exists a natural map of filtered complexes
+		\[
+		\varphi^* : \DB_X^\bullet \rightarrow \bR \varphi_* \DB_Y^\bullet.
+		\]
+		\item If $U \subseteq X$ is an open subscheme of $X$, then
+		\[
+		\DB_X^\bullet |_U \qisf \DB_U^\bullet.
+		\]
+		\item Let $H \subseteq X$ be a general member of a base point free linear system.
+		Then
+		\[
+		\DB_H^\bullet \qisf \DB_X^\bullet \otimesL \OO_H.
+		\]
+		\item \label{thm:omnibus:natmap} There is a natural map $\OO_X \rightarrow \DB_X^0 $ compatible with the maps above.
+		\item \label{thm:omnibus:specseq} If $X$ is proper, there is a spectral sequence degenerating at $E_1$ and computing the singular cohomology with compact support of $X$
+		\[
+		E_1^{pq} = \HH^q (X, \DB_X^p) \Rightarrow \Ho_c^{p+q} (X, \CC).
+		\]
+		\item Suppose $\pi : \tilde{X} \rightarrow X$ is projective and birational, an isomorphism outside of the reduced closed subscheme $\Sigma \subseteq X$.
+		Let $E = \pi^{-1}(\Sigma)_{red}$.
+		Then there is a distinguished triangle
+		\[
+		\DB_X^\bullet \rightarrow \DB_\Sigma^\bullet \oplus \bR \pi_* \DB_{\tilde{X}}^\bullet \rightarrow \bR \pi_* \DB_E^\bullet \xrightarrow{+1},
+		\]
+		where the first arrow is the sum of the maps from functoriality, and the second arrow is the difference.
+		In addition, for each $p$ there is a distinguished triangle
+		\[
+		\DB_X^p \rightarrow \DB_\Sigma^p \oplus \bR \pi_* \DB_{\tilde{X}}^p \rightarrow \bR \pi_* \DB_E^p \xrightarrow{+1},
+		\]
+	\end{enumerate}
+\end{theorem}
+
+Note that because of (\ref{thm:omnibus:qisconst}), the complex $\DB_X^\bullet \in D(X)$ is neither new nor interesting.
+The important part is the {\it filtration}.
+Still, in general, these properties of $\DB_X^\bullet$ may not be helpful if we have no way to compute the actual sheaves involved.
+This is where Du Bois singularities come in, as in many cases we care about, we can connect these sheaves with those we already know.
+
+\section{Du Bois Singularities}
+
+\begin{definition}
+	\label{def:dubois}
+	We say a variety $X$ over $\CC$ has {\it Du Bois singularities} (or is DB) if the natural map in (\ref{thm:omnibus:natmap}) is a quasi-isomorphism.
+	Equivalently by working through the definitions, $X$  has Du Bois singularities if for a hyperresolution $f_{\bullet} : X_\bullet \rightarrow X$, the natural map $\OO_X \rightarrow\bR f_{\bullet *} \OO_{X_\bullet}$ is a quasi-isomorphism where $(\OO_{X_\bullet})_\alpha = \OO_{X_\alpha}$ and the maps between the sheaves are the associated maps $\OO_{X_\beta} \rightarrow X_{\phi *} \OO_{X_\beta}$.
+\end{definition}
+
+While the first interpretation is useful as many of the nice properties are a result of the connection with the Du Bois complex, this second interpretation provides a strong analogy with rational singularities by simply exchanging a hyperresolution with a resolution of singularities.
+In fact we have the following theorem, showing Du Bois singularities are a generalization of well-known classes of singularities.
+\begin{theorem}
+	If $X$ is a complex variety with rational singularities or semi-log canonical singularities, then $X$ has Du Bois singularities.
+\end{theorem}
+
+An alternative characterization of Du Bois singularities is given below.
+
+\begin{theorem}[\cite{Schwede2007}]
+	Let $X$ be a reduced separated scheme of finite type over a field of characteristic zero.
+	Suppose $X \subseteq Y$ where $Y$ is smooth and suppose that $\pi : \tilde{Y} \rightarrow Y$ is a log resolution of $X$ in $Y$, an isomorphism outside of $X$.
+	If $E$ is the reduced preimage of $X$ in $\tilde{Y}$, then $\bR \pi_* \OO_E \qis \DB_X^0$ and in particular $X$ has Du Bois singularities if and only if the natural map $\OO_X \rightarrow \bR \pi_* \OO_E$ is a quasi-isomorphism.
+\end{theorem}
+
+As an example of the use of this condition, here are two results well-known for smooth complex varieties which apply in the Du Bois setting:
+
+\begin{prop}
+	Let $X$ be a complex variety with Du Bois singularities.
+	Then,
+	\begin{enumerate}
+		\item The natural morphism $H^i(X, \CC) \rightarrow H^i(X, \OO_X)$ is a surjection for each $i$.
+		\item If $X$ is Cohen-Macaulay, than for every big and nef line bundle $\LL$ on $X$, $H^i(X, \LL^{-1}) = 0$ for $i < \dim X$, or equivalently, $H^i(X, \LL \otimes \omega_X) = 0$ for $i > 0$.
+	\end{enumerate}
+\end{prop}
+
+\section{Duality and Hyperresolutions}
 \begin{prop}
 	Let $\pi_\bullet : X_\bullet \rightarrow X$ be a cubical hyperresolution.
 	Then $\bR \pi_{\bullet *} \omega_{X_\bullet}^\bullet = \bR \cHom(\DB_X^0,\omega_X^\bullet)$ and this is independent of choice of hyperresolution, denoted $\db_X$, (agreeing with the use of this notation in \cite{Kovacs2011a}).
@@ -1458,7 +1457,7 @@ The following is a Du Bois version of \cite{Kovacs1999}, the proof is identical 
 	For any closed $x \in X$, $\OO_{X,x}$ is a local Cohen-Macaulay ring of dimension $n$, and $h^i(\DB_X^0)_x \cong \Ext^{i+1}(\mathscr{Q}_x, \omega_{\OO_{X,x}})$ which is zero for $1 < i+1 < n - \dim \mathscr{Q}_x$ by \cite{Bruns1993} 3.5.11. Since the support of $\mathscr{Q}$ is contained in $\Sigma_d$, we are done.
 \end{proof}
 
-\chapter{Applications}
+\chapter{An Application of Duality}
 \label{chp:applications}
 \section{Cohomology of Contractions}
 In the case that the singularities on $X$ are isolated, we can understand the cohomology on $X$ of somewhat mysterious complexes by using the cohomology on the fiber of the blow-up.
