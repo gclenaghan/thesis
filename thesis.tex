@@ -1311,7 +1311,7 @@ This is where Du Bois singularities come in, as in many cases we care about, we 
 
 While the first interpretation is useful as many of the nice properties are a result of the connection with the Du Bois complex, this second interpretation provides a strong analogy with rational singularities by simply exchanging a hyperresolution with a resolution of singularities.
 In fact we have the following theorem, showing Du Bois singularities are a generalization of well-known classes of singularities.
-\begin{theorem}
+\begin{theorem}[6.25 and 6.32 of \cite{Kollar2013}]
 	If $X$ is a complex variety with rational singularities or semi-log canonical singularities, then $X$ has Du Bois singularities.
 \end{theorem}
 
@@ -1333,6 +1333,10 @@ As an example of the use of this condition, here are two results well-known for 
 		\item If $X$ is Cohen-Macaulay, than for every big and nef line bundle $\LL$ on $X$, $H^i(X, \LL^{-1}) = 0$ for $i < \dim X$, or equivalently, $H^i(X, \LL \otimes \omega_X) = 0$ for $i > 0$.
 	\end{enumerate}
 \end{prop}
+\begin{proof}
+	The first is a result of the spectral sequence in \ref{thm:omnibus:specseq}.
+	The second follows from the proof of \cite[6.6]{Kovacs2010}.
+\end{proof}
 
 \section{Duality and Hyperresolutions}
 Now we turn to applying the results of chapter \ref{chp:grothendieckduality} to hyperresolutions, in particular we can find a dual version of the definition of Du Bois singularities using the pushforward of the canonical complex.
@@ -1427,7 +1431,7 @@ The following are some useful vanishing properties of this complex.
 %	Since $\Hom(-,k)$ is contravariant it reverses the complex and gives the dual of the $i$th homology.
 %\end{proof}
 
-\begin{lemma}[proof of \cite[3.3]{Kovacs2011a} 3.3]
+\begin{lemma}[proof of \cite{Kovacs2011a} 3.3]
 	Let $X$ be a variety over $\CC$, $\LL$ an ample line bundle.
 	Then for all $j \in \ZZ$, the natural map
 	$\HH^j(X, \db_X \otimes \LL) \hookrightarrow \HH^j(X,\omega_X^\bullet \otimes \LL)$ is an injection.
