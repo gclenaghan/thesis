@@ -149,11 +149,7 @@ Whichever way the complex is defined, Du Bois singularities are a natural condit
 If one prefers, there is a characterization due to Schwede \cite{Schwede2007} which allows Du Bois singularities to be defined without reference to hyperresolutions.
 
 The main reference for diagrams of schemes is Guilli\'en, et. al \cite{Guillen1988}, and a restricted category of diagrams--only shape-preserving maps (defined in \ref{def:diagram}) are allowed--is studied in Hashimoto \cite{Lipman2009}.
-Chapter \ref{chp:diagrams} serves as a mostly self-contained introduction to diagrams, and develops new tools we will use to tackle the main results.
-Chapter \ref{chp:duboiscomplex} then introduces the Du Bois complex and singularities, and lists some known results.
-
-The main results come in \ref{chp:grothendieckduality}, and consist of analogues of cohomological results from schemes including flat base change (theorem \ref{thm:flatbasechange}), the projection formula (theorem \ref{thm:projectionformula}), and Grothendieck duality (corollary \ref{cor:cubicalgrothdual}).
-In particular, for the former there is an analogue of a dualizing complex on diagrams (herein called the canonical complex since it is not dualizing in the traditional sense), which when pushed to the resolved variety becomes the $\db_X$ Grothendieck dual of the complex $\DB_X^0$ which was studied somewhat in \cite{Kovacs2011a}.
+Chapter \ref{chp:diagrams} serves as a mostly self-contained introduction to diagrams, and develops new tools we will use to tackle the main results, which come in \ref{chp:grothendieckduality}. These consist of analogues of cohomological results from schemes including flat base change (theorem \ref{thm:flatbasechange}), the projection formula (theorem \ref{thm:projectionformula}), and Grothendieck duality (corollary \ref{cor:cubicalgrothdual}). Chapter \ref{chp:duboiscomplex} then introduces the Du Bois complex and singularities, lists some known results, and then applies Grothendieck duality to studying the complex. In particular, there is an analogue of a dualizing complex on diagrams (herein called the canonical complex since it is not dualizing in the traditional sense), which when pushed to the resolved variety becomes the $\db_X$ Grothendieck dual of the complex $\DB_X^0$ which was studied somewhat in \cite{Kovacs2011a}.
 
 Finally, in chapter \ref{chp:applications} there is some demonstration of these results outside the realm of diagrams of schemes, including the following theorem:
 \begin{theorem}[Corollary \ref{cor:cohoofcontraction}]
@@ -1339,7 +1335,7 @@ As an example of the use of this condition, here are two results well-known for 
 \end{prop}
 
 \section{Duality and Hyperresolutions}
-Now we turn to applying the results of chapter \ref{chp:grothendieckduality} to hyperresolutions, in particular we can find a dual version of the definition of Du Bois singularities.
+Now we turn to applying the results of chapter \ref{chp:grothendieckduality} to hyperresolutions, in particular we can find a dual version of the definition of Du Bois singularities using the pushforward of the canonical complex.
 
 \begin{prop}
 	Let $\pi_\bullet : X_\bullet \rightarrow X$ be a cubical hyperresolution.
@@ -1402,7 +1398,7 @@ Now we turn to applying the results of chapter \ref{chp:grothendieckduality} to 
 	The second part is then conjugate to the first.
 \end{proof}
 
-\section{Vanishing Properties}
+The following are some useful vanishing properties of this complex.
 
 \begin{theorem}[3.3, 3.5 of \cite{Kovacs2011a}]
 	\label{thm:duboisgr}
@@ -1412,41 +1408,38 @@ Now we turn to applying the results of chapter \ref{chp:grothendieckduality} to 
 		\db_X \qis h^{-n} (\db_x)[n].
 	\]
 \end{theorem}
-\begin{proof}
-	The only thing to note here is that the definition of $\db_X$ in \cite{Kovacs2011a} and here is the same by duality.
-\end{proof}
 
-\begin{prop}
-	\label{prp:cohofdual}
-	Let $\EE_\bullet$ be a locally free sheaf on $X_\bullet$, a proper noetherian diagram over a field $k$.
-	Then $\Hom(\bR \Gamma(\EE_\bullet),k) = \bR \Gamma(\EE^\vee \otimes \omega_{X_\bullet}^\bullet)$, and taking homology,
-	$\HH^i (X_\bullet, \EE_\bullet)^* = \HH^{-i}(X_\bullet, \EE_\bullet^\vee \otimes \omega_{X_\bullet}^\bullet)$.
-\end{prop}
-\begin{proof}
-	Using Grothendieck duality, and since $\Hom(-,k)$ is exact,
-	\begin{align*}
-		\Hom(\bR \Gamma(\EE_\bullet),k) &= \bR \Hom(\EE_\bullet, \omega_{X_\bullet}^\bullet) \\
-		&= \bR \Hom(\OO_{X_\bullet}, \EE_\bullet^\vee \otimes \omega_{X_\bullet}^\bullet) \\
-		&= \bR \Gamma(\EE_\bullet^\vee \otimes \omega_{X_\bullet}^\bullet)
-	\end{align*}
+%\begin{prop}
+%	\label{prp:cohofdual}
+%	Let $\EE_\bullet$ be a locally free sheaf on $X_\bullet$, a proper noetherian diagram over a field $k$.
+%	Then $\Hom(\bR \Gamma(\EE_\bullet),k) = \bR \Gamma(\EE^\vee \otimes \omega_{X_\bullet}^\bullet)$, and taking homology,
+%	$\HH^i (X_\bullet, \EE_\bullet)^* = \HH^{-i}(X_\bullet, \EE_\bullet^\vee \otimes \omega_{X_\bullet}^\bullet)$.
+%\end{prop}
+%\begin{proof}
+%	Using Grothendieck duality, and since $\Hom(-,k)$ is exact,
+%	\begin{align*}
+%		\Hom(\bR \Gamma(\EE_\bullet),k) &= \bR \Hom(\EE_\bullet, \omega_{X_\bullet}^\bullet) \\
+%		&= \bR \Hom(\OO_{X_\bullet}, \EE_\bullet^\vee \otimes \omega_{X_\bullet}^\bullet) \\
+%		&= \bR \Gamma(\EE_\bullet^\vee \otimes \omega_{X_\bullet}^\bullet)
+%	\end{align*}
 	
-	For the last statement, take the $-i$ homology of both sides.
-	Since $\Hom(-,k)$ is contravariant it reverses the complex and gives the dual of the $i$th homology.
-\end{proof}
+%	For the last statement, take the $-i$ homology of both sides.
+%	Since $\Hom(-,k)$ is contravariant it reverses the complex and gives the dual of the $i$th homology.
+%\end{proof}
 
-\begin{lemma}[proof of \cite{Kovacs2011a} 3.3]
+\begin{lemma}[proof of \cite[3.3]{Kovacs2011a} 3.3]
 	Let $X$ be a variety over $\CC$, $\LL$ an ample line bundle.
 	Then for all $j \in \ZZ$, the natural map
 	$\HH^j(X, \db_X \otimes \LL) \hookrightarrow \HH^j(X,\omega_X^\bullet \otimes \LL)$ is an injection.
 \end{lemma}
-
-The following is a Du Bois version of \cite{Kovacs1999}, the proof is identical in method:
 
 \begin{lemma}
 	Let $X$ be a Cohen-Macaulay variety of dimension $n$, and $\Sigma_d \subseteq X$ the smallest closed set such that $X \setminus \Sigma_d$ is Du Bois.
 	Then $h^i (\DB_X^0) = 0$ for $0 < i < n - \dim \Sigma_d - 1$.
 \end{lemma}
 \begin{proof}
+	This is a Du Bois version of \cite[Lemma~3.3]{Kovacs1999}, the proof is identical in method.
+	
 	Using \ref{thm:duboisgr}, we have an exact sequence
 	\[
 		0 \rightarrow h^{-n}(\db_X) \rightarrow \omega_X \rightarrow \mathscr{Q} \rightarrow 0
