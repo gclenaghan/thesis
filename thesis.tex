@@ -318,7 +318,7 @@ The following constructions will be needed later:
 \section{Sheaves on Diagrams}
 With a definition of diagrams of schemes, we can now consider sheaves over diagrams, which can be thought of as compatible collections of sheaves and morphisms over the schemes in the diagram.
 
-\begin{definition}[10.84 of \cite{Kollar2013}]
+\begin{definition}[{\cite[10.84]{Kollar2013}}]
 	Let $X_\bullet$ be an $I$-scheme.
 	A sheaf $\FF_\bullet$ on $X_\bullet$ is a collection of sheaves $\FF_\alpha$ on $X_\alpha$ with, for each $\phi_{\alpha\beta} : X_\alpha \rightarrow X_\beta$ in the diagram, morphisms $\FF_\beta \rightarrow f_* \FF_\alpha$, or equivalently $f^* \FF_\beta \rightarrow \FF_\alpha$.
 	This is an abelian category, so we can also take the derived category of such sheaves, $D(X_\bullet)$.
@@ -356,7 +356,7 @@ However, if this is the case then they form a diagram of sheaves over that targe
 	\]
 \end{definition}
 
-\begin{prop}[I 5.5 of \cite{Guillen1988}]
+\begin{prop}[{\cite[I 5.5]{Guillen1988}}]
 	With these definitions and using this notation, $f_{\bullet *}$ is the right adjoint of $f_\bullet^*$ and $\bR f_{\bullet *}$ is the right adjoint of $\bL f_\bullet^*$.
 \end{prop}
 
@@ -463,7 +463,7 @@ The natural map obtained by this characterization is used in the sheaf version o
 \begin{proof}
 	Let the shape functor of $i_\bullet$ be the inclusion of $J \hookrightarrow I$.
 	Treat $i_\bullet$ as a composition of a flat, shape-preserving map $U_\bullet \rightarrow X_\bullet|_J$ and the inclusion $X_\bullet|_J \rightarrow X_\bullet$.
-	By \cite{Lipman2009}, II 6, the restriction functor to any subdiagram is exact (indeed, it has both left and right adjoints), and the pullback by a shape-preserving map is just the pullback on each component, and on each component it is exact.
+	By \cite[II 6]{Lipman2009}, the restriction functor to any subdiagram is exact (indeed, it has both left and right adjoints), and the pullback by a shape-preserving map is just the pullback on each component, and on each component it is exact.
 \end{proof}
 
 It's tempting to think of complexes in the derived category of sheaves on a diagram as a sort of diagram of complexes in the derived categories of sheaves on the component schemes: an object $F_\alpha \in D(X_\alpha)$ and compatible morphisms $\bR X_{\phi_{\beta \alpha} *} F_\beta \rightarrow F_\alpha$.
@@ -511,12 +511,12 @@ Here is a simple example of this phenomenon:
 \label{sec:cubicaldescent}
 
 As previously mentioned, we are particularly interested in the case of a $\Box_n$-diagram.
-This has particularly nice properties in that the $\bR \varprojlim$ functor which is relatively mysterious in general becomes very concrete and even computable, it is given by the so-called simple functor, which appears in \cite{Guillen1988} I 6 and is developed further in \cite{Guillen2002} (an English reference is given by \cite{Pascual2009}).
+This has particularly nice properties in that the $\bR \varprojlim$ functor which is relatively mysterious in general becomes very concrete and even computable, it is given by the so-called simple functor, which appears in \cite[I 6]{Guillen1988} and is developed further in \cite{Guillen2002} (an English reference is given by \cite{Pascual2009}).
 
 For notational convenience, we'll consider $\Box_n = \{(\alpha_0, \dots \alpha_n) : \alpha_i \in \{0, 1\}\})$ as a subset of $\ZZ^n$.
 Let $e_i$ be the $i$th basis vector of $\ZZ^n$, and let the morphism from $\alpha$ to $\alpha + e_i$ (which exists if and only if $\alpha_i = 0$ be denoted by $\phi_{(\alpha, i)}$.
 
-\begin{definition}[\cite{Guillen1988} I 6]
+\begin{definition}[{\cite[I 6]{Guillen1988}}]
 	Let $F_\bullet : \Box_n \rightarrow C(A)$ be a diagram (over $\Box_n^{op}$) in the category of complexes in an abelian category $A$, where the differential of $F_\alpha$ is $d_\alpha$.
 	Define the {\it simple complex} of $s(F_\bullet)$ to be the object in $C(A)$ with
 	\[
@@ -548,7 +548,7 @@ and then take the direct sum of each column, with the signs above indicating the
 
 This can also be interpreted as taking a succession of mapping cones: treat $F_\bullet$ as a $(\Box_n^+)^{op}$-diagram with a 0 at the initial object, then since by definition $\Box_n^+ = \prod \tu$, $s$ on $\tu$ is the mapping cone, and by either direct computation or as in \cite{Guillen2002} $s$ factors over products.
 
-\begin{prop}[\cite{Guillen1988} I 6.3, \cite{Guillen2002} 1.3.1]
+\begin{prop}[{\cite[I 6.3]{Guillen1988}}, {\cite[1.3.1]{Guillen2002}}]
 	Let $A$ be an abelian category, then the simple complex is a functor $s:\Diag_{\Box_n} C(A) \rightarrow C(A)$ which takes quasi-isomorphisms to quasi-isomorphisms.
 	
 	Then this functor descends to the derived categories $D(\Diag_{\Box_n} A)$ and $\Diag_{\Box_n} D(A)$ and is the same when considering an object of the first as an object of the latter (so that the issues arising in example \ref{ex:ddiagvsdiagd} vanish when this functor is applied).
@@ -559,7 +559,7 @@ This can also be interpreted as taking a succession of mapping cones: treat $F_\
 	Then $\bR f_{\bullet *} F_\bullet$ is naturally quasi-isomorphic to the simple complex formed by the $\Box_n$ diagram of $\bR f_{\alpha *} F_\alpha$ for each $\alpha \in \Box_n$.
 \end{prop}
 \begin{proof}
-	This is I 6.6 of \cite{Guillen1988} in the special case of $I = \underline{1}$, and $K_\bullet$ the functor sending 0 to $\Box_n$.
+	This is \cite[I 6.6]{Guillen1988} in the special case of $I = \underline{1}$, and $K_\bullet$ the functor sending 0 to $\Box_n$.
 \end{proof}
 
 This works just as well for functors $\Box_n \rightarrow C(A)$ (i.e. objects of $\Diag_{\Box_n^{op}} C(A)$).
@@ -614,7 +614,7 @@ The functors $s$ and $s^*$ have a sort of duality theorem:
 
 We can skip the simple complex in actual computations by using the following spectral sequence.
 
-\begin{prop}[\cite{Guillen1988} I 6.7]
+\begin{prop}[{\cite[I 6.7]{Guillen1988}}]
 	\label{prp:cubicalcohospecseq}
 	Let $X_\bullet$ be a $\Box_n$-scheme, and $F_\bullet \in D(X_\bullet)$.
 	Then there is a spectral sequence computing the cohomology of $F_\bullet$:
@@ -631,7 +631,7 @@ We can skip the simple complex in actual computations by using the following spe
 
 The basic unit of a cubical hyperresolution is a 2-resolution: this can be thought of a resolution of singularities which keeps track of the fiber over the singular locus.
 
-\begin{definition}[10.76 of \cite{Kollar2013}]
+\begin{definition}[{\cite[10.76]{Kollar2013}}]
 	If $X$ is an $I$-scheme, then a {\it 2-resolution} of $S$ is a $\Box_1^+ \times I$-scheme $X_\bullet$ as in the diagram
 	\[
 	\begin{tikzcd}
@@ -684,7 +684,7 @@ Now if we consider the $\Box_1$-shaped diagram without the cone and dashed maps,
 In this example, and for any variety $X$ where $\Sing X$ and it's pullback is smooth, the first 2-resolution will be enough, but in general the process will need to continue to resolve the singularities of $\Sing X$.
 Since we would like the final product to be a diagram, we first define a way to combine successive 2-resolutions into a larger diagram
 
-\begin{definition}[10.78 of \cite{Kollar2013}]
+\begin{definition}[{\cite[10.78]{Kollar2013}}]
 	Suppose $n \leq 1$, $X^r_\bullet$ a $\Box^+_r \times I$-scheme for $1 \leq r \leq n$ such that $X_{00\bullet}^{r+1}$ is equal to $X_{1\bullet}^r$.
 	That is, each term in the sequence is a 2-resolution of the left part of the previous diagram.
 	Then define the {\it reduction}, a $\Box_n^+ \times I$-scheme $\red(X_\bullet^1, \dots, X_\bullet^n)$ inductively as follows:
@@ -700,13 +700,13 @@ Since we would like the final product to be a diagram, we first define a way to 
 
 Now we come to the definition of a hyperresolution:
 
-\begin{definition}[10.79 of \cite{Kollar2013}]
+\begin{definition}[{\cite[10.79]{Kollar2013}}]
 	Let $X$ be an $I$-scheme.
 	Then the $\Box_n^+ \times I$-scheme $\red(X_\bullet^1, \dots, X_\bullet^n)$ is a {\it cubic hyperresolution of $X$} if $X_\bullet^1$ is a 2-resolution of $X$, each successive step is a 2-resolution of the left part of the last, and each scheme in the final diagram is smooth.
 	Often, this will be written as a map $f_\bullet : X_\bullet \rightarrow X$, where $X_\bullet$ is a $\Box_n \times I$-scheme, and the total diagram of $X_\bullet \rightarrow X$ is the cubic hyperresolution.
 \end{definition}
 
-\begin{theorem}[I 2.15 of \cite{Guillen1988}]
+\begin{theorem}[{\cite[I 2.15]{Guillen1988}}]
 	\label{thm:hyperexist}
 	Suppose $I$ is a finite, ordered category, and $X$ is an $I$-scheme over a field of characteristic 0.
 	Then there exists a cubic hyperresolution $X_\bullet$ of $X$ such that for each $\alpha \in \Box_n$
@@ -749,9 +749,9 @@ Where the site viewpoint begins to differ is that many of the concepts from site
 	A sheaf $\FF_\bullet$ on a diagram is called equivariant if for each $X_\phi$ in the diagram, the map $X_\phi^*\FF_\alpha \rightarrow \FF_\beta$ is an isomorphism.
 \end{definition}
 
-\begin{definition}[Tag 0408 from \cite{stacks}]
+\begin{definition}[{\cite[Tag 0408]{stacks}}]
 	A sheaf $\LL_\bullet$ on a diagram is called invertible if for each $U \in \Zar(X_\bullet)$, there is a covering $\{U_i \rightarrow U\}$ and isomorphisms $\OO_{X_\bullet/U_i} \xrightarrow{\sim} \LL_\bullet$.
-	An invertible sheaf is equivariant (by a similar argument to II 7.3 from \cite{Lipman2009}), and if $\LL_\bullet^{-1} = \cHom(\LL_\bullet, \OO_{X_\bullet})$, then the natural map $\LL_\bullet \otimes \LL_\bullet^{-1} \rightarrow \OO_{X_\bullet}$ is an isomorphism.
+	An invertible sheaf is equivariant (by a similar argument to \cite[II 7.3]{Lipman2009}), and if $\LL_\bullet^{-1} = \cHom(\LL_\bullet, \OO_{X_\bullet})$, then the natural map $\LL_\bullet \otimes \LL_\bullet^{-1} \rightarrow \OO_{X_\bullet}$ is an isomorphism.
 	
 	Equivalently, an invertible sheaf is an equivariant sheaf which is invertible on every component.
 \end{definition}
@@ -798,7 +798,7 @@ Here we prove some results guaranteeing quasi-coherent properties, starting with
 \begin{definition}
 	A sheaf on $X_\bullet$ will be called (quasi-)coherent if it is as a sheaf on the Zariski site, and locally (quasi-)coherent if each component of the sheaf is (quasi-)coherent. 
 	Being (quasi-)coherent in this sense implies locally (quasi-)coherent, but not the other way around:
-	as in II 7.3 of \cite{Lipman2009}, (quasi-)coherent is equivalent locally (quasi-)coherent and equivariance.
+	as in \cite[II 7.3]{Lipman2009}, (quasi-)coherent is equivalent locally (quasi-)coherent and equivariance.
 \end{definition}
 
 \begin{defprop}
@@ -830,7 +830,7 @@ Here we prove some results guaranteeing quasi-coherent properties, starting with
 	Finally, $\bL j_{\alpha !}$ is adjoint with the restriction functor (which is exact), and continues to commute with restriction to an open subset, so the derived versions hold.
 \end{proof}
 
-\begin{defprop}[\cite{Lipman2009} II 6.7]
+\begin{defprop}[{\cite[II 6.7]{Lipman2009}}]
 	Let $X_\bullet$ be an $I$ scheme, with $\alpha \rightarrow \beta$ a morphism in $I$.
 	Define the inclusion $j_{\alpha \beta} : (X_\beta \rightarrow X_\alpha) \rightarrow X_\bullet$ of diagrams of schemes.
 	Then the restriction map $j_{\alpha \beta}^*$ has a right adjoint on sheaves $\FF_\bullet$ on $(X_\beta \rightarrow X_\alpha)$ computed as follows:
@@ -975,7 +975,7 @@ Here we prove some results guaranteeing quasi-coherent properties, starting with
 	Then the functors $\bR \cHom_{X_\bullet}(G_\bullet, -)$ and $-\otimesL G_\bullet$ are adjoint.
 \end{theorem}
 \begin{proof}
-	This is an application tag 09T5 of \cite{stacks}.
+	This is an application of \cite[Tag 09T5]{stacks}.
 \end{proof}
 
 \begin{theorem}
@@ -986,7 +986,7 @@ Here we prove some results guaranteeing quasi-coherent properties, starting with
 \end{theorem}
 \begin{proof}
 	The derived limit on each component preserves (quasi-)coherence and is bounded above, so by the simple complex construction, the derived limit of the total pushforward on each component $Y_\alpha$ also has these properties.
-	Then the adjoint is bounded below by Lemma 4.1.8 of \cite{Lipman2009}.
+	Then the adjoint is bounded below by \cite[Lemma 4.1.8]{Lipman2009}.
 \end{proof}
 
 \chapter{Grothendieck Duality on Diagrams}
@@ -1008,7 +1008,7 @@ The first step in this is proving the existence of an adjoint.
 Instead of a direct proof as in \cite{Hartshorne1966}, we can use Neeman's proof of Grothendieck duality via Brown representability in \cite{Neeman1996}, though this does not help with construction.
 Below is the critical existence theorem
 
-\begin{theorem}[4.1 of \cite{Neeman1996}]
+\begin{theorem}[{\cite[4.1]{Neeman1996}}]
 	\label{thm:neeman4.1}
 	Let $\CL$ be a compactly generated triangulated category, $\DD$ any triangulated category, and let $F : \CL \rightarrow \DD$ be a triangulated functor which respects coproducts.
 	Then $F$ has a right adjoint.
@@ -1019,7 +1019,7 @@ Below is the critical existence theorem
 	Then $\bR f_{\bullet *}$ has a right adjoint $f^!_\bullet$.
 \end{cor}
 \begin{proof}
-	The category $D_{lqc}^+(X_\bullet)$ is compactly generated by diagrams of perfect complexes (see 17.1 of \cite{Lipman2009}).
+	The category $D_{lqc}^+(X_\bullet)$ is compactly generated by diagrams of perfect complexes (see \cite[II 17.1]{Lipman2009}).
 	As a derived functor of $f_{\bullet *}$, $\bR f_{\bullet *}$ is triangulated.
 	For any component morphism $\phi$, $\bR \phi_*$ respects coproducts by \cite[1.4]{Neeman1996}.
 	Finally, so does $\bR \varprojlim$, so $\bR f_{\bullet *}$ has a right adjoint by \ref{thm:neeman4.1}.
@@ -1264,7 +1264,7 @@ It should be noted that this theory can be developed for pairs, but we are choos
 The following is an omnibus theorem stating all the basic properties of the Du Bois complex which come from pushing forward the properties of the de Rham complexes.
 Importantly, this theorem establishes the Du Bois complex as intrinsic to $X$ rather than the above definition which is dependent on the hyperresolution.
 
-\begin{theorem}[6.5 of \cite{Kollar2013}]
+\begin{theorem}[{\cite[6.5]{Kollar2013}}]
 	\label{thm:omnibus}
 	Let $X$ be a variety over $\CC$.
 	Then $\DB_X^\bullet \in D_{filt}(X)$ satisfies the following
@@ -1326,7 +1326,7 @@ This is where Du Bois singularities come in, as in many cases we care about, we 
 
 While the first interpretation is useful as many of the nice properties are a result of the connection with the Du Bois complex, this second interpretation provides a strong analogy with rational singularities by simply exchanging a hyperresolution with a resolution of singularities.
 In fact we have the following theorem, showing Du Bois singularities are a generalization of well-known classes of singularities.
-\begin{theorem}[6.25 and 6.32 of \cite{Kollar2013}]
+\begin{theorem}[{\cite[6.25 and 6.32]{Kollar2013}}]
 	If $X$ is a complex variety with rational singularities or semi-log canonical singularities, then $X$ has Du Bois singularities.
 \end{theorem}
 
@@ -1419,7 +1419,7 @@ Now we turn to applying the results of chapter \ref{chp:grothendieckduality} to 
 
 The following are some useful vanishing properties of this complex.
 
-\begin{theorem}[3.3, 3.5 of \cite{Kovacs2011a}]
+\begin{theorem}[{\cite[3.3, 3.5]{Kovacs2011a}}]
 	\label{thm:duboisgr}
 	Let $X$ be a complex variety of dimension $n$.
 	Then the natural map $h^j (\db_X) \rightarrow h^j (\omega_X^\bullet)$ is an injection, and if $X$ is Cohen-Macaulay then
@@ -1446,7 +1446,7 @@ The following are some useful vanishing properties of this complex.
 %	Since $\Hom(-,k)$ is contravariant it reverses the complex and gives the dual of the $i$th homology.
 %\end{proof}
 
-\begin{lemma}[proof of \cite{Kovacs2011a} 3.3]
+\begin{lemma}[proof of {\cite[3.3]{Kovacs2011a}}]
 	Let $X$ be a variety over $\CC$, $\LL$ an ample line bundle.
 	Then for all $j \in \ZZ$, the natural map
 	$\HH^j(X, \db_X \otimes \LL) \hookrightarrow \HH^j(X,\omega_X^\bullet \otimes \LL)$ is an injection.
@@ -1468,10 +1468,10 @@ The following are some useful vanishing properties of this complex.
 	\[
 		\bR \cHom(\mathscr{Q}, \omega_X) \rightarrow \OO_X \rightarrow \DB_X^0 \xrightarrow{+1},
 	\]
-	which realizes $\bR \cHom(\mathscr{Q}, \omega_X) \qis \DB_X^\times[-1]$ (c.f. \cite{Kollar2013} 6.12).
+	which realizes $\bR \cHom(\mathscr{Q}, \omega_X) \qis \DB_X^\times[-1]$ (c.f. \cite[6.12]{Kollar2013}).
 	Taking the cohomology of the complexes involved, since $h^i(\OO_X) = 0$ for $i \neq 0$, $h^i(\DB_X^0) \cong \cExt^{i+1}(\mathscr{Q}, \omega_X)$ for $i > 0$.
 	
-	For any closed $x \in X$, $\OO_{X,x}$ is a local Cohen-Macaulay ring of dimension $n$, and $h^i(\DB_X^0)_x \cong \Ext^{i+1}(\mathscr{Q}_x, \omega_{\OO_{X,x}})$ which is zero for $1 < i+1 < n - \dim \mathscr{Q}_x$ by \cite{Bruns1993} 3.5.11. Since the support of $\mathscr{Q}$ is contained in $\Sigma_d$, we are done.
+	For any closed $x \in X$, $\OO_{X,x}$ is a local Cohen-Macaulay ring of dimension $n$, and $h^i(\DB_X^0)_x \cong \Ext^{i+1}(\mathscr{Q}_x, \omega_{\OO_{X,x}})$ which is zero for $1 < i+1 < n - \dim \mathscr{Q}_x$ by \cite[3.5.11]{Bruns1993}. Since the support of $\mathscr{Q}$ is contained in $\Sigma_d$, we are done.
 \end{proof}
 
 \chapter{An Application of Duality}
@@ -1510,7 +1510,7 @@ The next theorem encapsulates this to be used in later computations.
 	Using the projection formula, $H^i(X, \LL^{-1} \otimes \DB_{X}^0)$ becomes $H^i(X_\bullet, \pi_\bullet^* \LL^{-1})$, but this is $H^i(Y_\bullet, \bR g_{\bullet *} \pi_\bullet^* \LL^{-1})$, so we can first find $\bR g_{\bullet *} \pi_\bullet^* \LL^{-1}$ and then compute its cohomology.
 		
 	Since all maps except $f$ in the diagram factor through the point $p$, $\pi_\bullet^* \LL^{-1}$ is $\OO$ on all components of $X_\bullet$ except $Y$.
-	Now since we can write $g_\bullet$ stratified over the projection of $\Box_m \leftarrow \Box_m \rightarrow \underline{1}$ to $\underline{1} \leftarrow \underline{1} \rightarrow \underline{1}$, I 5.14 of \cite{Guillen1988} allows $\bR g_{\bullet *}$ to computed separately over the components of $Y_\bullet$.
+	Now since we can write $g_\bullet$ stratified over the projection of $\Box_m \leftarrow \Box_m \rightarrow \underline{1}$ to $\underline{1} \leftarrow \underline{1} \rightarrow \underline{1}$, \cite[I 5.14]{Guillen1988} allows $\bR g_{\bullet *}$ to computed separately over the components of $Y_\bullet$.
 		
 	Thus, $\bR g_{\bullet *} \pi_\bullet^* \LL^{-1}|_Y = f^* \LL^{-1}$ since $Y$ itself is the only scheme in $X_\bullet$ over $Y$ in $Y_\bullet$.
 	$\pi_\bullet^* \LL^{-1}|_{Z_\bullet} = \OO_{Z_\bullet}$ as above and by definition, the pushforward is $\DB_{Y_p}^0$.
@@ -1564,7 +1564,7 @@ Another result of our calculation is that we have an analogue of Kodaira vanishi
 	Then for any $\LL$ big an nef, $H^i(X, \LL^{-1} \otimes \DB_X^0) = 0$ for $i < n$, or equivalently $H^i(X, \LL \otimes \db_X) = 0$ for $i > -n$.
 \end{cor}
 \begin{proof}
-	Note that $X$ being Cohen-Macaulay implies that $Z$ is connected and $H^i(Z, \OO_Z) = 0$ by Hartshorne's connectedness theorem and lemma 4.3 of \cite{Patakfalvi2013}.
+	Note that $X$ being Cohen-Macaulay implies that $Z$ is connected and $H^i(Z, \OO_Z) = 0$ by Hartshorne's connectedness theorem and \cite[Lemma 4.3]{Patakfalvi2013}.
 	
 	With this condition, we simply compute based on theorem \ref{thm:isosingcalc}.
 \end{proof}
