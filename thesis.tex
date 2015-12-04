@@ -22,6 +22,7 @@
 \newtheorem{question}[theorem]{Question}
 \newtheorem{example}[theorem]{Example}
 \newtheorem{defprop}[theorem]{Definition-Proposition}
+\newtheorem{remark}[theorem]{Remark}
 
 \DeclareMathOperator{\Coh}{Coh}
 \DeclareMathOperator{\Diag}{\underline{Diag}}
@@ -1548,7 +1549,11 @@ With some assumptions on $X$ this theorem provides cohomological constraints on 
 	The results follow by utilizing theorem \ref{thm:isosingcalc}.
 \end{proof}
 
-Note that the hypotheses imply that $X$ is normal, so the connectedness portion of this just gives an alternate proof of Zariski's main theorem in this case.
+\begin{remark}
+The hypotheses imply that $X$ is normal, so the connectedness portion of this just gives an alternate proof of Zariski's main theorem in this case.
+Furthermore, there appear to be parallels between this result and the well-known result that in this setup, $\bR f_* \OO_Y = 0$ for $0 < i < n - 1$ (c.f. \cite[Lemma~3.3]{Kovacs1999}).
+\end{remark}
+
 The Cohen-Macaulay hypothesis is necessary here since two planes intersecting at a point will provide a counterexample to the connectedness statement, and furthermore one can calculate that $h^i(X, \LL^{-1} \otimes \DB_X^0) = 1$ for every $\LL$.
 
 Another result of our calculation is that we have an analogue of Kodaira vanishing on cones without assuming Du Bois.
@@ -1561,7 +1566,7 @@ Another result of our calculation is that we have an analogue of Kodaira vanishi
 \begin{proof}
 	Note that $X$ being Cohen-Macaulay implies that $Z$ is connected and $H^i(Z, \OO_Z) = 0$ by Hartshorne's connectedness theorem and lemma 4.3 of \cite{Patakfalvi2013}.
 	
-	With this condition, we simply compute based on theorem \cite{Patakfalvi2013}.
+	With this condition, we simply compute based on theorem \ref{thm:isosingcalc}.
 \end{proof}
 
 This provides numerous examples of varieties which are not Du Bois but have this vanishing property, for instance any cone over a smooth, connected plane curve, only those of degree at most 3 are Du Bois.
