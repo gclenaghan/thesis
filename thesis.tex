@@ -154,7 +154,7 @@ The main results come in chapter \ref{chp:grothendieckduality}, and consist of g
 
 \begin{theorem}[Theorem \ref{thm:projectionformula} and Corollary \ref{cor:cubicalgrothdual}]
 	Let $f_\bullet : X_\bullet \rightarrow Y_\bullet$ be a cubical, proper morphism of noetherian diagrams of schemes.
-	Then for each $F_\bullet \in D_{c}^-(X_\bullet)$ and $G_\bullet \in D_{qc}^+(X_\bullet)$, there are isomorphisms
+	Then for each $F_\bullet \in D_{lc}^-(X_\bullet)$ and $G_\bullet \in D_{lqc}^+(X_\bullet)$, there are isomorphisms
 	\begin{align*}
 	G_\bullet \otimesL \bR f_{\bullet *} F_\bullet &\xrightarrow{\sim} \bR f_{\bullet *}(\bL f_\bullet^* G_\bullet \otimesL F_\bullet) \\
 	\bR f_{\bullet *} \bR \cHom(F_\bullet, f_\bullet^! G_\bullet) &\xrightarrow{\sim} \bR \cHom(\bR f_{\bullet *} F_\bullet, G_\bullet).
@@ -758,7 +758,7 @@ Where the site viewpoint begins to differ is that many of the concepts from site
 
 Note that this differs from the convention of ``$\FF_\bullet$ has property $P$ if each $\FF_\alpha$ does," in this case we need equivariance in order to take maps $X_\phi^* \LL_\beta \rightarrow \LL_\alpha$ and give a map from $X_\phi^* \LL_\beta^{-1}$ to $\LL_\alpha$.
 
-\section{Quasi-coherentness}
+\section{Local Quasi-coherentness}
 
 The quasi-coherentness of sheaves on diagrams is very important for later theorems.
 Here we prove some results guaranteeing quasi-coherent properties, starting with the following technical lemma.
@@ -796,9 +796,9 @@ Here we prove some results guaranteeing quasi-coherent properties, starting with
 \end{proof}
 
 \begin{definition}
-	A sheaf on $X_\bullet$ will be called (quasi-)coherent if each component is (quasi-)coherent.
-	Note that this is not the same as being (quasi-)coherent as a sheaf on the Zariski site:
-	as in II 7.3 of \cite{Lipman2009}, that is equivalent to this and equivariance.
+	A sheaf on $X_\bullet$ will be called (quasi-)coherent if it is as a sheaf on the Zariski site, and locally (quasi-)coherent if each component of the sheaf is (quasi-)coherent. 
+	Being (quasi-)coherent in this sense implies locally (quasi-)coherent, but not the other way around:
+	as in II 7.3 of \cite{Lipman2009}, (quasi-)coherent is equivalent locally (quasi-)coherent and equivariance.
 \end{definition}
 
 \begin{defprop}
@@ -845,11 +845,11 @@ Here we prove some results guaranteeing quasi-coherent properties, starting with
 
 \begin{prop}
 	\label{prp:homqcaffine}
-	If $X_\bullet$ has affine arrows, then for any $\FF_\bullet$ coherent, $\GG_\bullet$ quasi-coherent, $\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet)$ is quasi-coherent.
-	If in addition, $\GG_\bullet$ is coherent, $X_\bullet$ is noetherian, and the arrows are proper, then $\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet)$ is coherent.
+	If $X_\bullet$ has affine arrows, then for any $\FF_\bullet$ locally coherent, $\GG_\bullet$ locally quasi-coherent, $\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet)$ is locally quasi-coherent.
+	If in addition, $\GG_\bullet$ is locally coherent, $X_\bullet$ is noetherian, and the arrows are proper, then $\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet)$ is locally coherent.
 \end{prop}
 \begin{proof}
-	Enough to show that for each $X_\alpha$, that the sheaf $(\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet))_\alpha$ is (quasi-)coherent, which can be done locally, and furthermore for each $U \subseteq X_\alpha$, the definition of $\cHom$ only depends on the diagram $X_\bullet / U$ so we can restrict to proving this for a terminal scheme in a diagram, and furthermore restrict that this scheme is affine.
+	Enough to show that for each $X_\alpha$, that the sheaf $(\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet))_\alpha$ is (quasi-)coherent, which can be done locally. Furthermore for each $U \subseteq X_\alpha$, the definition of $\cHom$ only depends on the diagram $X_\bullet / U$ so we can restrict to proving this for a terminal scheme in a diagram, and furthermore restrict that this scheme is affine.
 	Because $X_\bullet$ has affine arrows, the entire diagram must be affine.
 		
 	Note that
@@ -864,7 +864,7 @@ Here we prove some results guaranteeing quasi-coherent properties, starting with
 													0 & \text{otherwise}
 													\end{cases},
 	\]
-	so this is quasi-coherent, and if the additional conditions are met, it is coherent.
+	so this is locally quasi-coherent, and if the additional conditions are met, it is locally coherent.
 	
 	Each $\FF_\alpha$ is coherent on an affine scheme, so is the cokernel of a map of finite rank free modules, these give sequences, surjective on the $\alpha$ component of the diagram:
 	\[
@@ -887,8 +887,8 @@ Here we prove some results guaranteeing quasi-coherent properties, starting with
 \end{proof}
 
 \begin{theorem}
-	If $X_\bullet$ is a concentrated (that is, quasi-compact and quasi-separated) $I$-scheme, then if $\FF_\bullet$ is coherent and $\GG_\bullet$ is quasi-coherent, $\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet)$ is quasi-coherent.
-	If in addition $\GG_\bullet$ is coherent, and $X_\bullet$ is noetherian with proper arrows, then $\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet)$ is coherent.
+	If $X_\bullet$ is a concentrated (that is, quasi-compact and quasi-separated) $I$-scheme, then if $\FF_\bullet$ is locally coherent and $\GG_\bullet$ is locally quasi-coherent, $\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet)$ is locally quasi-coherent.
+	If in addition $\GG_\bullet$ is locally coherent, and $X_\bullet$ is noetherian with proper arrows, then $\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet)$ is locally coherent.
 \end{theorem}
 \begin{proof}
 	As before, reduce to the case with $X_\bullet$ a diagram with an affine, terminal component $X_0$.
@@ -959,12 +959,12 @@ Here we prove some results guaranteeing quasi-coherent properties, starting with
 	\]
 	
 	As the diagonals move to the left, eventually each term must be zero by the bounds on the original complexes.
-	Furthermore, if each term in $F_\bullet$ is coherent and each term in $G_\bullet$ is quasi-coherent, then $I_\bullet$ can be taken to be a quasi-coherent injective resolution and thus each term in the double complex is quasi-coherent.
+	Furthermore, if each term in $F_\bullet$ is coherent and each term in $G_\bullet$ is quasi-coherent, then $I_\bullet$ can be taken to be a locally quasi-coherent injective resolution and thus each term in the double complex is locally quasi-coherent.
 \end{proof}
 
 \begin{theorem}
 	The derived functor $-\otimesL-$ takes $D(X_\bullet) \times D(X_\bullet)$ to $D(X_\bullet)$.
-	Furthermore, it takes $D_{qc}(X_\bullet) \times D_{qc}(X_\bullet)$ to $D_{qc}(X_\bullet)$ and $D_{c}(X_\bullet) \times D_{c}(X_\bullet)$ to $D_{c}(X_\bullet)$.
+	Furthermore, it takes $D_{lqc}(X_\bullet) \times D_{lqc}(X_\bullet)$ to $D_{lqc}(X_\bullet)$ and $D_{lc}(X_\bullet) \times D_{lc}(X_\bullet)$ to $D_{lc}(X_\bullet)$.
 \end{theorem}
 \begin{proof}
 	This follows immediately from $(F_\bullet \otimesL G_\bullet)_\alpha = F_\alpha \otimesL G_\alpha$ and the corresponding fact on schemes.
@@ -981,8 +981,8 @@ Here we prove some results guaranteeing quasi-coherent properties, starting with
 \begin{theorem}
 	\label{thm:pushforwardbounds}
 	Let $f_\bullet : X_\bullet \rightarrow Y_\bullet$ be a concentrated, cubical morphism.
-	Then $\bR f_{\bullet *} : D(X_\bullet) \rightarrow D(X_\bullet)$ maps $D_{qc}(X_\bullet)$ to $D_{qc}(X_\bullet)$, $D^-(X_\bullet)$ to $D^-(X_\bullet)$, and if $f_\bullet$ is a proper morphism of noetherian schemes, $D_c(X_\bullet)$ to $D_c(X_\bullet)$.
-	Furthermore the right adjoint to $\bR f_{\bullet *}$ on $D_{qc}(X_\bullet)$, $f_\bullet^!$ maps $D_{qc}^+(X_\bullet)$ to $D_{qc}^+(X_\bullet)$.
+	Then $\bR f_{\bullet *} : D(X_\bullet) \rightarrow D(X_\bullet)$ maps $D_{lqc}(X_\bullet)$ to $D_{lqc}(X_\bullet)$, $D^-(X_\bullet)$ to $D^-(X_\bullet)$, and if $f_\bullet$ is a proper morphism of noetherian schemes, $D_c(X_\bullet)$ to $D_c(X_\bullet)$.
+	Furthermore the right adjoint to $\bR f_{\bullet *}$ on $D_{lqc}(X_\bullet)$, $f_\bullet^!$ maps $D_{lqc}^+(X_\bullet)$ to $D_{lqc}^+(X_\bullet)$.
 \end{theorem}
 \begin{proof}
 	The derived limit on each component preserves (quasi-)coherence and is bounded above, so by the simple complex construction, the derived limit of the total pushforward on each component $Y_\alpha$ also has these properties.
@@ -996,7 +996,7 @@ In this chapter we prove our main results, which are a diagram versions of well-
 
 \section{Abstract $f_\bullet^!$ for an Morphism of Diagrams}
 For morphisms of proper schemes over a field $k$, $f : X \rightarrow Y$, Grothendieck duality can be stated as the existence of a right adjoint to $\bR f_*$, written $f^!$.
-By the various properties of these maps, we then have an isomorphism for $F \in D_{coh}^+(X), G \in D_{coh}^+(Y)$
+By the various properties of these maps, we then have an isomorphism for $F \in D_{c}^+(X), G \in D_{c}^+(Y)$
 \[
 \bR f_* \bR \cHom_X(F, f^! G) \cong \bR \cHom_Y(\bR f_* F, G)
 \]
@@ -1019,7 +1019,7 @@ Below is the critical existence theorem
 	Then $\bR f_{\bullet *}$ has a right adjoint $f^!_\bullet$.
 \end{cor}
 \begin{proof}
-	The category $D_{qc}^+(X_\bullet)$ is compactly generated by diagrams of perfect complexes (see 17.1 of \cite{Lipman2009}).
+	The category $D_{lqc}^+(X_\bullet)$ is compactly generated by diagrams of perfect complexes (see 17.1 of \cite{Lipman2009}).
 	As a derived functor of $f_{\bullet *}$, $\bR f_{\bullet *}$ is triangulated.
 	For any component morphism $\phi$, $\bR \phi_*$ respects coproducts by \cite[1.4]{Neeman1996}.
 	Finally, so does $\bR \varprojlim$, so $\bR f_{\bullet *}$ has a right adjoint by \ref{thm:neeman4.1}.
@@ -1105,12 +1105,12 @@ The critical step in our method of approaching Grothendieck duality is the conju
 
 \begin{theorem}
 	Let $f_\bullet : X_\bullet \rightarrow Y_\bullet$ be a proper morphism of noetherian diagrams of schemes.
-	Suppose that for $F_\bullet \in D_{c}^-(X_\bullet)$, the projection formula natural transformation of functors $D_{qc}(Y_\bullet) \rightarrow D_{qc}(Y_\bullet)$
+	Suppose that for $F_\bullet \in D_{lc}^-(X_\bullet)$, the projection formula natural transformation of functors $D_{lqc}(Y_\bullet) \rightarrow D_{lqc}(Y_\bullet)$
 	\[
 		- \otimesL \bR f_{\bullet *} F_\bullet \rightarrow \bR f_{\bullet *}(\bL f_\bullet^* - \otimesL F_\bullet)
 	\]
 	is an isomorphism.
-	Then the Grothendieck duality natural transformation of functors $D_{qc}^+(Y_\bullet) \rightarrow D_{qc}^+(Y_\bullet)$
+	Then the Grothendieck duality natural transformation of functors $D_{lqc}^+(Y_\bullet) \rightarrow D_{lqc}^+(Y_\bullet)$
 	\[
 		\bR f_{\bullet *} \bR \cHom_{X_\bullet} (F_\bullet, f_\bullet^! -) \rightarrow \bR \cHom_{Y_\bullet} (\bR f_{\bullet *} F_\bullet, -)
 	\]
@@ -1120,7 +1120,7 @@ The critical step in our method of approaching Grothendieck duality is the conju
 	By theorem \ref{thm:pushforwardbounds}, $\bR f_{\bullet *}$ maps $D^-_{c}(X_\bullet)$ to $D_c^-(X_\bullet)$.
 	Thus each of these is well-defined as functors to the indicated categories.
 	
-	Next we note that if $E_\bullet \in D_{qc}(X_\bullet)$, then for any $G_\bullet \in D_{qc}^+(X_\bullet)$, the two transformations are conjugate and fit into the diagram
+	Next we note that if $E_\bullet \in D_{lqc}(X_\bullet)$, then for any $G_\bullet \in D_{lqc}^+(X_\bullet)$, the two transformations are conjugate and fit into the diagram
 	\[
 	\begin{tikzcd}
 		\Hom(\bR f_{\bullet *}(\bL f_\bullet^* E_\bullet \otimesL F_\bullet), G_\bullet) \arrow{d}[sloped, above]{\sim} \arrow{r} & \Hom(E_\bullet \otimesL \bR f_{\bullet *} F_\bullet, G_\bullet) \arrow{d}[sloped, above]{\sim} \\
@@ -1138,7 +1138,7 @@ It is likely that this commutation holds on a wider class of shapes, however it 
 \begin{theorem}[Flat Base Change for Cubical Morphisms]
 	\label{thm:flatbasechange}
 	Let $u_\bullet : U_\bullet \rightarrow X_\bullet$ and $f_\bullet : Y_\bullet \rightarrow X_\bullet$ be morphisms of diagrams of schemes, and $V_\bullet = U_\bullet \times_{X_\bullet} Y_\bullet$, with projections $g_\bullet$ to $U_\bullet$ and $v_\bullet$ to $Y_\bullet$.
-	Then there is a natural transformation of functors $D_{qc}(Y_\bullet) \rightarrow D_{qc}(U_\bullet)$
+	Then there is a natural transformation of functors $D_{lqc}(Y_\bullet) \rightarrow D_{lqc}(U_\bullet)$
 	\[
 		\bL u_\bullet^* \bR f_{\bullet *} \rightarrow \bR g_{\bullet *} \bL v_\bullet^*,
 	\]
@@ -1152,7 +1152,7 @@ It is likely that this commutation holds on a wider class of shapes, however it 
 		&\rightarrow \bR g_{\bullet *} \bL v_\bullet^*.
 	\end{align*}
 	
-	Now suppose $F_\bullet \in D_{qc}(Y_\bullet)$ and $u_\bullet$ is a functor over $\Phi : I \rightarrow J$.
+	Now suppose $F_\bullet \in D_{lqc}(Y_\bullet)$ and $u_\bullet$ is a functor over $\Phi : I \rightarrow J$.
 	Then for each $\alpha \in I$, by definition,
 	\[
 		(\bR g_{\bullet *} \bL v_\bullet^* F_\bullet)_\alpha = \bR \varprojlim_{\beta \in \Box_n} \bR g_{(\alpha, \beta) *} \bL v_{(\alpha, \beta)}^* F_\beta,
@@ -1174,7 +1174,7 @@ It is likely that this commutation holds on a wider class of shapes, however it 
 \begin{theorem}[Projection Formula for Cubical Morphisms]
 	\label{thm:projectionformula}
 	Let $f_\bullet : X_\bullet \rightarrow Y_\bullet$ be a cubical morphism.
-	Then for each $F_\bullet \in D_{qc}(X_\bullet)$, the projection formula natural transformation of functors on $D_{qc}(X_\bullet)$
+	Then for each $F_\bullet \in D_{lqc}(X_\bullet)$, the projection formula natural transformation of functors on $D_{lqc}(X_\bullet)$
 	\[
 	- \otimesL \bR f_{\bullet *} F_\bullet \rightarrow \bR f_{\bullet *}(\bL f_\bullet^* - \otimesL F_\bullet)
 	\]
@@ -1189,7 +1189,7 @@ It is likely that this commutation holds on a wider class of shapes, however it 
 
 \begin{cor}[Grothendieck Duality for Cubical Morphisms]
 	\label{cor:cubicalgrothdual}
-	If $f_\bullet : X_\bullet \rightarrow Y_\bullet$ is a cubical, proper morphism of noetherian diagrams of schemes, then for any $F_\bullet \in D_{c}^-(X_\bullet)$, $G_\bullet \in D_{qc}^+(X_\bullet)$, the Grothendieck duality map is an isomorphism:
+	If $f_\bullet : X_\bullet \rightarrow Y_\bullet$ is a cubical, proper morphism of noetherian diagrams of schemes, then for any $F_\bullet \in D_{lc}^-(X_\bullet)$, $G_\bullet \in D_{lqc}^+(X_\bullet)$, the Grothendieck duality map is an isomorphism:
 	\[
 		\bR f_{\bullet *} \bR \cHom(F_\bullet, f_\bullet^! G_\bullet) \xrightarrow{\sim} \bR \cHom(\bR f_{\bullet *} F_\bullet, G_\bullet).
 	\]
