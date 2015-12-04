@@ -392,7 +392,7 @@ Given $\FF_\bullet$ and $\GG_\bullet$, sheaves on $X_\bullet$, we can define $\H
 	(\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet))_\alpha(U) = \Hom_{X_\bullet/U} ( i_U^* \FF_\bullet , i_U^* \GG_\bullet).
 	\]
 	Note that $X_\bullet/U$ and $i_U$ are defined in \ref{def:overscheme}. This gives a sheaf on each $X_\alpha$.
-	For $X_\phi : X_\alpha \rightarrow X_\beta$, $U \subseteq X_\beta$, there is a map $X_\bullet / \phi^{-1}(U) \rightarrow X_\bullet / U$ such that the $i$ maps commute, and putting this together gives maps $(\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet))_\beta(U) \rightarrow (\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet))_\alpha(X_\phi^{-1}(U))$ as needed.
+	For ${X_\phi : X_\alpha \rightarrow X_\beta}$, $U \subseteq X_\beta$, there is a map $X_\bullet / \phi^{-1}(U) \rightarrow X_\bullet / U$ such that the $i$ maps commute, and putting this together gives maps $(\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet))_\beta(U) \rightarrow (\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet))_\alpha(X_\phi^{-1}(U))$ as needed.
 \end{definition}
 
 \begin{prop}
@@ -981,7 +981,7 @@ Here we prove some results guaranteeing quasi-coherent properties, starting with
 \begin{theorem}
 	\label{thm:pushforwardbounds}
 	Let $f_\bullet : X_\bullet \rightarrow Y_\bullet$ be a concentrated, cubical morphism.
-	Then $\bR f_{\bullet *} : D(X_\bullet) \rightarrow D(X_\bullet)$ maps $D_{lqc}(X_\bullet)$ to $D_{lqc}(X_\bullet)$, $D^-(X_\bullet)$ to $D^-(X_\bullet)$, and if $f_\bullet$ is a proper morphism of noetherian schemes, $D_c(X_\bullet)$ to $D_c(X_\bullet)$.
+	Then ${\bR f_{\bullet *} : D(X_\bullet) \rightarrow D(X_\bullet)}$ maps $D_{lqc}(X_\bullet)$ to $D_{lqc}(X_\bullet)$, $D^-(X_\bullet)$ to $D^-(X_\bullet)$, and if $f_\bullet$ is a proper morphism of noetherian schemes, $D_c(X_\bullet)$ to $D_c(X_\bullet)$.
 	Furthermore the right adjoint to $\bR f_{\bullet *}$ on $D_{lqc}(X_\bullet)$, $f_\bullet^!$ maps $D_{lqc}^+(X_\bullet)$ to $D_{lqc}^+(X_\bullet)$.
 \end{theorem}
 \begin{proof}
@@ -1058,7 +1058,7 @@ Now we take on cubical diagrams, for which we will need the following constructi
 											0 & \text{otherwise,}
 									\end{cases}
 	\]
-	where the nonzero diagram maps are the pushforwards of the natural maps $\bR X_{\phi_{\gamma \beta} *} \omega_{X_\gamma}^\bullet \rightarrow \omega_{X_\beta}$.
+	where the nonzero diagram maps are the pushforwards of the natural maps ${\bR X_{\phi_{\gamma \beta} *} \omega_{X_\gamma}^\bullet \rightarrow \omega_{X_\beta}}$.
 
 	The direction of the maps here can be confusing: note that diagrams are contravariant functors.
 	For any arrow $\phi_{\gamma \beta} : \beta \rightarrow \gamma$ in $I$, there is a morphism $X_{\phi_{\gamma \beta}} : X_\gamma \rightarrow X_\beta$ and a morphism $\hat{\omega}^\alpha_\gamma \rightarrow \hat{\omega}^\alpha_\beta$.
@@ -1110,7 +1110,7 @@ The critical step in our method of approaching Grothendieck duality is the conju
 		- \otimesL \bR f_{\bullet *} F_\bullet \rightarrow \bR f_{\bullet *}(\bL f_\bullet^* - \otimesL F_\bullet)
 	\]
 	is an isomorphism.
-	Then the Grothendieck duality natural transformation of functors $D_{lqc}^+(Y_\bullet) \rightarrow D_{lqc}^+(Y_\bullet)$
+	Then the Grothendieck duality natural transformation of functors ${D_{lqc}^+(Y_\bullet) \rightarrow D_{lqc}^+(Y_\bullet)}$
 	\[
 		\bR f_{\bullet *} \bR \cHom_{X_\bullet} (F_\bullet, f_\bullet^! -) \rightarrow \bR \cHom_{Y_\bullet} (\bR f_{\bullet *} F_\bullet, -)
 	\]
@@ -1321,7 +1321,7 @@ This is where Du Bois singularities come in, as in many cases we care about, we 
 \begin{definition}
 	\label{def:dubois}
 	We say a variety $X$ over $\CC$ has {\it Du Bois singularities} (or is DB) if the natural map in (\ref{thm:omnibus:natmap}) is a quasi-isomorphism.
-	Equivalently by working through the definitions, $X$  has Du Bois singularities if for a hyperresolution $f_{\bullet} : X_\bullet \rightarrow X$, the natural map $\OO_X \rightarrow\bR f_{\bullet *} \OO_{X_\bullet}$ is a quasi-isomorphism where $(\OO_{X_\bullet})_\alpha = \OO_{X_\alpha}$ and the maps between the sheaves are the associated maps $\OO_{X_\beta} \rightarrow X_{\phi *} \OO_{X_\beta}$.
+	Equivalently by working through the definitions, $X$  has Du Bois singularities if for a hyperresolution $f_{\bullet} : X_\bullet \rightarrow X$, the natural map ${\OO_X \rightarrow\bR f_{\bullet *} \OO_{X_\bullet}}$ is a quasi-isomorphism where $(\OO_{X_\bullet})_\alpha = \OO_{X_\alpha}$ and the maps between the sheaves are the associated maps $\OO_{X_\beta} \rightarrow X_{\phi *} \OO_{X_\beta}$.
 \end{definition}
 
 While the first interpretation is useful as many of the nice properties are a result of the connection with the Du Bois complex, this second interpretation provides a strong analogy with rational singularities by simply exchanging a hyperresolution with a resolution of singularities.
@@ -1542,7 +1542,7 @@ With some assumptions on $X$ this theorem provides cohomological constraints on 
 		0 & \text{if } 0 < i < n - 1.
 		\end{cases}
 	\]
-	In particular, $Y_p$ is connected and if $Y_p$ has Du Bois singularities $H^i(Y_p, \OO_{Y_p}) = 0$ for $0 < i < n - 1$.
+	In particular, $Y_p$ is connected and if $Y_p$ has Du Bois singularities $H^i(Y_p, \OO_{Y_p}) = 0$ for ${0 < i < n - 1}$.
 \end{cor}
 \begin{proof}
 	Under these hypotheses, for any big and nef $\LL$ on $X$, $H^i(X, \LL^{-1} \otimes \DB_X^0) = H^i(X, \LL^{-1}) = 0$ since Kodaira vanishing holds for $X$.
