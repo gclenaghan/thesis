@@ -324,6 +324,10 @@ With a definition of diagrams of schemes, we can now consider sheaves over diagr
 	This is an abelian category, so we can also take the derived category of such sheaves, $D(X_\bullet)$.
 \end{definition}
 
+\begin{example}
+	For each morphism $\phi_{\alpha\beta}:X_\alpha \rightarrow X_\beta$, there is an induced map ${\OO_{X_\beta} \rightarrow \phi_{\alpha\beta *} \OO_{X_\alpha}}$, thus there is a sheaf $\OO_{X_\bullet}$ on $X_\bullet$ given by $(\OO_{X_\bullet})_\alpha = \OO_{X_\alpha}$.
+\end{example}
+
 Given a map of diagrams, there are several associated functors of sheaves, analogous to those on literal schemes.
 The easiest to construct is the pullback
 
@@ -887,7 +891,7 @@ Here we prove some results guaranteeing quasi-coherent properties, starting with
 \end{proof}
 
 \begin{theorem}
-	If $X_\bullet$ is a concentrated (that is, quasi-compact and quasi-separated) $I$-scheme, then if $\FF_\bullet$ is locally coherent and $\GG_\bullet$ is locally quasi-coherent, $\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet)$ is locally quasi-coherent.
+	Let $X_\bullet$ be a concentrated (that is, quasi-compact and quasi-separated) $I$-scheme. Then if $\FF_\bullet$ is locally coherent and $\GG_\bullet$ is locally quasi-coherent, $\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet)$ is locally quasi-coherent.
 	If in addition $\GG_\bullet$ is locally coherent, and $X_\bullet$ is noetherian with proper arrows, then $\cHom_{X_\bullet}(\FF_\bullet, \GG_\bullet)$ is locally coherent.
 \end{theorem}
 \begin{proof}
@@ -1066,9 +1070,9 @@ Now we take on cubical diagrams, for which we will need the following constructi
 \end{definition}
 
 \begin{theorem}
-	For any $X_\bullet$ a proper, noetherian $\Box_n$-scheme over a field $k$, and $\alpha \in \Box_n$, there is a natural isomorphism
+	For any $X_\bullet$ a proper, noetherian $\Box_n$-scheme over a field $k$, and $\alpha \in \Box_n$, there is an isomorphism
 	\[
-		(\omega_{X_\bullet}^\bullet)_\alpha = s^*(\hat{\omega}^\alpha_\bullet)
+		(\omega_{X_\bullet}^\bullet)_\alpha \cong s^*(\hat{\omega}^\alpha_\bullet)
 	\]
 \end{theorem}
 \begin{proof}
@@ -1321,7 +1325,7 @@ This is where Du Bois singularities come in, as in many cases we care about, we 
 \begin{definition}
 	\label{def:dubois}
 	We say a variety $X$ over $\CC$ has {\it Du Bois singularities} (or is DB) if the natural map in (\ref{thm:omnibus:natmap}) is a quasi-isomorphism.
-	Equivalently by working through the definitions, $X$  has Du Bois singularities if for a hyperresolution $f_{\bullet} : X_\bullet \rightarrow X$, the natural map ${\OO_X \rightarrow\bR f_{\bullet *} \OO_{X_\bullet}}$ is a quasi-isomorphism where $(\OO_{X_\bullet})_\alpha = \OO_{X_\alpha}$ and the maps between the sheaves are the associated maps $\OO_{X_\beta} \rightarrow X_{\phi *} \OO_{X_\beta}$.
+	Equivalently by working through the definitions, $X$  has Du Bois singularities if for a hyperresolution $f_{\bullet} : X_\bullet \rightarrow X$, the natural map ${\OO_X \rightarrow\bR f_{\bullet *} \OO_{X_\bullet}}$ is a quasi-isomorphism.
 \end{definition}
 
 While the first interpretation is useful as many of the nice properties are a result of the connection with the Du Bois complex, this second interpretation provides a strong analogy with rational singularities by simply exchanging a hyperresolution with a resolution of singularities.
