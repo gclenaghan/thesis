@@ -1485,10 +1485,12 @@ In the case that the singularities on $X$ are isolated, we can understand the co
 The next theorem encapsulates this to be used in later computations.
 \begin{theorem}
 	\label{thm:isosingcalc}
-	Let $X$ be a proper, reduced $\CC$-scheme of dimension $n$, $Y$ smooth, with $f:Y \rightarrow X$ a proper morphism which is an isomorphism outside of a closed $p \in X$. Then for $1 < i \leq n$ and any big and nef line bundle $\LL$ on $X$, there are isomorphisms
+	Let $X$ be a proper, reduced $\CC$-scheme of dimension $n$, $Y$ smooth, with $f:Y \rightarrow X$ a proper morphism which is an isomorphism outside of a closed $p \in X$. Then for $0 \leq i \leq n$ and any big and nef line bundle $\LL$ on $X$, there are isomorphisms
 	\[
-		H^i(X, \LL^{-1} \otimes \DB_X^0) = \begin{cases} H^0(Y_p, \CC)/\CC & \text{if } i = 0 \\
-		H^{i-1}(Y_p, \DB_{Y_p}^0) & \text{if } 2 < i < n \\
+		H^i(X, \LL^{-1} \otimes \DB_X^0) = \begin{cases}
+		0 & \text{if } i = 0 \\
+		H^0(Y_p, \CC)/\CC & \text{if } i = 1 \\
+		H^{i-1}(Y_p, \DB_{Y_p}^0) & \text{if } 2 \leq i \leq n-1 \\
 		H^n(Y, f^* \LL^{-1}) \oplus H^{n-1}(Y_p, \DB_{Y_p}^0) & \text{if } i = n.
 		\end{cases}
 	\]
@@ -1539,17 +1541,17 @@ With some assumptions on $X$ this theorem provides cohomological constraints on 
 \begin{cor}
 	\label{cor:cohoofcontraction}
 	Let $X$ be a proper, reduced, Cohen-Macaulay $\CC$-scheme of dimension $n$ with Du Bois singularities, $Y$ smooth, with $f : Y \rightarrow X$ a proper morphism which is as isomorphism outside of a closed $p \in X$.
-	Then, for $0 < i < n - 1$, the exceptional locus $Y_p$ satisfies
+	Then, for $0 \leq i \leq n - 2$, the exceptional locus $Y_p$ satisfies
 	\[
 		H^i (Y_p, \DB_{Y_p}^0) = \begin{cases}
 		\CC & \text{if } i = 0 \\
-		0 & \text{if } 0 < i < n - 1.
+		0 & \text{if } 1 \leq i \leq n - 2.
 		\end{cases}
 	\]
 	In particular, $Y_p$ is connected and if $Y_p$ has Du Bois singularities $H^i(Y_p, \OO_{Y_p}) = 0$ for ${0 < i < n - 1}$.
 \end{cor}
 \begin{proof}
-	Under these hypotheses, for any big and nef $\LL$ on $X$, $H^i(X, \LL^{-1} \otimes \DB_X^0) = H^i(X, \LL^{-1}) = 0$ since Kodaira vanishing holds for $X$.
+	Under these hypotheses, for any big and nef $\LL$ on $X$, $H^i(X, \LL^{-1} \otimes \DB_X^0) = H^i(X, \LL^{-1}) = 0$ for $i < n$ since Kodaira vanishing holds for $X$.
 	The results follow by utilizing theorem \ref{thm:isosingcalc}.
 \end{proof}
 
